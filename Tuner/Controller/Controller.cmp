@@ -1,0 +1,1187 @@
+Cmp-Mod V01 Created by PcbNew   date = 7/30/2018 12:53:57 AM
+
+BeginCmp
+TimeStamp = 5B5E8063
+Path = /5B6065D9
+Reference = Q7;
+ValeurCmp = 2N3904;
+IdModule  = TO_SOT_Packages_THT:TO-92_Molded_Narrow;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3C98B8
+Path = /5B4BBE8C
+Reference = R39;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3C98E4
+Path = /5B3F0456
+Reference = R41;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B48CA0B
+Path = /5B4C9BE9
+Reference = C23;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B364709
+Path = /5B5F9DF3
+Reference = U2;
+ValeurCmp = 74HC14;
+IdModule  = Housings_DIP:DIP-14_W7.62mm_Socket;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3DBC9C
+Path = /5B3F22F2
+Reference = D25;
+ValeurCmp = 1N5819;
+IdModule  = Diodes_THT:D_DO-41_SOD81_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E0A31
+Path = /5B1F3331
+Reference = D12;
+ValeurCmp = 1N5819;
+IdModule  = Diodes_THT:D_DO-41_SOD81_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B19D4A2
+Path = /5AF25FC0
+Reference = U1;
+ValeurCmp = 74LS393;
+IdModule  = Housings_DIP:DIP-14_W7.62mm_Socket;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AEFDDD5
+Path = /5AF0A345
+Reference = J12;
+ValeurCmp = Conn_01x02;
+IdModule  = Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AF316DD
+Path = /5AF03E10
+Reference = R16;
+ValeurCmp = 50R;
+IdModule  = Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E0A19
+Path = /5B2240A6
+Reference = D2;
+ValeurCmp = 1N4734A;
+IdModule  = Diodes_THT:D_DO-41_SOD81_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AF316F2
+Path = /5AF0415D
+Reference = R17;
+ValeurCmp = 50R;
+IdModule  = Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B19DADD
+Path = /5B2149A4
+Reference = JP2;
+ValeurCmp = Jumper;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B19DAB2
+Path = /5B21FB2F
+Reference = J26;
+ValeurCmp = Conn_01x02;
+IdModule  = Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B19D97C
+Path = /5B2265BF
+Reference = C3;
+ValeurCmp = 0.1 uF;
+IdModule  = Capacitors_THT:C_Disc_D12.0mm_W4.4mm_P7.75mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B197FEE
+Path = /5B1B3358
+Reference = J3;
+ValeurCmp = Conn_01x05;
+IdModule  = Connectors_Molex:Molex_KK-6410-05_05x2.54mm_Straight;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AEFDD15
+Path = /5B5EF176
+Reference = D3;
+ValeurCmp = 1N5711;
+IdModule  = Diodes_THT:D_DO-35_SOD27_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AEFDD2E
+Path = /5AF03B33
+Reference = D4;
+ValeurCmp = 1N5711;
+IdModule  = Diodes_THT:D_DO-35_SOD27_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AEFDD47
+Path = /5AF03BF6
+Reference = D5;
+ValeurCmp = 1N5711;
+IdModule  = Diodes_THT:D_DO-35_SOD27_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AEFDD60
+Path = /5B5EEFF7
+Reference = D6;
+ValeurCmp = 1N5711;
+IdModule  = Diodes_THT:D_DO-35_SOD27_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AEFDD79
+Path = /5B6037AB
+Reference = D7;
+ValeurCmp = 1N5711;
+IdModule  = Diodes_THT:D_DO-35_SOD27_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AEFDDC0
+Path = /5AF0B425
+Reference = J7;
+ValeurCmp = Conn_01x02;
+IdModule  = Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AF0049D
+Path = /5AF30DD4
+Reference = C20;
+ValeurCmp = 0.1 uF;
+IdModule  = Capacitors_THT:C_Disc_D5.1mm_W3.2mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AF05816
+Path = /5AF77DA2
+Reference = J18;
+ValeurCmp = Conn_01x01;
+IdModule  = Connectors:1pin;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AF0581E
+Path = /5AF77DA8
+Reference = J19;
+ValeurCmp = Conn_01x01;
+IdModule  = Connectors:1pin;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AF05826
+Path = /5AF77DAE
+Reference = J20;
+ValeurCmp = Conn_01x01;
+IdModule  = Connectors:1pin;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AF0582E
+Path = /5AF77DB4
+Reference = J21;
+ValeurCmp = Conn_01x01;
+IdModule  = Connectors:1pin;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AF29119
+Path = /5AF5A871
+Reference = J16;
+ValeurCmp = Conn_01x06;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x06_Pitch2.54mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B197F94
+Path = /5B1B37A1
+Reference = J1;
+ValeurCmp = Conn_01x05;
+IdModule  = Connectors_Molex:Molex_KK-6410-05_05x2.54mm_Straight;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B197FC1
+Path = /5B1A9FA6
+Reference = J2;
+ValeurCmp = Conn_01x05;
+IdModule  = Connectors_Molex:Molex_KK-6410-05_05x2.54mm_Straight;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B19801B
+Path = /5B1B3427
+Reference = J4;
+ValeurCmp = Conn_01x05;
+IdModule  = Connectors_Molex:Molex_KK-6410-05_05x2.54mm_Straight;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B198048
+Path = /5B1B34FC
+Reference = J5;
+ValeurCmp = Conn_01x05;
+IdModule  = Connectors_Molex:Molex_KK-6410-05_05x2.54mm_Straight;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B198075
+Path = /5B1B35D1
+Reference = J6;
+ValeurCmp = Conn_01x05;
+IdModule  = Connectors_Molex:Molex_KK-6410-05_05x2.54mm_Straight;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B19808F
+Path = /5B1B51A0
+Reference = J8;
+ValeurCmp = Conn_01x06;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x06_Pitch2.54mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1980BC
+Path = /5B1B36B0
+Reference = J9;
+ValeurCmp = Conn_01x05;
+IdModule  = Connectors_Molex:Molex_KK-6410-05_05x2.54mm_Straight;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1980D2
+Path = /5B1D1F34
+Reference = JP1;
+ValeurCmp = Jumper;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B19A9C0
+Path = /5B1E8464
+Reference = J10;
+ValeurCmp = Conn_01x05;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x05_Pitch2.54mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B19BFA6
+Path = /5B1FE045
+Reference = J11;
+ValeurCmp = Conn_01x01;
+IdModule  = Connectors:1pin;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B19BFAE
+Path = /5B1FE04B
+Reference = J14;
+ValeurCmp = Conn_01x01;
+IdModule  = Connectors:1pin;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B19BFB6
+Path = /5B1FE051
+Reference = J17;
+ValeurCmp = Conn_01x01;
+IdModule  = Connectors:1pin;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B19BFBE
+Path = /5B1FE057
+Reference = J23;
+ValeurCmp = Conn_01x01;
+IdModule  = Connectors:1pin;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B19C0E4
+Path = /5B2001D5
+Reference = J24;
+ValeurCmp = Conn_01x01;
+IdModule  = Connectors:1pin;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B19C0EC
+Path = /5B1FE35F
+Reference = J25;
+ValeurCmp = Conn_01x01;
+IdModule  = Connectors:1pin;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B19DAC7
+Path = /5B22635A
+Reference = J27;
+ValeurCmp = Conn_01x02;
+IdModule  = Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B19DAFB
+Path = /5B21571C
+Reference = L3;
+ValeurCmp = 100 uH;
+IdModule  = Inductors_THT:L_Toroid_Vertical_L14.0mm_W6.3mm_P4.57mm_Pulse_A;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B19DB19
+Path = /5B2254AE
+Reference = L5;
+ValeurCmp = 100 uH;
+IdModule  = Inductors_THT:L_Toroid_Vertical_L14.0mm_W6.3mm_P4.57mm_Pulse_A;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B19E885
+Path = /5B22796F
+Reference = J28;
+ValeurCmp = Conn_01x02;
+IdModule  = Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1A8ECD
+Path = /5B1AD5CB
+Reference = C5;
+ValeurCmp = 0.1 uF;
+IdModule  = Capacitors_THT:C_Disc_D12.0mm_W4.4mm_P7.75mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E0598
+Path = /5B227C49
+Reference = D14;
+ValeurCmp = 1N5819;
+IdModule  = Diodes_THT:D_DO-41_SOD81_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E0A01
+Path = /5B1F37CA
+Reference = D1;
+ValeurCmp = 1N4001;
+IdModule  = Diodes_THT:D_DO-41_SOD81_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E1283
+Path = /5B1C6AB0
+Reference = R1;
+ValeurCmp = 10k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E1298
+Path = /5B19A2C6
+Reference = R2;
+ValeurCmp = 10k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E12AD
+Path = /5B1E3A7B
+Reference = R3;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E12C2
+Path = /5B1EF7BA
+Reference = R4;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E12D7
+Path = /5B22D1D7
+Reference = R5;
+ValeurCmp = 470R;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E1301
+Path = /5B5EED28
+Reference = R7;
+ValeurCmp = 220R;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E1316
+Path = /5B48DD58
+Reference = R8;
+ValeurCmp = 10k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E132B
+Path = /5B48C323
+Reference = R9;
+ValeurCmp = 10k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E1340
+Path = /5B1FDB7A
+Reference = R10;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E1355
+Path = /5B49BA70
+Reference = R11;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E136A
+Path = /5B5F2997
+Reference = R12;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E137F
+Path = /5B49B700
+Reference = R13;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E1394
+Path = /5AF03B19
+Reference = R14;
+ValeurCmp = 10k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E13A9
+Path = /5B5F1ED1
+Reference = R15;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E13BE
+Path = /5AF03BDC
+Reference = R18;
+ValeurCmp = 10k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E13D3
+Path = /5B5F682E
+Reference = R19;
+ValeurCmp = 100R;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E13E8
+Path = /5B5F809F
+Reference = R20;
+ValeurCmp = 22k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E13FD
+Path = /5B5F7A1E
+Reference = R21;
+ValeurCmp = 270R;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E1412
+Path = /5B5F8B32
+Reference = R22;
+ValeurCmp = 10R;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E1427
+Path = /5B60379F
+Reference = R23;
+ValeurCmp = 220R;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E143C
+Path = /5B6037C9
+Reference = R24;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E1451
+Path = /5B6037BD
+Reference = R25;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E1466
+Path = /5B1FDDDF
+Reference = R26;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E1490
+Path = /5B1FBBB6
+Reference = R29;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1E14BA
+Path = /5B1FA72D
+Reference = R31;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1DFEBB
+Path = /5B23DCCB
+Reference = C6;
+ValeurCmp = 100 uF;
+IdModule  = Capacitors_THT:CP_Radial_D5.0mm_P2.50mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1DFEE5
+Path = /5B23DAC1
+Reference = J15;
+ValeurCmp = Conn_01x02;
+IdModule  = Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B219056
+Path = /5B218F8C
+Reference = J22;
+ValeurCmp = Conn_01x05;
+IdModule  = Connectors_Molex:Molex_KK-6410-05_05x2.54mm_Straight;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B21E1A0
+Path = /5B22D3F2
+Reference = Q2;
+ValeurCmp = 2N7000;
+IdModule  = TO_SOT_Packages_THT:TO-92_Molded_Narrow;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3645DB
+Path = /5B210EF0
+Reference = C4;
+ValeurCmp = 1000 uF;
+IdModule  = Capacitors_THT:CP_Radial_D10.0mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3646CE
+Path = /5B228808
+Reference = D8;
+ValeurCmp = LED;
+IdModule  = LEDs:LED_D3.0mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B365D48
+Path = /5B48F9A8
+Reference = R6;
+ValeurCmp = 10k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B365D5E
+Path = /5B60658B
+Reference = R27;
+ValeurCmp = 220R;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B365D74
+Path = /5B4C4772
+Reference = R28;
+ValeurCmp = 0R;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B365D8A
+Path = /5B4B3C6A
+Reference = R30;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B365DA0
+Path = /5B6037DB
+Reference = R32;
+ValeurCmp = 100R;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B365DB6
+Path = /5B6065B5
+Reference = R33;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B366350
+Path = /5B3DF9B9
+Reference = C17;
+ValeurCmp = 0.1 uF;
+IdModule  = Capacitors_THT:C_Disc_D5.1mm_W3.2mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B366366
+Path = /5B3D5722
+Reference = JP3;
+ValeurCmp = Jumper;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B36637C
+Path = /5B3DD290
+Reference = JP4;
+ValeurCmp = Jumper;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3C97D4
+Path = /5B3E92F2
+Reference = D17;
+ValeurCmp = 1N5711;
+IdModule  = Diodes_THT:D_DO-35_SOD27_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3C9834
+Path = /5B3E6FE1
+Reference = J30;
+ValeurCmp = Conn_01x02;
+IdModule  = Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3C984A
+Path = /5B3E7157
+Reference = R34;
+ValeurCmp = 50R;
+IdModule  = Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3C9860
+Path = /5B3E92E0
+Reference = R35;
+ValeurCmp = 10k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3C9876
+Path = /5B4BAC4F
+Reference = R36;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3C988C
+Path = /5B4B3E4F
+Reference = R37;
+ValeurCmp = 1.8k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3C98A2
+Path = /5B4BAC55
+Reference = R38;
+ValeurCmp = 1.8k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3C98CE
+Path = /5B4BBEC1
+Reference = R40;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3D135D
+Path = /5B4200B9
+Reference = D21;
+ValeurCmp = 1N4729A;
+IdModule  = Diodes_THT:D_DO-41_SOD81_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3D1373
+Path = /5B42101D
+Reference = R42;
+ValeurCmp = 100R;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3DBC83
+Path = /5B3F198B
+Reference = D24;
+ValeurCmp = 1N5819;
+IdModule  = Diodes_THT:D_DO-41_SOD81_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3DBCDE
+Path = /5B4BBE92
+Reference = R43;
+ValeurCmp = 1.8k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3DBCF4
+Path = /5B4BBEC7
+Reference = R44;
+ValeurCmp = 1.8k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3DD539
+Path = /5B6037B7
+Reference = C10;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3DD54D
+Path = /5B6065A3
+Reference = C11;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3DD561
+Path = /5AF03B1F
+Reference = C12;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3DD575
+Path = /5AF03BE2
+Reference = C13;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3DD589
+Path = /5B6037E7
+Reference = C14;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3DD59D
+Path = /5B4B4F5E
+Reference = C15;
+ValeurCmp = 100 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3DD5B1
+Path = /5B4BAC63
+Reference = C16;
+ValeurCmp = 100 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3DD5C5
+Path = /5B3E92E6
+Reference = C18;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3DD5D9
+Path = /5B4BBEA0
+Reference = C19;
+ValeurCmp = 100 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3DD5ED
+Path = /5B4BBED5
+Reference = C21;
+ValeurCmp = 100 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3DDFEC
+Path = /5B21D7D5
+Reference = C2;
+ValeurCmp = 0.1 uF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3DE000
+Path = /5B5F1755
+Reference = C8;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3DE014
+Path = /5B5F720D
+Reference = C9;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3E0705
+Path = /5B1EBA5D
+Reference = C1;
+ValeurCmp = 0.1 uF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B3E0719
+Path = /5B23BF21
+Reference = C7;
+ValeurCmp = 0.1 uF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B48BA95
+Path = /5B6037A5
+Reference = D9;
+ValeurCmp = 1N5711;
+IdModule  = Diodes_THT:D_DO-35_SOD27_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B48BAAD
+Path = /5B606597
+Reference = D10;
+ValeurCmp = 1N5711;
+IdModule  = Diodes_THT:D_DO-35_SOD27_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B48BAC5
+Path = /5B606591
+Reference = D11;
+ValeurCmp = 1N5711;
+IdModule  = Diodes_THT:D_DO-35_SOD27_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B48BB1E
+Path = /5B4AFEFD
+Reference = U3;
+ValeurCmp = 74HC86;
+IdModule  = Housings_DIP:DIP-14_W7.62mm_Socket;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B48C9F6
+Path = /5B4C8CF8
+Reference = C22;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B48CA20
+Path = /5B4CA477
+Reference = C24;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B48CA35
+Path = /5B4CD08E
+Reference = C25;
+ValeurCmp = 0.1 uF;
+IdModule  = Capacitors_THT:C_Disc_D5.1mm_W3.2mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B491AA5
+Path = /5B4E3C66
+Reference = C26;
+ValeurCmp = 0.1 uF;
+IdModule  = Capacitors_THT:C_Disc_D12.0mm_W4.4mm_P7.75mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B491ACE
+Path = /5B4E3187
+Reference = R45;
+ValeurCmp = 10k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B4928DF
+Path = /5B4F2BAF
+Reference = L1;
+ValeurCmp = NC;
+IdModule  = Inductors_THT:L_Axial_L7.0mm_D3.3mm_P10.16mm_Horizontal_Fastron_MICC;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B5E7F8E
+Path = /5B6065D3
+Reference = C27;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B5E7FA3
+Path = /5B5E8823
+Reference = C28;
+ValeurCmp = 10 pF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B5E7FB8
+Path = /5B5EAFC6
+Reference = C29;
+ValeurCmp = 10 pF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B5E7FCD
+Path = /5B5F57C1
+Reference = C30;
+ValeurCmp = 0.1 uF;
+IdModule  = Capacitors_THT:C_Disc_D5.1mm_W3.2mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B5E7FE2
+Path = /5B5F35F3
+Reference = C31;
+ValeurCmp = 0.1 uF;
+IdModule  = Capacitors_THT:C_Disc_D5.1mm_W3.2mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B5E7FF7
+Path = /5B5F5091
+Reference = C32;
+ValeurCmp = 0.1 uF;
+IdModule  = Capacitors_THT:C_Disc_D5.1mm_W3.2mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B5E8009
+Path = /5B5F605F
+Reference = Q1;
+ValeurCmp = 2N3904;
+IdModule  = TO_SOT_Packages_THT:TO-92_Molded_Narrow;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B5E801B
+Path = /5B5F75CC
+Reference = Q3;
+ValeurCmp = 2N3904;
+IdModule  = TO_SOT_Packages_THT:TO-92_Molded_Narrow;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B5E802D
+Path = /5B6037D5
+Reference = Q4;
+ValeurCmp = 2N3904;
+IdModule  = TO_SOT_Packages_THT:TO-92_Molded_Narrow;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B5E803F
+Path = /5B6065C1
+Reference = Q5;
+ValeurCmp = 2N3904;
+IdModule  = TO_SOT_Packages_THT:TO-92_Molded_Narrow;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B5E8051
+Path = /5B6037ED
+Reference = Q6;
+ValeurCmp = 2N3904;
+IdModule  = TO_SOT_Packages_THT:TO-92_Molded_Narrow;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B5E8079
+Path = /5B6065A9
+Reference = R46;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B5E808F
+Path = /5B6037F9
+Reference = R47;
+ValeurCmp = 22k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B5E80A5
+Path = /5B6065C7
+Reference = R48;
+ValeurCmp = 100R;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B5E80BB
+Path = /5B6037F3
+Reference = R49;
+ValeurCmp = 270R;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B5E80D1
+Path = /5B6037FF
+Reference = R50;
+ValeurCmp = 10R;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B5E80E7
+Path = /5B6065E5
+Reference = R51;
+ValeurCmp = 22k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B5E80FD
+Path = /5B6065DF
+Reference = R52;
+ValeurCmp = 270R;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B5E8113
+Path = /5B6065EB
+Reference = R53;
+ValeurCmp = 10R;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1DFA11
+Path = /5B1F79FF
+Reference = UB1;
+ValeurCmp = BLUEPILL;
+IdModule  = Controller:BLUEPILL;
+EndCmp
+
+EndListe
