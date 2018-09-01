@@ -4,7 +4,7 @@ the Creative Commons License CC-BY-SA 4.0.
 
 It consists of three parts: 
 
-1.  Controller - contains a microcontroller (STM32F108C8T6) with SWR bridge, phase
+1.  Controller - contains a microcontroller (STM32F103C8T6) with SWR bridge, phase
 detectors, and connections to the relay boards.  It also has a bias-tee to be powered
 over the coax.  It controls the inductor and capacitor relay boards and senses the
 magnitude and phase of the return signal.  This board also has a third sense transformer
