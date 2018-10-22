@@ -1,0 +1,691 @@
+Cmp-Mod V01 Created by PcbNew   date = 10/21/2018 10:55:27 PM
+
+BeginCmp
+TimeStamp = 5BCBFD65
+Path = /5B1872B1
+Reference = RLY9;
+ValeurCmp = SPDTRelay;
+IdModule  = tuner:SMIHRelay;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B23C296
+Path = /5B25FB6D
+Reference = R4;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BCBFC8D
+Path = /5B186C03
+Reference = RLY3;
+ValeurCmp = SPDTRelay;
+IdModule  = tuner:SMIHRelay;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B188B24
+Path = /5B89D359
+Reference = C6;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BA35C91
+Path = /5BA38439
+Reference = C23;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B23C20B
+Path = /5B25FB5D
+Reference = D3;
+ValeurCmp = LED;
+IdModule  = LEDs:LED_D3.0mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B23C304
+Path = /5B25F706
+Reference = R9;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B23C1E5
+Path = /5B25FB89
+Reference = D1;
+ValeurCmp = LED;
+IdModule  = LEDs:LED_D3.0mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B23C1F8
+Path = /5B25FB73
+Reference = D2;
+ValeurCmp = LED;
+IdModule  = LEDs:LED_D3.0mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B188344
+Path = /5B8A2579
+Reference = J8;
+ValeurCmp = Conn_01x02;
+IdModule  = Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B188359
+Path = /5B18EEC5
+Reference = J10;
+ValeurCmp = Conn_01x02;
+IdModule  = Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B188AC5
+Path = /5B1A1A2F
+Reference = C1;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B188AD8
+Path = /5B89CF04
+Reference = C2;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B188AEB
+Path = /5B89CFB5
+Reference = C3;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B188AFE
+Path = /5B89D06B
+Reference = C4;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B188B11
+Path = /5B89D122
+Reference = C5;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B188B37
+Path = /5B89D497
+Reference = C7;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B188B4A
+Path = /5B89D61A
+Reference = C8;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B18B268
+Path = /5B89D729
+Reference = C9;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B18B27B
+Path = /5B89D83F
+Reference = C10;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B18B381
+Path = /5B89BBBF
+Reference = R1;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B18A407
+Path = /5B18CCC7
+Reference = J9;
+ValeurCmp = Conn_01x02;
+IdModule  = Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B18AA85
+Path = /5B19804D
+Reference = J13;
+ValeurCmp = Conn_01x01;
+IdModule  = Connectors:1pin;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B18AA8D
+Path = /5B198288
+Reference = J14;
+ValeurCmp = Conn_01x01;
+IdModule  = Connectors:1pin;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B195A8B
+Path = /5B89BB0D
+Reference = R2;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B23C21E
+Path = /5B25FB47
+Reference = D4;
+ValeurCmp = LED;
+IdModule  = LEDs:LED_D3.0mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B23C231
+Path = /5B25F92B
+Reference = D5;
+ValeurCmp = LED;
+IdModule  = LEDs:LED_D3.0mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B23C244
+Path = /5B25F915
+Reference = D6;
+ValeurCmp = LED;
+IdModule  = LEDs:LED_D3.0mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B23C257
+Path = /5B25F70C
+Reference = D7;
+ValeurCmp = LED;
+IdModule  = LEDs:LED_D3.0mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B23C26A
+Path = /5B25DD23
+Reference = D8;
+ValeurCmp = LED;
+IdModule  = LEDs:LED_D3.0mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B23C280
+Path = /5B25FB83
+Reference = R3;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B23C2AC
+Path = /5B25FB57
+Reference = R5;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B23C2C2
+Path = /5B25FB41
+Reference = R6;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B23C2D8
+Path = /5B25F925
+Reference = R7;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B23C2EE
+Path = /5B25F90F
+Reference = R8;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B23C31A
+Path = /5B25D9D3
+Reference = R10;
+ValeurCmp = 1k;
+IdModule  = Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B186CB1
+Path = /5B190A4B
+Reference = J7;
+ValeurCmp = Conn_01x03;
+IdModule  = tuner:ThreeJumperPt;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B186CA8
+Path = /5B18729E
+Reference = J6;
+ValeurCmp = Conn_01x03;
+IdModule  = tuner:ThreeJumperPt;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B186C9F
+Path = /5B187279
+Reference = J5;
+ValeurCmp = Conn_01x03;
+IdModule  = tuner:ThreeJumperPt;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1871D9
+Path = /5B186E5B
+Reference = J3;
+ValeurCmp = Conn_01x03;
+IdModule  = tuner:ThreeJumperPt;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1871D0
+Path = /5B186C1D
+Reference = J2;
+ValeurCmp = Conn_01x03;
+IdModule  = tuner:ThreeJumperPt;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B186372
+Path = /5B186705
+Reference = J1;
+ValeurCmp = Conn_01x03;
+IdModule  = tuner:ThreeJumperPt;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B898B53
+Path = /5B89BB13
+Reference = D9;
+ValeurCmp = LED;
+IdModule  = LEDs:LED_D3.0mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B898B66
+Path = /5B89BBC5
+Reference = D10;
+ValeurCmp = LED;
+IdModule  = LEDs:LED_D3.0mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B898B67
+Path = /5B187373
+Reference = J4;
+ValeurCmp = Conn_01x03;
+IdModule  = tuner:ThreeJumperPt;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B898B6F
+Path = /5B8A2549
+Reference = J11;
+ValeurCmp = Conn_01x02;
+IdModule  = Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B898B97
+Path = /5B8A253C
+Reference = J16;
+ValeurCmp = Conn_01x02;
+IdModule  = Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B898BAC
+Path = /5B8A09A0
+Reference = J18;
+ValeurCmp = Conn_01x02;
+IdModule  = Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B898BB5
+Path = /5B8A1B81
+Reference = J19;
+ValeurCmp = Conn_01x03;
+IdModule  = tuner:ThreeJumperPt;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B899323
+Path = /5B8A4F8B
+Reference = J17;
+ValeurCmp = Conn_02x10_Odd_Even;
+IdModule  = Pin_Headers:Pin_Header_Straight_2x10_Pitch2.54mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BA354AD
+Path = /5BA37707
+Reference = C12;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BA354C0
+Path = /5BA36EC0
+Reference = C13;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BA35BE6
+Path = /5BA384AD
+Reference = C14;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BA35BF9
+Path = /5BA3846B
+Reference = C15;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BA35C0C
+Path = /5BA38465
+Reference = C16;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BA35C1F
+Path = /5BA3845F
+Reference = C17;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BA35C32
+Path = /5BA38459
+Reference = C18;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BA35C45
+Path = /5BA38453
+Reference = C19;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BA35C58
+Path = /5BA3844D
+Reference = C20;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BA35C6B
+Path = /5BA38447
+Reference = C21;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BA35C7E
+Path = /5BA38441
+Reference = C22;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BA7DDFB
+Path = /5B1981D8
+Reference = J12;
+ValeurCmp = Conn_01x01;
+IdModule  = Connectors:1pin;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BA9C531
+Path = /5B97C52E
+Reference = C11;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BB71888
+Path = /5BB6F3AE
+Reference = C24;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BB7189D
+Path = /5BB6F4BB
+Reference = C25;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BCBE6CC
+Path = /5BCBF354
+Reference = C27;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BCBE8BB
+Path = /5B19812D
+Reference = J15;
+ValeurCmp = Conn_01x01;
+IdModule  = Connectors:1pin;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BCBEB1B
+Path = /5BCBEB36
+Reference = C26;
+ValeurCmp = 10 nF;
+IdModule  = Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BCBFC45
+Path = /5B184A00
+Reference = RLY1;
+ValeurCmp = SPDTRelay;
+IdModule  = tuner:SMIHRelay;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BCBFC69
+Path = /5B185BA3
+Reference = RLY2;
+ValeurCmp = SPDTRelay;
+IdModule  = tuner:SMIHRelay;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BCBFCB1
+Path = /5B186E43
+Reference = RLY4;
+ValeurCmp = SPDTRelay;
+IdModule  = tuner:SMIHRelay;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BCBFCD5
+Path = /5B187245
+Reference = RLY5;
+ValeurCmp = SPDTRelay;
+IdModule  = tuner:SMIHRelay;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BCBFCF9
+Path = /5B187252
+Reference = RLY6;
+ValeurCmp = SPDTRelay;
+IdModule  = tuner:SMIHRelay;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BCBFD1D
+Path = /5B187286
+Reference = RLY7;
+ValeurCmp = SPDTRelay;
+IdModule  = tuner:SMIHRelay;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BCBFD41
+Path = /5B8A1B6D
+Reference = RLY8;
+ValeurCmp = SPDTRelay;
+IdModule  = tuner:SMIHRelay;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BCBFD89
+Path = /5B18C0E7
+Reference = RLY10;
+ValeurCmp = SPDTRelay;
+IdModule  = tuner:SMIHRelay;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BCBFDAD
+Path = /5B8A2536
+Reference = RLY11;
+ValeurCmp = SPDTRelay;
+IdModule  = tuner:SMIHRelay;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BCBFDD1
+Path = /5B8A2550
+Reference = RLY12;
+ValeurCmp = SPDTRelay;
+IdModule  = tuner:SMIHRelay;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B187635
+Path = /5B18916C
+Reference = LC3;
+ValeurCmp = CAPIND;
+IdModule  = tuner:MultiCAPIND;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B18760D
+Path = /5B18879E
+Reference = LC2;
+ValeurCmp = CAPIND;
+IdModule  = tuner:MultiCAPIND;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1875E5
+Path = /5B186A28
+Reference = LC1;
+ValeurCmp = CAPIND;
+IdModule  = tuner:MultiCAPIND;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B18765D
+Path = /5B18993D
+Reference = LC4;
+ValeurCmp = CAPIND;
+IdModule  = tuner:MultiCAPIND;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B187685
+Path = /5B18A968
+Reference = LC5;
+ValeurCmp = CAPIND;
+IdModule  = tuner:MultiCAPIND;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1876AD
+Path = /5B18AE34
+Reference = LC6;
+ValeurCmp = CAPIND;
+IdModule  = tuner:MultiCAPIND;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B1876D5
+Path = /5B18B9D1
+Reference = LC7;
+ValeurCmp = CAPIND;
+IdModule  = tuner:MultiCAPIND;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B898BDA
+Path = /5B8A1B74
+Reference = LC8;
+ValeurCmp = CAPIND;
+IdModule  = tuner:MultiCAPIND;
+EndCmp
+
+EndListe
