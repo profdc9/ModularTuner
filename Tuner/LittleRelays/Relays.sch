@@ -1353,17 +1353,6 @@ $EndComp
 Text GLabel 10800 1400 2    60   Input ~ 0
 RLY10
 $Comp
-L Conn_01x01 J12
-U 1 1 5B1981D8
-P 1650 5400
-F 0 "J12" H 1650 5500 50  0000 C CNN
-F 1 "Conn_01x01" H 1650 5300 50  0000 C CNN
-F 2 "Connectors:1pin" H 1650 5400 50  0001 C CNN
-F 3 "" H 1650 5400 50  0001 C CNN
-	1    1650 5400
-	1    0    0    -1  
-$EndComp
-$Comp
 L C C24
 U 1 1 5BB6F3AE
 P 1200 5550
@@ -2014,14 +2003,10 @@ Wire Wire Line
 Wire Wire Line
 	7950 5400 8300 5400
 Wire Wire Line
-	1350 5400 1450 5400
-Wire Wire Line
 	1350 5550 1400 5550
 Wire Wire Line
 	1400 5550 1400 6000
 Connection ~ 1400 5750
-Wire Wire Line
-	1000 5550 1000 6000
 Wire Wire Line
 	1000 5550 1050 5550
 Connection ~ 1000 5750
@@ -2073,5 +2058,18 @@ F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm" H 1238 5850 50  0001 C CNN
 F 3 "" H 1200 6000 50  0001 C CNN
 	1    1200 6000
 	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1000 5550 1000 6000
+$Comp
+L Conn_01x01 J12
+U 1 1 5BCFCED9
+P 1650 5350
+F 0 "J12" H 1650 5450 50  0000 C CNN
+F 1 "Conn_01x01" H 1650 5250 50  0000 C CNN
+F 2 "Connectors:1pin" H 1650 5350 50  0001 C CNN
+F 3 "" H 1650 5350 50  0001 C CNN
+	1    1650 5350
+	1    0    0    -1  
 $EndComp
 $EndSCHEMATC
