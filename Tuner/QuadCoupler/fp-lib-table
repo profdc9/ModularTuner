@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name QuadCoupler)(type KiCad)(uri "$(KIPRJMOD)/QuadCoupler.pretty")(options "")(descr ""))
+)
