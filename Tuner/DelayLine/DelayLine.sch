@@ -904,30 +904,6 @@ F 3 "" H 9200 6300 50  0001 C CNN
 	1    9200 6300
 	1    0    0    -1  
 $EndComp
-$Comp
-L Conn_Coaxial J2
-U 1 1 5C72CAE2
-P 2100 1550
-F 0 "J2" H 2110 1670 50  0000 C CNN
-F 1 "Conn_Coaxial" V 2215 1550 50  0000 C CNN
-F 2 "Connectors:bnc-ci" H 2100 1550 50  0001 C CNN
-F 3 "" H 2100 1550 50  0001 C CNN
-	1    2100 1550
-	1    0    0    -1  
-$EndComp
-$Comp
-L Conn_Coaxial J4
-U 1 1 5C72CCE7
-P 2400 1550
-F 0 "J4" H 2410 1670 50  0000 C CNN
-F 1 "Conn_Coaxial" V 2515 1550 50  0000 C CNN
-F 2 "Connectors:bnc-ci" H 2400 1550 50  0001 C CNN
-F 3 "" H 2400 1550 50  0001 C CNN
-	1    2400 1550
-	-1   0    0    -1  
-$EndComp
-Text GLabel 2100 2000 3    60   Input ~ 0
-RFGND
 Text GLabel 2950 2300 0    60   Input ~ 0
 RLY2
 $Comp
@@ -1377,13 +1353,6 @@ F 3 "" H 8950 3950 50  0001 C CNN
 $EndComp
 Text GLabel 9500 4000 3    60   Input ~ 0
 RFGND
-Connection ~ 2100 1900
-Wire Wire Line
-	2400 1900 2400 1750
-Wire Wire Line
-	2100 1900 2400 1900
-Wire Wire Line
-	2100 1750 2100 2000
 Wire Wire Line
 	750  1800 850  1800
 Wire Wire Line
@@ -1644,16 +1613,13 @@ Wire Wire Line
 Wire Wire Line
 	2000 1700 2000 1350
 Wire Wire Line
-	1900 1350 2550 1350
+	2000 1350 1900 1350
 Wire Wire Line
 	1950 1550 1900 1550
 Wire Wire Line
 	1950 1550 1950 1900
 Wire Wire Line
 	1950 1900 1900 1900
-Wire Wire Line
-	2550 1350 2550 1550
-Connection ~ 2000 1350
 Wire Wire Line
 	800  1350 800  2000
 Wire Wire Line
@@ -1696,10 +1662,6 @@ Wire Wire Line
 	2650 1350 2650 2000
 Wire Wire Line
 	2600 1450 2600 1800
-Wire Wire Line
-	2600 1500 2550 1500
-Connection ~ 2550 1500
-Connection ~ 2600 1500
 Connection ~ 5800 1850
 Wire Wire Line
 	6100 1850 6100 1700
@@ -2032,7 +1994,7 @@ Wire Wire Line
 Wire Wire Line
 	10800 3600 10800 3350
 Wire Wire Line
-	10700 3600 10700 3250
+	10700 2650 10700 3600
 Wire Wire Line
 	10700 3250 10800 3250
 Wire Wire Line
@@ -2101,4 +2063,22 @@ Wire Wire Line
 	9300 4850 9100 4850
 Connection ~ 9100 4850
 Connection ~ 8050 3250
+Text GLabel 10700 2650 1    60   Input ~ 0
+RFOUT
+Connection ~ 10700 3250
+Wire Wire Line
+	1950 1750 2350 1750
+Wire Wire Line
+	2350 1750 2350 1600
+Wire Wire Line
+	2350 1600 2600 1600
+Connection ~ 2600 1600
+Connection ~ 1950 1750
+Text GLabel 2200 1300 1    60   Input ~ 0
+RFOUT
+Wire Wire Line
+	2200 1300 2200 1500
+Wire Wire Line
+	2200 1500 2000 1500
+Connection ~ 2000 1500
 $EndSCHEMATC
