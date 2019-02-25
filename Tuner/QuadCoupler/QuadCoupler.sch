@@ -895,28 +895,6 @@ F 3 "" H 4000 5400 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Jumper_NC_Dual JP6
-U 1 1 5C72B745
-P 3850 6900
-F 0 "JP6" H 3900 6800 50  0000 L CNN
-F 1 "Jumper_NC_Dual" H 3850 7000 50  0000 C BNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x03_Pitch2.54mm" H 3850 6900 50  0001 C CNN
-F 3 "" H 3850 6900 50  0001 C CNN
-	1    3850 6900
-	0    -1   -1   0   
-$EndComp
-$Comp
-L Jumper_NC_Dual JP3
-U 1 1 5C72BF16
-P 3850 1350
-F 0 "JP3" H 3900 1250 50  0000 L CNN
-F 1 "Jumper_NC_Dual" H 3850 1450 50  0000 C BNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x03_Pitch2.54mm" H 3850 1350 50  0001 C CNN
-F 3 "" H 3850 1350 50  0001 C CNN
-	1    3850 1350
-	0    -1   -1   0   
-$EndComp
-$Comp
 L R R21
 U 1 1 5C72E40A
 P 4750 6100
@@ -1459,7 +1437,7 @@ Wire Wire Line
 	3850 6650 3850 6600
 Connection ~ 3850 6600
 Wire Wire Line
-	3950 6900 4050 6900
+	3850 6900 4050 6900
 Wire Wire Line
 	4050 6900 4050 6750
 Wire Wire Line
@@ -1478,7 +1456,7 @@ Wire Wire Line
 	3850 1600 3850 1750
 Connection ~ 3850 1750
 Wire Wire Line
-	4150 1350 3950 1350
+	4150 1350 3850 1350
 Wire Wire Line
 	2650 3100 2650 1000
 Wire Wire Line
@@ -1576,4 +1554,54 @@ Wire Wire Line
 Connection ~ 4200 2700
 Text Notes 7700 7000 0    60   ~ 0
 QUAD POWER COUPLER\nBY DAN MARKS KW4TI\nCC-BY-SA 4.0
+$Comp
+L Jumper_NC_Small JP6
+U 1 1 5C7302D2
+P 3850 1500
+F 0 "JP6" H 3850 1580 50  0000 C CNN
+F 1 "Jumper_NC_Small" H 3860 1440 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 3850 1500 50  0001 C CNN
+F 3 "" H 3850 1500 50  0001 C CNN
+	1    3850 1500
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Jumper_NC_Small JP3
+U 1 1 5C7303E0
+P 3850 1200
+F 0 "JP3" H 3850 1280 50  0000 C CNN
+F 1 "Jumper_NC_Small" H 3860 1140 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 3850 1200 50  0001 C CNN
+F 3 "" H 3850 1200 50  0001 C CNN
+	1    3850 1200
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	3850 1400 3850 1300
+Connection ~ 3850 1350
+$Comp
+L Jumper_NC_Small JP9
+U 1 1 5C730A1B
+P 3850 6750
+F 0 "JP9" H 3850 6830 50  0000 C CNN
+F 1 "Jumper_NC_Small" H 3860 6690 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 3850 6750 50  0001 C CNN
+F 3 "" H 3850 6750 50  0001 C CNN
+	1    3850 6750
+	0    -1   1    0   
+$EndComp
+$Comp
+L Jumper_NC_Small JP10
+U 1 1 5C73132B
+P 3850 7050
+F 0 "JP10" H 3850 7130 50  0000 C CNN
+F 1 "Jumper_NC_Small" H 3860 6990 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 3850 7050 50  0001 C CNN
+F 3 "" H 3850 7050 50  0001 C CNN
+	1    3850 7050
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	3850 6950 3850 6850
+Connection ~ 3850 6900
 $EndSCHEMATC
