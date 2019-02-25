@@ -2041,4 +2041,6 @@ Wire Wire Line
 Connection ~ 4850 4300
 Wire Wire Line
 	4250 4150 4250 4000
+Wire Wire Line
+	7450 3150 7600 3150
 $EndSCHEMATC
