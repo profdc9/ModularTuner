@@ -2418,4 +2418,20 @@ Wire Wire Line
 Wire Wire Line
 	3150 4200 3300 4200
 Connection ~ 3300 4250
+$Comp
+L Conn_01x01 J28
+U 1 1 5C745726
+P 7950 2200
+F 0 "J28" H 7950 2300 50  0000 C CNN
+F 1 "Conn_01x01" H 7950 2100 50  0000 C CNN
+F 2 "Connectors:1pin" H 7950 2200 50  0001 C CNN
+F 3 "" H 7950 2200 50  0001 C CNN
+	1    7950 2200
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7950 2000 7950 1950
+Wire Wire Line
+	7950 1950 7750 1950
+Connection ~ 7750 1950
 $EndSCHEMATC
