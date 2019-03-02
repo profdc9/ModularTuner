@@ -3,7 +3,7 @@
   (general
     (links 285)
     (no_connects 0)
-    (area 44.281218 45.69208 151.844 153.921938)
+    (area 49.924999 49.924999 150.075001 150.075001)
     (thickness 1.6)
     (drawings 27)
     (tracks 845)
@@ -3272,12 +3272,12 @@
     )
   )
 
-  (module Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm (layer F.Cu) (tedit 5BB77479) (tstamp 5BA3F954)
+  (module Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm (layer F.Cu) (tedit 5C777122) (tstamp 5BA3F954)
     (at 51.689 69.977 270)
     (descr "C, Disc series, Radial, pin pitch=2.50mm, , diameter*width=5*2.5mm^2, Capacitor, http://cdn-reichelt.de/documents/datenblatt/B300/DS_KERKO_TC.pdf")
     (tags "C Disc series Radial pin pitch 2.50mm  diameter 5mm width 2.5mm Capacitor")
     (path /5BA5315F)
-    (fp_text reference C28 (at 4.826 0 360) (layer F.SilkS)
+    (fp_text reference C28 (at 5.715 0.127 450) (layer F.SilkS)
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value "10 nF" (at 1.25 2.56 270) (layer F.Fab)

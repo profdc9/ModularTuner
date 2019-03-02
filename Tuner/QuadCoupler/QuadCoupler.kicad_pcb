@@ -37,7 +37,7 @@
   )
 
   (setup
-    (last_trace_width 0.5)
+    (last_trace_width 0.25)
     (user_trace_width 0.35)
     (user_trace_width 0.5)
     (user_trace_width 1)
@@ -3723,8 +3723,8 @@
   (segment (start 131.572 132.588) (end 125.476 138.684) (width 0.5) (layer B.Cu) (net 9) (tstamp 5C730014))
   (segment (start 131.572 127.254) (end 131.572 132.588) (width 0.5) (layer B.Cu) (net 9) (tstamp 5C730012))
   (segment (start 137.922 120.904) (end 131.572 127.254) (width 0.5) (layer B.Cu) (net 9) (tstamp 5C730010))
-  (segment (start 99.568 127) (end 100.076 132.969) (width 0.5) (layer B.Cu) (net 9) (status 10))
-  (segment (start 100.076 132.969) (end 99.06 133.985) (width 0.5) (layer B.Cu) (net 9) (tstamp 5C72FF4E))
+  (segment (start 99.568 127) (end 99.187 131.826) (width 0.5) (layer B.Cu) (net 9) (status 400010))
+  (segment (start 99.187 131.826) (end 99.06 133.985) (width 0.5) (layer B.Cu) (net 9) (tstamp 5C72FF4E) (status 800000))
   (segment (start 68.199 43.561) (end 70.358 43.561) (width 0.5) (layer B.Cu) (net 10))
   (segment (start 70.358 43.561) (end 70.993 42.926) (width 0.5) (layer B.Cu) (net 10) (tstamp 5C7246E0))
   (segment (start 92.202 42.926) (end 94.996 42.926) (width 0.5) (layer B.Cu) (net 11))
@@ -3803,7 +3803,7 @@
   (segment (start 95.35668 82.677) (end 95.8342 82.19948) (width 2) (layer B.Cu) (net 19) (tstamp 5C727357))
   (segment (start 129.413 68.326) (end 129.6924 68.326) (width 0.5) (layer B.Cu) (net 19))
   (segment (start 129.413 68.326) (end 130.302 68.326) (width 0.5) (layer B.Cu) (net 19))
-  (segment (start 56.134 82.55) (end 53.1724 82.55) (width 0.5) (layer B.Cu) (net 20) (status 400000))
+  (segment (start 56.134 82.55) (end 53.1724 82.55) (width 0.5) (layer B.Cu) (net 20))
   (segment (start 53.1724 82.55) (end 53.34 82.55) (width 0.5) (layer B.Cu) (net 20) (tstamp 5C745031))
   (segment (start 53.34 82.55) (end 53.1724 82.55) (width 0.5) (layer B.Cu) (net 20) (tstamp 5C745033))
   (segment (start 56.134 82.55) (end 56.134 83.058) (width 0.5) (layer B.Cu) (net 20))

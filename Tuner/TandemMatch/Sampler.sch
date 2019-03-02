@@ -382,7 +382,7 @@ U 1 1 5C7081BB
 P 2650 2150
 F 0 "R9" V 2730 2150 50  0000 C CNN
 F 1 "100R" V 2650 2150 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 2580 2150 50  0001 C CNN
+F 2 "TandemMatch:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal_SMD" V 2580 2150 50  0001 C CNN
 F 3 "" H 2650 2150 50  0001 C CNN
 	1    2650 2150
 	1    0    0    -1  
@@ -393,7 +393,7 @@ U 1 1 5C7081C2
 P 2850 2150
 F 0 "R10" V 2930 2150 50  0000 C CNN
 F 1 "100R" V 2850 2150 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 2780 2150 50  0001 C CNN
+F 2 "TandemMatch:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal_SMD" V 2780 2150 50  0001 C CNN
 F 3 "" H 2850 2150 50  0001 C CNN
 	1    2850 2150
 	1    0    0    -1  
@@ -415,7 +415,7 @@ U 1 1 5C7081CF
 P 5250 2150
 F 0 "R13" V 5330 2150 50  0000 C CNN
 F 1 "100R" V 5250 2150 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 5180 2150 50  0001 C CNN
+F 2 "TandemMatch:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal_SMD" V 5180 2150 50  0001 C CNN
 F 3 "" H 5250 2150 50  0001 C CNN
 	1    5250 2150
 	1    0    0    -1  
@@ -426,7 +426,7 @@ U 1 1 5C7081D6
 P 5450 2150
 F 0 "R14" V 5530 2150 50  0000 C CNN
 F 1 "100R" V 5450 2150 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 5380 2150 50  0001 C CNN
+F 2 "TandemMatch:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal_SMD" V 5380 2150 50  0001 C CNN
 F 3 "" H 5450 2150 50  0001 C CNN
 	1    5450 2150
 	1    0    0    -1  
@@ -862,22 +862,20 @@ Wire Wire Line
 Connection ~ 2750 2600
 Wire Wire Line
 	2750 2850 2750 2600
-Connection ~ 5450 2600
 Wire Wire Line
-	5250 2600 5700 2600
+	5250 2600 5450 2600
 Wire Wire Line
-	5700 2600 5700 1750
+	5700 1750 5700 2800
 Wire Wire Line
 	5700 1750 5950 1750
-Connection ~ 2850 2600
 Wire Wire Line
 	3200 1750 3200 1800
 Wire Wire Line
 	3000 1750 3200 1750
 Wire Wire Line
-	3000 2600 3000 1750
+	3000 1750 3000 2850
 Wire Wire Line
-	2650 2600 3000 2600
+	2650 2600 2850 2600
 Connection ~ 5750 5450
 Wire Wire Line
 	5750 5450 6000 5450
@@ -904,7 +902,7 @@ Wire Wire Line
 Wire Wire Line
 	6400 2600 6400 2450
 Wire Wire Line
-	5950 2100 5950 2250
+	5950 2100 5950 2700
 Connection ~ 3650 2150
 Wire Wire Line
 	4000 2150 3650 2150
@@ -923,7 +921,7 @@ Wire Wire Line
 Wire Wire Line
 	3650 2650 3650 2500
 Wire Wire Line
-	3200 2100 3200 2300
+	3200 2100 3200 2750
 Wire Wire Line
 	5250 2300 5250 2600
 Wire Wire Line
@@ -1030,39 +1028,13 @@ $EndComp
 Wire Wire Line
 	7000 1000 7000 900 
 Connection ~ 7000 900 
-$Comp
-L R R19
-U 1 1 5C75CDD1
-P 3200 2450
-F 0 "R19" V 3280 2450 50  0000 C CNN
-F 1 "1k" V 3200 2450 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 3130 2450 50  0001 C CNN
-F 3 "" H 3200 2450 50  0001 C CNN
-	1    3200 2450
-	-1   0    0    1   
-$EndComp
 Wire Wire Line
 	3200 2950 3200 3050
-$Comp
-L R R20
-U 1 1 5C75D36D
-P 5950 2400
-F 0 "R20" V 6030 2400 50  0000 C CNN
-F 1 "1k" V 5950 2400 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 5880 2400 50  0001 C CNN
-F 3 "" H 5950 2400 50  0001 C CNN
-	1    5950 2400
-	-1   0    0    1   
-$EndComp
 Wire Wire Line
 	5950 2900 5950 3050
 Wire Wire Line
-	3200 2600 3200 2750
-Wire Wire Line
 	3500 2650 3200 2650
 Connection ~ 3200 2650
-Wire Wire Line
-	5950 2550 5950 2700
 Wire Wire Line
 	6250 2600 5950 2600
 Connection ~ 5950 2600
@@ -1200,4 +1172,32 @@ Wire Wire Line
 	2700 7100 2700 7050
 Wire Wire Line
 	2700 7450 2700 7400
+$Comp
+L Jumper_NC_Small JP10
+U 1 1 5C779F52
+P 3000 2950
+F 0 "JP10" H 3000 3030 50  0000 C CNN
+F 1 "Jumper_NC_Small" H 3010 2890 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 3000 2950 50  0001 C CNN
+F 3 "" H 3000 2950 50  0001 C CNN
+	1    3000 2950
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3000 3050 3000 3300
+Connection ~ 3000 3300
+$Comp
+L Jumper_NC_Small JP11
+U 1 1 5C77A385
+P 5700 2900
+F 0 "JP11" H 5700 2980 50  0000 C CNN
+F 1 "Jumper_NC_Small" H 5710 2840 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 5700 2900 50  0001 C CNN
+F 3 "" H 5700 2900 50  0001 C CNN
+	1    5700 2900
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5700 3000 5700 3300
+Connection ~ 5700 3300
 $EndSCHEMATC

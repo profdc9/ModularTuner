@@ -47,28 +47,6 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L Conn_01x02 J1
-U 1 1 5C69C698
-P 1700 2800
-F 0 "J1" H 1700 2900 50  0000 C CNN
-F 1 "Conn_01x02" H 1700 2600 50  0000 C CNN
-F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 1700 2800 50  0001 C CNN
-F 3 "" H 1700 2800 50  0001 C CNN
-	1    1700 2800
-	-1   0    0    -1  
-$EndComp
-$Comp
-L Conn_01x02 J17
-U 1 1 5C69D3DA
-P 5850 2800
-F 0 "J17" H 5850 2900 50  0000 C CNN
-F 1 "Conn_01x02" H 5850 2600 50  0000 C CNN
-F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 5850 2800 50  0001 C CNN
-F 3 "" H 5850 2800 50  0001 C CNN
-	1    5850 2800
-	1    0    0    -1  
-$EndComp
-$Comp
 L Conn_Coaxial J3
 U 1 1 5C69D435
 P 1750 3400
@@ -198,28 +176,6 @@ F 1 "Conn_01x01" H 3150 3100 50  0000 C CNN
 F 2 "Connectors:1pin" H 3150 3200 50  0001 C CNN
 F 3 "" H 3150 3200 50  0001 C CNN
 	1    3150 3200
-	1    0    0    -1  
-$EndComp
-$Comp
-L Conn_01x02 J2
-U 1 1 5C69DC8E
-P 1700 4300
-F 0 "J2" H 1700 4400 50  0000 C CNN
-F 1 "Conn_01x02" H 1700 4100 50  0000 C CNN
-F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 1700 4300 50  0001 C CNN
-F 3 "" H 1700 4300 50  0001 C CNN
-	1    1700 4300
-	-1   0    0    -1  
-$EndComp
-$Comp
-L Conn_01x02 J19
-U 1 1 5C69DC94
-P 5850 4300
-F 0 "J19" H 5850 4400 50  0000 C CNN
-F 1 "Conn_01x02" H 5850 4100 50  0000 C CNN
-F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 5850 4300 50  0001 C CNN
-F 3 "" H 5850 4300 50  0001 C CNN
-	1    5850 4300
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -536,7 +492,7 @@ U 1 1 5C69E07C
 P 2350 1650
 F 0 "R1" V 2430 1650 50  0000 C CNN
 F 1 "100R" V 2350 1650 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 2280 1650 50  0001 C CNN
+F 2 "TandemMatch:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 2280 1650 50  0001 C CNN
 F 3 "" H 2350 1650 50  0001 C CNN
 	1    2350 1650
 	1    0    0    -1  
@@ -547,7 +503,7 @@ U 1 1 5C69E164
 P 2550 1650
 F 0 "R2" V 2630 1650 50  0000 C CNN
 F 1 "100R" V 2550 1650 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 2480 1650 50  0001 C CNN
+F 2 "TandemMatch:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 2480 1650 50  0001 C CNN
 F 3 "" H 2550 1650 50  0001 C CNN
 	1    2550 1650
 	1    0    0    -1  
@@ -569,7 +525,7 @@ U 1 1 5C69E52E
 P 4950 1650
 F 0 "R3" V 5030 1650 50  0000 C CNN
 F 1 "100R" V 4950 1650 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 4880 1650 50  0001 C CNN
+F 2 "TandemMatch:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 4880 1650 50  0001 C CNN
 F 3 "" H 4950 1650 50  0001 C CNN
 	1    4950 1650
 	1    0    0    -1  
@@ -580,7 +536,7 @@ U 1 1 5C69E534
 P 5150 1650
 F 0 "R4" V 5230 1650 50  0000 C CNN
 F 1 "100R" V 5150 1650 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 5080 1650 50  0001 C CNN
+F 2 "TandemMatch:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 5080 1650 50  0001 C CNN
 F 3 "" H 5150 1650 50  0001 C CNN
 	1    5150 1650
 	1    0    0    -1  
@@ -911,43 +867,150 @@ F 3 "" H 5650 2450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R18
-U 1 1 5C75BB98
-P 5650 1900
-F 0 "R18" V 5730 1900 50  0000 C CNN
-F 1 "1k" V 5650 1900 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 5580 1900 50  0001 C CNN
-F 3 "" H 5650 1900 50  0001 C CNN
-	1    5650 1900
+L D D7
+U 1 1 5C75DA4D
+P 2750 5400
+F 0 "D7" H 2750 5500 50  0000 C CNN
+F 1 "1N4148" H 2750 5300 50  0000 C CNN
+F 2 "Diodes_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 2750 5400 50  0001 C CNN
+F 3 "" H 2750 5400 50  0001 C CNN
+	1    2750 5400
+	0    -1   -1   0   
+$EndComp
+$Comp
+L D D8
+U 1 1 5C75E0A8
+P 2750 5750
+F 0 "D8" H 2750 5850 50  0000 C CNN
+F 1 "1N4148" H 2750 5650 50  0000 C CNN
+F 2 "Diodes_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 2750 5750 50  0001 C CNN
+F 3 "" H 2750 5750 50  0001 C CNN
+	1    2750 5750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L C_Small C12
+U 1 1 5C75E512
+P 2750 6550
+F 0 "C12" H 2760 6620 50  0000 L CNN
+F 1 "10 nF" H 2760 6470 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 2750 6550 50  0001 C CNN
+F 3 "" H 2750 6550 50  0001 C CNN
+	1    2750 6550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Jumper_NC_Small JP3
+U 1 1 5C75ED3D
+P 2750 5100
+F 0 "JP3" H 2750 5180 50  0000 C CNN
+F 1 "Jumper_NC_Small" H 2760 5040 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 2750 5100 50  0001 C CNN
+F 3 "" H 2750 5100 50  0001 C CNN
+	1    2750 5100
+	0    1    1    0   
+$EndComp
+$Comp
+L R R21
+U 1 1 5C75F657
+P 2750 6150
+F 0 "R21" V 2830 6150 50  0000 C CNN
+F 1 "10k" V 2750 6150 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 2680 6150 50  0001 C CNN
+F 3 "" H 2750 6150 50  0001 C CNN
+	1    2750 6150
 	-1   0    0    1   
 $EndComp
 $Comp
-L R R17
-U 1 1 5C75C16F
-P 2900 1950
-F 0 "R17" V 2980 1950 50  0000 C CNN
-F 1 "1k" V 2900 1950 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 2830 1950 50  0001 C CNN
-F 3 "" H 2900 1950 50  0001 C CNN
-	1    2900 1950
+L GND #PWR022
+U 1 1 5C75F9F3
+P 2750 6750
+F 0 "#PWR022" H 2750 6500 50  0001 C CNN
+F 1 "GND" H 2750 6600 50  0000 C CNN
+F 2 "" H 2750 6750 50  0001 C CNN
+F 3 "" H 2750 6750 50  0001 C CNN
+	1    2750 6750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Jumper_NC_Small JP4
+U 1 1 5C75FC8B
+P 2950 6400
+F 0 "JP4" H 2950 6480 50  0000 C CNN
+F 1 "Jumper_NC_Small" H 2960 6340 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 2950 6400 50  0001 C CNN
+F 3 "" H 2950 6400 50  0001 C CNN
+	1    2950 6400
 	-1   0    0    1   
+$EndComp
+$Comp
+L GND #PWR023
+U 1 1 5C761901
+P 3150 6750
+F 0 "#PWR023" H 3150 6500 50  0001 C CNN
+F 1 "GND" H 3150 6600 50  0000 C CNN
+F 2 "" H 3150 6750 50  0001 C CNN
+F 3 "" H 3150 6750 50  0001 C CNN
+	1    3150 6750
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R23
+U 1 1 5C76497B
+P 2400 6600
+F 0 "R23" V 2480 6600 50  0000 C CNN
+F 1 "1k" V 2400 6600 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 2330 6600 50  0001 C CNN
+F 3 "" H 2400 6600 50  0001 C CNN
+	1    2400 6600
+	-1   0    0    1   
+$EndComp
+$Comp
+L GND #PWR024
+U 1 1 5C764A61
+P 2400 6800
+F 0 "#PWR024" H 2400 6550 50  0001 C CNN
+F 1 "GND" H 2400 6650 50  0000 C CNN
+F 2 "" H 2400 6800 50  0001 C CNN
+F 3 "" H 2400 6800 50  0001 C CNN
+	1    2400 6800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Jumper_NC_Small JP9
+U 1 1 5C77937B
+P 2700 2450
+F 0 "JP9" H 2700 2530 50  0000 C CNN
+F 1 "Jumper_NC_Small" H 2710 2390 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 2700 2450 50  0001 C CNN
+F 3 "" H 2700 2450 50  0001 C CNN
+	1    2700 2450
+	0    1    1    0   
+$EndComp
+$Comp
+L Jumper_NC_Small JP12
+U 1 1 5C77AC18
+P 5400 2250
+F 0 "JP12" H 5400 2330 50  0000 C CNN
+F 1 "Jumper_NC_Small" H 5410 2190 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 5400 2250 50  0001 C CNN
+F 3 "" H 5400 2250 50  0001 C CNN
+	1    5400 2250
+	0    1    1    0   
 $EndComp
 Wire Wire Line
 	1900 3400 2100 3400
 Wire Wire Line
 	2100 2800 2100 3750
 Wire Wire Line
-	1900 2900 2000 2900
-Wire Wire Line
-	2000 2900 2000 3750
+	2000 3600 2000 3750
 Wire Wire Line
 	1750 3600 2000 3600
 Wire Wire Line
 	1850 3700 1850 3600
 Connection ~ 1850 3600
-Connection ~ 2100 2800
 Wire Wire Line
-	4250 2800 5650 2800
+	4250 2800 5450 2800
 Wire Wire Line
 	5450 2800 5450 3850
 Wire Wire Line
@@ -957,33 +1020,27 @@ Wire Wire Line
 Wire Wire Line
 	2400 3600 2400 3400
 Wire Wire Line
-	1900 2800 2950 2800
+	2100 2800 2950 2800
 Wire Wire Line
 	5050 3700 5050 3500
-Connection ~ 5450 2800
 Wire Wire Line
-	5600 2900 5600 3850
+	5600 3750 5600 3850
 Wire Wire Line
 	5600 3750 5850 3750
 Connection ~ 5850 3750
-Wire Wire Line
-	5650 2900 5600 2900
 Wire Wire Line
 	1900 4900 2100 4900
 Wire Wire Line
 	2100 4300 2100 5250
 Wire Wire Line
-	1900 4400 2000 4400
-Wire Wire Line
-	2000 4400 2000 5250
+	2000 5100 2000 5250
 Wire Wire Line
 	1750 5100 2000 5100
 Wire Wire Line
 	1850 5200 1850 5100
 Connection ~ 1850 5100
-Connection ~ 2100 4300
 Wire Wire Line
-	4250 4300 5650 4300
+	4250 4300 5450 4300
 Wire Wire Line
 	5450 4300 5450 5350
 Wire Wire Line
@@ -991,17 +1048,14 @@ Wire Wire Line
 Wire Wire Line
 	2400 5100 2400 4900
 Wire Wire Line
-	1900 4300 2950 4300
+	2100 4300 2950 4300
 Wire Wire Line
 	5250 4950 5250 4750
-Connection ~ 5450 4300
 Wire Wire Line
-	5600 4400 5600 5350
+	5600 5250 5600 5350
 Wire Wire Line
 	5600 5250 5850 5250
 Connection ~ 5850 5250
-Wire Wire Line
-	5650 4400 5600 4400
 Wire Wire Line
 	9450 2650 9450 3800
 Connection ~ 9450 2950
@@ -1054,7 +1108,7 @@ Wire Wire Line
 	4950 1800 4950 2100
 Connection ~ 2550 1400
 Wire Wire Line
-	2900 1600 2900 1800
+	2900 1600 2900 2250
 Wire Wire Line
 	3350 2150 3350 2000
 Wire Wire Line
@@ -1067,7 +1121,7 @@ Wire Wire Line
 	3700 1650 3350 1650
 Connection ~ 3350 1650
 Wire Wire Line
-	5650 1550 5650 1750
+	5650 1550 5650 2150
 Wire Wire Line
 	6100 2100 6100 1950
 Wire Wire Line
@@ -1101,32 +1155,22 @@ Wire Wire Line
 Connection ~ 3700 1650
 Wire Wire Line
 	2550 1400 2550 1500
-Connection ~ 2000 3600
 Connection ~ 2100 3400
-Connection ~ 2000 5100
 Connection ~ 2100 4900
-Connection ~ 5600 5250
-Connection ~ 5600 3750
 Connection ~ 5450 3450
 Wire Wire Line
 	5700 4950 5450 4950
 Connection ~ 5450 4950
 Wire Wire Line
-	2350 2100 2700 2100
+	2350 2100 2550 2100
 Wire Wire Line
-	2700 2100 2700 1250
+	2700 1250 2700 2350
 Wire Wire Line
 	2700 1250 2900 1250
 Wire Wire Line
 	2900 1250 2900 1300
-Connection ~ 2550 2100
 Wire Wire Line
-	5650 1250 5400 1250
-Wire Wire Line
-	5400 1250 5400 2100
-Wire Wire Line
-	5400 2100 4950 2100
-Connection ~ 5150 2100
+	4950 2100 5150 2100
 Wire Wire Line
 	2450 2350 2450 2100
 Connection ~ 2450 2100
@@ -1143,100 +1187,19 @@ Wire Wire Line
 	5650 2350 5650 2450
 Wire Wire Line
 	2900 2450 2900 2500
-$Comp
-L D D7
-U 1 1 5C75DA4D
-P 2750 5400
-F 0 "D7" H 2750 5500 50  0000 C CNN
-F 1 "1N4148" H 2750 5300 50  0000 C CNN
-F 2 "Diodes_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 2750 5400 50  0001 C CNN
-F 3 "" H 2750 5400 50  0001 C CNN
-	1    2750 5400
-	0    -1   -1   0   
-$EndComp
-$Comp
-L D D8
-U 1 1 5C75E0A8
-P 2750 5750
-F 0 "D8" H 2750 5850 50  0000 C CNN
-F 1 "1N4148" H 2750 5650 50  0000 C CNN
-F 2 "Diodes_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 2750 5750 50  0001 C CNN
-F 3 "" H 2750 5750 50  0001 C CNN
-	1    2750 5750
-	0    -1   -1   0   
-$EndComp
-$Comp
-L C_Small C12
-U 1 1 5C75E512
-P 2750 6550
-F 0 "C12" H 2760 6620 50  0000 L CNN
-F 1 "10 nF" H 2760 6470 50  0000 L CNN
-F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 2750 6550 50  0001 C CNN
-F 3 "" H 2750 6550 50  0001 C CNN
-	1    2750 6550
-	1    0    0    -1  
-$EndComp
-$Comp
-L Jumper_NC_Small JP3
-U 1 1 5C75ED3D
-P 2750 5100
-F 0 "JP3" H 2750 5180 50  0000 C CNN
-F 1 "Jumper_NC_Small" H 2760 5040 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 2750 5100 50  0001 C CNN
-F 3 "" H 2750 5100 50  0001 C CNN
-	1    2750 5100
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	2750 4300 2750 5000
 Wire Wire Line
 	2750 5200 2750 5250
 Wire Wire Line
 	2750 5550 2750 5600
-$Comp
-L R R21
-U 1 1 5C75F657
-P 2750 6150
-F 0 "R21" V 2830 6150 50  0000 C CNN
-F 1 "10k" V 2750 6150 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 2680 6150 50  0001 C CNN
-F 3 "" H 2750 6150 50  0001 C CNN
-	1    2750 6150
-	-1   0    0    1   
-$EndComp
 Wire Wire Line
 	2750 6000 2750 5900
-$Comp
-L GND #PWR022
-U 1 1 5C75F9F3
-P 2750 6750
-F 0 "#PWR022" H 2750 6500 50  0001 C CNN
-F 1 "GND" H 2750 6600 50  0000 C CNN
-F 2 "" H 2750 6750 50  0001 C CNN
-F 3 "" H 2750 6750 50  0001 C CNN
-	1    2750 6750
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	2750 6750 2750 6650
-$Comp
-L Jumper_NC_Small JP4
-U 1 1 5C75FC8B
-P 2950 6400
-F 0 "JP4" H 2950 6480 50  0000 C CNN
-F 1 "Jumper_NC_Small" H 2960 6340 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 2950 6400 50  0001 C CNN
-F 3 "" H 2950 6400 50  0001 C CNN
-	1    2950 6400
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	5650 2050 5650 2150
 Wire Wire Line
 	5950 2100 5650 2100
 Connection ~ 5650 2100
-Wire Wire Line
-	2900 2100 2900 2250
 Wire Wire Line
 	3350 1200 3350 1250
 Wire Wire Line
@@ -1248,17 +1211,6 @@ Wire Wire Line
 Connection ~ 2900 2200
 Wire Wire Line
 	2750 6300 2750 6450
-$Comp
-L GND #PWR023
-U 1 1 5C761901
-P 3150 6750
-F 0 "#PWR023" H 3150 6500 50  0001 C CNN
-F 1 "GND" H 3150 6600 50  0000 C CNN
-F 2 "" H 3150 6750 50  0001 C CNN
-F 3 "" H 3150 6750 50  0001 C CNN
-	1    3150 6750
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	2400 6400 2850 6400
 Connection ~ 2750 6400
@@ -1267,30 +1219,18 @@ Wire Wire Line
 Wire Wire Line
 	3150 6400 3150 6750
 Connection ~ 2750 4300
-$Comp
-L R R23
-U 1 1 5C76497B
-P 2400 6600
-F 0 "R23" V 2480 6600 50  0000 C CNN
-F 1 "1k" V 2400 6600 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 2330 6600 50  0001 C CNN
-F 3 "" H 2400 6600 50  0001 C CNN
-	1    2400 6600
-	-1   0    0    1   
-$EndComp
-$Comp
-L GND #PWR024
-U 1 1 5C764A61
-P 2400 6800
-F 0 "#PWR024" H 2400 6550 50  0001 C CNN
-F 1 "GND" H 2400 6650 50  0000 C CNN
-F 2 "" H 2400 6800 50  0001 C CNN
-F 3 "" H 2400 6800 50  0001 C CNN
-	1    2400 6800
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	2400 6800 2400 6750
 Wire Wire Line
 	2400 6450 2400 6400
+Wire Wire Line
+	2700 2550 2700 2800
+Connection ~ 2700 2800
+Connection ~ 5400 2800
+Wire Wire Line
+	5650 1250 5400 1250
+Wire Wire Line
+	5400 2350 5400 2800
+Wire Wire Line
+	5400 1250 5400 2150
 $EndSCHEMATC
