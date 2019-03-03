@@ -80,7 +80,7 @@ U 1 1 5B18CCC7
 P 8950 3250
 F 0 "J9" H 8950 3350 50  0000 C CNN
 F 1 "Conn_01x02" H 8950 3050 50  0000 C CNN
-F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 8950 3250 50  0001 C CNN
+F 2 "tuner:bnc_90_1-1337543-0_pad_combo" H 8950 3250 50  0001 C CNN
 F 3 "" H 8950 3250 50  0001 C CNN
 	1    8950 3250
 	1    0    0    -1  
@@ -626,7 +626,7 @@ U 1 1 5B8A2579
 P 1250 650
 F 0 "J8" H 1250 750 50  0000 C CNN
 F 1 "Conn_01x02" H 1250 450 50  0000 C CNN
-F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 1250 650 50  0001 C CNN
+F 2 "tuner:bnc_90_1-1337543-0_pad_combo" H 1250 650 50  0001 C CNN
 F 3 "" H 1250 650 50  0001 C CNN
 	1    1250 650 
 	1    0    0    -1  
@@ -1019,7 +1019,7 @@ F 3 "" H 10800 4850 50  0001 C CNN
 $EndComp
 Text GLabel 8650 3050 1    60   Input ~ 0
 RFOUT
-Text GLabel 2250 1200 1    60   Input ~ 0
+Text GLabel 2250 850  1    60   Input ~ 0
 RFOUT
 $Comp
 L DPDTRelay RLY2
@@ -1391,8 +1391,36 @@ Text GLabel 7350 2250 0    60   Input ~ 0
 RFGND
 Text GLabel 1100 4300 0    60   Input ~ 0
 RFGND
+Text GLabel 2250 4400 3    60   Input ~ 0
+RFGND
+Text GLabel 3400 4350 3    60   Input ~ 0
+RFGND
+Text GLabel 4750 4350 3    60   Input ~ 0
+RFGND
+$Comp
+L Conn_01x01 J2
+U 1 1 5C744B1A
+P 7200 4200
+F 0 "J2" H 7200 4300 50  0000 C CNN
+F 1 "Conn_01x01" H 7200 4100 50  0000 C CNN
+F 2 "Connectors:1pin" H 7200 4200 50  0001 C CNN
+F 3 "" H 7200 4200 50  0001 C CNN
+	1    7200 4200
+	-1   0    0    1   
+$EndComp
+$Comp
+L Jumper_NC_Small JP1
+U 1 1 5C7C280E
+P 2250 1050
+F 0 "JP1" H 2250 1130 50  0000 C CNN
+F 1 "Jumper_NC_Small" H 2260 990 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 2250 1050 50  0001 C CNN
+F 3 "" H 2250 1050 50  0001 C CNN
+	1    2250 1050
+	0    1    1    0   
+$EndComp
 Wire Wire Line
-	2250 1200 2250 1400
+	2250 1150 2250 1400
 Connection ~ 2150 1400
 Wire Wire Line
 	2250 1400 2150 1400
@@ -2008,8 +2036,6 @@ Wire Wire Line
 	2350 4450 2350 4300
 Wire Wire Line
 	2250 4300 2450 4300
-Text GLabel 2250 4400 3    60   Input ~ 0
-RFGND
 Connection ~ 2350 4300
 Wire Wire Line
 	2250 4400 2250 4300
@@ -2021,8 +2047,6 @@ Wire Wire Line
 	3600 4500 4450 4500
 Wire Wire Line
 	4450 4500 4450 4300
-Text GLabel 3400 4350 3    60   Input ~ 0
-RFGND
 Wire Wire Line
 	3400 4350 3400 4300
 Connection ~ 3600 4300
@@ -2030,8 +2054,6 @@ Wire Wire Line
 	4850 4500 5700 4500
 Wire Wire Line
 	5700 4500 5700 4300
-Text GLabel 4750 4350 3    60   Input ~ 0
-RFGND
 Wire Wire Line
 	4750 4350 4750 4300
 Wire Wire Line
@@ -2043,20 +2065,14 @@ Wire Wire Line
 	4250 4150 4250 4000
 Wire Wire Line
 	7450 3150 7600 3150
-$Comp
-L Conn_01x01 J2
-U 1 1 5C744B1A
-P 7200 4200
-F 0 "J2" H 7200 4300 50  0000 C CNN
-F 1 "Conn_01x01" H 7200 4100 50  0000 C CNN
-F 2 "Connectors:1pin" H 7200 4200 50  0001 C CNN
-F 3 "" H 7200 4200 50  0001 C CNN
-	1    7200 4200
-	-1   0    0    1   
-$EndComp
 Wire Wire Line
 	7400 4200 7500 4200
 Wire Wire Line
 	7500 4200 7500 3900
 Connection ~ 7500 3900
+Wire Wire Line
+	2250 950  2250 850 
+Wire Wire Line
+	2250 1200 2250 1250
+Connection ~ 2250 1250
 $EndSCHEMATC

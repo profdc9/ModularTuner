@@ -48,19 +48,8 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-Text GLabel 2250 3300 3    60   Input ~ 0
+Text GLabel 2250 3450 3    60   Input ~ 0
 RFOUT
-$Comp
-L Conn_01x02 J8
-U 1 1 5B18E79B
-P 700 2850
-F 0 "J8" H 700 2950 50  0000 C CNN
-F 1 "Conn_01x02" H 700 2650 50  0000 C CNN
-F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 700 2850 50  0001 C CNN
-F 3 "" H 700 2850 50  0001 C CNN
-	1    700  2850
-	-1   0    0    1   
-$EndComp
 Text GLabel 5900 7150 2    60   Input ~ 0
 RLY1
 Text GLabel 5900 6750 2    60   Input ~ 0
@@ -306,17 +295,6 @@ F 1 "100 uF" H 9525 4750 50  0000 L CNN
 F 2 "Capacitors_THT:CP_Radial_Tantal_D5.0mm_P2.50mm" H 9538 4700 50  0001 C CNN
 F 3 "" H 9500 4850 50  0001 C CNN
 	1    9500 4850
-	1    0    0    -1  
-$EndComp
-$Comp
-L Conn_01x02 J9
-U 1 1 5B18CCC7
-P 8750 1500
-F 0 "J9" H 8750 1600 50  0000 C CNN
-F 1 "Conn_01x02" H 8750 1300 50  0000 C CNN
-F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 8750 1500 50  0001 C CNN
-F 3 "" H 8750 1500 50  0001 C CNN
-	1    8750 1500
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -2103,12 +2081,12 @@ Wire Wire Line
 Wire Wire Line
 	1150 2700 1150 3050
 Wire Wire Line
-	1150 2800 1150 2750
+	1150 2750 1150 2800
 Wire Wire Line
-	1150 2750 900  2750
+	850  2750 1150 2750
 Connection ~ 1150 2800
 Wire Wire Line
-	2250 2600 2250 3300
+	2250 2600 2250 3200
 Wire Wire Line
 	2250 2600 2200 2600
 Wire Wire Line
@@ -2238,7 +2216,6 @@ Wire Wire Line
 	3250 800  4600 800 
 Wire Wire Line
 	4600 800  4600 1050
-Connection ~ 2250 2950
 Wire Wire Line
 	2400 2800 2400 2550
 Wire Wire Line
@@ -2337,7 +2314,7 @@ Connection ~ 7200 1550
 Wire Wire Line
 	8250 1300 8250 1650
 Wire Wire Line
-	8250 1500 8550 1500
+	8250 1500 8650 1500
 Connection ~ 8250 1500
 Wire Wire Line
 	7900 1850 7750 1850
@@ -2434,4 +2411,48 @@ Wire Wire Line
 Wire Wire Line
 	7950 1950 7750 1950
 Connection ~ 7750 1950
+$Comp
+L Conn_Coaxial J8
+U 1 1 5C7C04B6
+P 700 2750
+F 0 "J8" H 710 2870 50  0000 C CNN
+F 1 "Conn_Coaxial" V 815 2750 50  0000 C CNN
+F 2 "tuner:bnc_90_1-1337543-0_pad_combo" H 700 2750 50  0001 C CNN
+F 3 "" H 700 2750 50  0001 C CNN
+	1    700  2750
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	900  2850 900  2950
+Wire Wire Line
+	900  2950 700  2950
+$Comp
+L Conn_Coaxial J9
+U 1 1 5C7C0EBB
+P 8800 1500
+F 0 "J9" H 8810 1620 50  0000 C CNN
+F 1 "Conn_Coaxial" V 8915 1500 50  0000 C CNN
+F 2 "tuner:bnc_90_1-1337543-0_pad_combo" H 8800 1500 50  0001 C CNN
+F 3 "" H 8800 1500 50  0001 C CNN
+	1    8800 1500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8550 1600 8550 1700
+Wire Wire Line
+	8550 1700 8800 1700
+$Comp
+L Jumper_NC_Small JP5
+U 1 1 5C7C4162
+P 2250 3300
+F 0 "JP5" H 2250 3380 50  0000 C CNN
+F 1 "Jumper_NC_Small" H 2260 3240 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 2250 3300 50  0001 C CNN
+F 3 "" H 2250 3300 50  0001 C CNN
+	1    2250 3300
+	0    1    1    0   
+$EndComp
+Connection ~ 2250 2950
+Wire Wire Line
+	2250 3400 2250 3450
 $EndSCHEMATC
