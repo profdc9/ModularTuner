@@ -3,7 +3,7 @@
   (general
     (links 227)
     (no_connects 0)
-    (area 49.924999 49.924999 150.075001 150.075001)
+    (area 44.941618 47.69538 155.4408 151.075)
     (thickness 1.6)
     (drawings 35)
     (tracks 899)
@@ -37,7 +37,7 @@
   )
 
   (setup
-    (last_trace_width 1.5)
+    (last_trace_width 0.25)
     (user_trace_width 0.35)
     (user_trace_width 0.5)
     (user_trace_width 1)
@@ -3411,7 +3411,7 @@
   (gr_text "Relays are HUI KE HK19F\nHongfa HDF2 Omron G5RV-2" (at 67.4751 137.9728 90) (layer F.SilkS)
     (effects (font (size 1 1) (thickness 0.15)))
   )
-  (gr_text INPORT (at 143.637 108.966 180) (layer F.SilkS)
+  (gr_text INPORT (at 148.52904 119.69496 90) (layer F.SilkS)
     (effects (font (size 1 1) (thickness 0.15)))
   )
   (gr_text RF (at 145.034 136.3472 180) (layer F.SilkS)
@@ -4330,7 +4330,7 @@
   (segment (start 117.5512 127.4088) (end 117.3072 127.6528) (width 1.5) (layer F.Cu) (net 61) (tstamp 5C7375B4) (status 30))
   (segment (start 137.8104 132.8852) (end 138.35124 132.8852) (width 1.5) (layer B.Cu) (net 62))
   (segment (start 138.35124 132.8852) (end 140.09624 131.1402) (width 1.5) (layer B.Cu) (net 62) (tstamp 5C7B9560))
-  (segment (start 148.9202 81.5848) (end 146.51736 78.92796) (width 1.5) (layer B.Cu) (net 62) (tstamp 5C7B9567) (status 800020))
+  (segment (start 148.9202 81.5848) (end 146.51736 78.92796) (width 1.5) (layer B.Cu) (net 62) (tstamp 5C7B9567) (status 20))
   (segment (start 148.80844 117.40388) (end 148.9202 81.5848) (width 1.5) (layer B.Cu) (net 62) (tstamp 5C7B9563))
   (segment (start 140.09624 126.11608) (end 148.80844 117.40388) (width 1.5) (layer B.Cu) (net 62) (tstamp 5C7B9562))
   (segment (start 140.09624 131.1402) (end 140.09624 126.11608) (width 1.5) (layer B.Cu) (net 62) (tstamp 5C7B9561))
