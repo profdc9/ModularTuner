@@ -309,13 +309,13 @@ $EndComp
 $Comp
 L Conn_01x02 J8
 U 1 1 5B18E79B
-P 2150 1700
-F 0 "J8" H 2150 1800 50  0000 C CNN
-F 1 "Conn_01x02" H 2150 1500 50  0000 C CNN
-F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 2150 1700 50  0001 C CNN
-F 3 "" H 2150 1700 50  0001 C CNN
-	1    2150 1700
-	-1   0    0    1   
+P 2150 1600
+F 0 "J8" H 2150 1700 50  0000 C CNN
+F 1 "Conn_01x02" H 2150 1400 50  0000 C CNN
+F 2 "tuner:bnc_90_1-1337543-0_pad_combo" H 2150 1600 50  0001 C CNN
+F 3 "" H 2150 1600 50  0001 C CNN
+	1    2150 1600
+	-1   0    0    -1  
 $EndComp
 $Comp
 L Conn_01x02 J10
@@ -323,7 +323,7 @@ U 1 1 5B18EEC5
 P 10350 3600
 F 0 "J10" H 10350 3700 50  0000 C CNN
 F 1 "Conn_01x02" H 10350 3400 50  0000 C CNN
-F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 10350 3600 50  0001 C CNN
+F 2 "tuner:bnc_90_1-1337543-0_pad_combo" H 10350 3600 50  0001 C CNN
 F 3 "" H 10350 3600 50  0001 C CNN
 	1    10350 3600
 	1    0    0    -1  
@@ -619,7 +619,7 @@ U 1 1 5B18CCC7
 P 10350 3100
 F 0 "J9" H 10350 3200 50  0000 C CNN
 F 1 "Conn_01x02" H 10350 2900 50  0000 C CNN
-F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 10350 3100 50  0001 C CNN
+F 2 "tuner:bnc_90_1-1337543-0_pad_combo" H 10350 3100 50  0001 C CNN
 F 3 "" H 10350 3100 50  0001 C CNN
 	1    10350 3100
 	1    0    0    -1  
