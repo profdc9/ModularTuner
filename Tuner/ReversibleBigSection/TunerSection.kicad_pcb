@@ -3,7 +3,7 @@
   (general
     (links 291)
     (no_connects 0)
-    (area 49.924999 49.924999 150.075001 150.075001)
+    (area 44.281218 45.651 151.844 153.921938)
     (thickness 1.6)
     (drawings 27)
     (tracks 860)
@@ -37,7 +37,7 @@
   )
 
   (setup
-    (last_trace_width 1)
+    (last_trace_width 0.25)
     (user_trace_width 0.35)
     (user_trace_width 0.5)
     (user_trace_width 1)
@@ -4637,7 +4637,7 @@
   (gr_text H (at 60.2742 135.001) (layer F.SilkS)
     (effects (font (size 1 1) (thickness 0.15)))
   )
-  (gr_text A1 (at 62.8396 132.8166) (layer F.SilkS)
+  (gr_text A2 (at 62.8396 132.8166) (layer F.SilkS)
     (effects (font (size 1 1) (thickness 0.15)))
   )
   (gr_line (start 53.594 123.19) (end 53.594 123.063) (angle 90) (layer F.SilkS) (width 0.2))
