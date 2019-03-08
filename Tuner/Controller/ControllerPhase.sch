@@ -460,7 +460,7 @@ Text GLabel 7400 2000 2    60   Input ~ 0
 PhaseFwd
 Text GLabel 7400 2650 2    60   Input ~ 0
 PhaseFwd
-Text GLabel 1150 5600 1    60   Input ~ 0
+Text GLabel 1150 5100 1    60   Input ~ 0
 XFwd
 $Comp
 L R R7
@@ -860,7 +860,7 @@ F 3 "" H 3400 5800 50  0001 C CNN
 	2    3400 5800
 	0    -1   1    0   
 $EndComp
-Text GLabel 1100 1400 1    60   Input ~ 0
+Text GLabel 1100 950  1    60   Input ~ 0
 XRev
 Text GLabel 3350 2150 3    60   Input ~ 0
 PhaseRev
@@ -1062,7 +1062,7 @@ F 3 "" H 4650 4300 50  0001 C CNN
 	3    4650 4300
 	-1   0    0    -1  
 $EndComp
-Text GLabel 1100 3250 1    60   Input ~ 0
+Text GLabel 1100 2950 1    60   Input ~ 0
 XCur
 Text GLabel 3350 4000 3    60   Input ~ 0
 PhaseCur
@@ -1481,7 +1481,7 @@ Connection ~ 2500 5450
 Wire Wire Line
 	2500 5450 2150 5450
 Wire Wire Line
-	2700 6050 2700 5800
+	2700 5800 2700 6050
 Wire Wire Line
 	2700 5850 2750 5850
 Connection ~ 2700 5850
@@ -1546,7 +1546,7 @@ Connection ~ 2450 1250
 Wire Wire Line
 	2450 1250 2100 1250
 Wire Wire Line
-	2650 1850 2650 1600
+	2650 1600 2650 1850
 Wire Wire Line
 	2650 1650 2700 1650
 Connection ~ 2650 1650
@@ -1617,7 +1617,7 @@ Connection ~ 2450 3150
 Wire Wire Line
 	2450 3150 2100 3150
 Wire Wire Line
-	2650 3750 2650 3500
+	2650 3500 2650 3750
 Wire Wire Line
 	2650 3550 2700 3550
 Connection ~ 2650 3550
@@ -1797,7 +1797,7 @@ Wire Wire Line
 Wire Wire Line
 	1350 1550 1650 1550
 Wire Wire Line
-	1100 1400 1100 1600
+	1100 1300 1100 1600
 $Comp
 L R R22
 U 1 1 5B794BDA
@@ -1857,8 +1857,6 @@ Wire Wire Line
 	1350 4300 1350 4200
 Connection ~ 1100 4300
 Connection ~ 1350 3850
-Wire Wire Line
-	1100 3250 1100 3500
 Wire Wire Line
 	1350 3450 1650 3450
 Wire Wire Line
@@ -1926,8 +1924,6 @@ Wire Wire Line
 	1400 5750 1700 5750
 Wire Wire Line
 	1700 5750 1700 5800
-Wire Wire Line
-	1150 5800 1150 5600
 $Comp
 L R R50
 U 1 1 5B79CA04
@@ -1973,4 +1969,47 @@ Wire Wire Line
 	2950 1850 2950 2000
 Wire Wire Line
 	2950 2000 2800 2000
+$Comp
+L C C43
+U 1 1 5C81FCDA
+P 1100 1150
+F 0 "C43" H 1125 1250 50  0000 L CNN
+F 1 "10 nF" V 1050 1200 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 1138 1000 50  0001 C CNN
+F 3 "" H 1100 1150 50  0001 C CNN
+	1    1100 1150
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1100 950  1100 1000
+$Comp
+L C C44
+U 1 1 5C82067D
+P 1100 3200
+F 0 "C44" H 1125 3300 50  0000 L CNN
+F 1 "10 nF" V 1050 3250 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 1138 3050 50  0001 C CNN
+F 3 "" H 1100 3200 50  0001 C CNN
+	1    1100 3200
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1100 3050 1100 2950
+Wire Wire Line
+	1100 3350 1100 3500
+$Comp
+L C C45
+U 1 1 5C820F02
+P 1150 5450
+F 0 "C45" H 1175 5550 50  0000 L CNN
+F 1 "10 nF" V 1100 5500 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 1188 5300 50  0001 C CNN
+F 3 "" H 1150 5450 50  0001 C CNN
+	1    1150 5450
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1150 5300 1150 5100
+Wire Wire Line
+	1150 5600 1150 5800
 $EndSCHEMATC

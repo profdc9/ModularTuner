@@ -1818,15 +1818,15 @@ Connection ~ 3950 5650
 Wire Wire Line
 	3100 5800 3100 5650
 Wire Wire Line
-	5550 5650 5550 5450
+	5550 5450 5550 5800
 Wire Wire Line
-	5550 5450 5850 5450
+	5850 5450 5550 5450
 Connection ~ 5550 5650
 Wire Wire Line
 	5450 6600 5600 6600
 Connection ~ 4150 6600
 Wire Wire Line
-	5550 6600 5550 7150
+	5550 6450 5550 7150
 Wire Wire Line
 	5550 7150 6000 7150
 Wire Wire Line
@@ -1986,4 +1986,82 @@ $EndComp
 Wire Wire Line
 	8100 2200 8100 2100
 Connection ~ 8100 2100
+$Comp
+L C_Small C20
+U 1 1 5C819FC4
+P 4700 1850
+F 0 "C20" H 4710 1920 50  0000 L CNN
+F 1 "NC" H 4710 1770 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm" H 4700 1850 50  0001 C CNN
+F 3 "" H 4700 1850 50  0001 C CNN
+	1    4700 1850
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4500 1750 4500 1850
+Wire Wire Line
+	4500 1850 4600 1850
+Connection ~ 4500 1750
+Wire Wire Line
+	4900 1750 4900 1850
+Wire Wire Line
+	4900 1850 4800 1850
+Connection ~ 4900 1750
+$Comp
+L C_Small C21
+U 1 1 5C81A810
+P 5150 2500
+F 0 "C21" H 5160 2570 50  0000 L CNN
+F 1 "NC" H 5160 2420 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm" H 5150 2500 50  0001 C CNN
+F 3 "" H 5150 2500 50  0001 C CNN
+	1    5150 2500
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5050 2500 4950 2500
+Wire Wire Line
+	4950 2500 4950 2700
+Connection ~ 4950 2700
+Wire Wire Line
+	5250 2500 5350 2500
+Wire Wire Line
+	5350 2500 5350 2700
+Connection ~ 5350 2700
+$Comp
+L C_Small C23
+U 1 1 5C81AF45
+P 5400 5800
+F 0 "C23" H 5410 5870 50  0000 L CNN
+F 1 "NC" H 5410 5720 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm" H 5400 5800 50  0001 C CNN
+F 3 "" H 5400 5800 50  0001 C CNN
+	1    5400 5800
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5200 5650 5200 5800
+Wire Wire Line
+	5200 5800 5300 5800
+Connection ~ 5200 5650
+Wire Wire Line
+	5550 5800 5500 5800
+$Comp
+L C_Small C22
+U 1 1 5C81B552
+P 5350 6450
+F 0 "C22" H 5360 6520 50  0000 L CNN
+F 1 "NC" H 5360 6370 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm" H 5350 6450 50  0001 C CNN
+F 3 "" H 5350 6450 50  0001 C CNN
+	1    5350 6450
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5450 6450 5550 6450
+Wire Wire Line
+	5250 6450 5150 6450
+Wire Wire Line
+	5150 6450 5150 6600
+Connection ~ 5150 6600
 $EndSCHEMATC
