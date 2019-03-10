@@ -24,48 +24,63 @@ freely, subject to the following restrictions:
 #include <math.h>
 #include <Arduino.h>
 
+#define RELAY_MODULE_INDUCTOR 1
+#define RELAY_MODULE_CAPACITOR 2
+#define RELAY_MODULE_DELAY 3
+
+#define MAX_NUMBER_RELAYS 16
+#define MAX_NUMBER_SWITCHES 2
+
+typedef struct _relay_module_specs
+{
+  byte     relay_module_type;
+  byte     no_relay_ports;
+  byte     no_switches;
+  byte     mcp23017;
+  byte     i2caddr;
+  int      offsetval;
+  uint16   relay_settle_time;
+  int      regs[MAX_NUMBER_RELAYS];
+  uint16   relay_port_bits[MAX_NUMBER_RELAYS];
+  uint16   switch_bits[MAX_NUMBER_SWITCHES];
+} relay_module_specs;
+
 class RelayModule
 {
   public:
+    relay_module_specs  rms;
+    int                 curval, maxval;
+    uint16_t            curbits;
+    uint16_t            relay_port_mask;
+    uint16_t            switch_bits_mask;
+    
 
-    int           *regs; 
-    int            curval;
-    int            offsetval;
-    uint16_t       curbits;
-    byte           i2caddr;
-    byte           mcp23017;
-    byte           no_relay_ports;
-    byte           no_switches;
-    uint16_t       relay_port_mask;
-    uint16_t       switch_bits_mask;
-    const uint16  *relay_port_bits;
-    const uint16  *switch_bits;
-
-    RelayModule(int *pRegs, int pOffsetval, byte pI2caddr)
+    RelayModule(const relay_module_specs &pRms)
     {
-      regs = pRegs;
+      rms = pRms;
       curval = 0;
       curbits = 0;
-      i2caddr = pI2caddr;
-      offsetval = pOffsetval;
-      Set8RelayBoard();
+      CalculateMasks();
     };
 
     void setup(void);
     int getCurrentValue(void);
-    int setCurrentValue(int nCurval);
+    int getMaxValue(void) { return maxval; };
+    int getMinValue(void) { return rms.offsetval; };
+    int getRelaySettleTime(void) { return rms.relay_settle_time; };
+    int setCurrentValue(int nCurval, int method=0);
     bool getSwitchState(byte switchno);
     void setSwitchState(byte switchno, bool state);
-    int findOptimalValue(int nCurVal, uint16_t &bestcombo);
-    int getMaxValue(void);
+    int findOptimalValue(int nCurVal, uint16_t &bestcombo, int method);
     void updateCurval(void);
     void setRelayState(int relay, bool state);
     bool getRelayState(int relay);
-    void InitializeMCP23008(byte i2caddr);
-    void OutputBitsMCP23008(byte i2caddr, uint16_t bitval);
-    void Set8RelayBoard(void);
-    void Set7RelayBoard(void);
+    void InitializeMCP23008();
+    void OutputBitsMCP23008(uint16_t bitval);
     void CalculateMasks(void);
 };
+
+extern const relay_module_specs indRelay8;
+extern const relay_module_specs capRelay8;
 
 #endif  /* _RELAYMODULE_H */

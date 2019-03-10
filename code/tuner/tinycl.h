@@ -25,7 +25,7 @@ freely, subject to the following restrictions:
 #define TINYCL_MAX_PARAMETERS 4
 #define TINYCL_COMMAND_BUFFER 80
 
-typedef enum { TINYCL_PARM_END, TINYCL_PARM_BOOL, TINYCL_PARM_INT, TINYCL_PARM_STR } tinycl_parmtype;
+typedef enum { TINYCL_PARM_END=0, TINYCL_PARM_BOOL, TINYCL_PARM_INT, TINYCL_PARM_STR } tinycl_parmtype;
 
 typedef struct _tinycl_bool
 {
@@ -65,5 +65,9 @@ int tinycl_task(int num_cmd, const tinycl_command *tc, void *v);
 void tinycl_print_commands(int num_cmd, const tinycl_command *tc);
 void tinycl_set_getchar(tinycl_getchar tg, void *tgp);
 void tinycl_set_putchar(tinycl_putchar tp, void *tpp);
+
+extern bool tinycl_do_echo;
+extern bool tinycl_do_checksum;
+
 
 #endif  /* _TINYCL_H */

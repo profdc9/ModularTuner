@@ -25,6 +25,7 @@ freely, subject to the following restrictions:
 #include "swrmeter.h"
 #include "debugmsg.h"
 
+
 #define FULL_SCALE_AD_VOLTS 3.3f
 #define FULL_SCALE_AD_COUNTS 4096.0f
 #define VOLTS_TO_COUNTS (FULL_SCALE_AD_COUNTS/FULL_SCALE_AD_VOLTS)
@@ -32,15 +33,6 @@ freely, subject to the following restrictions:
 #define SERIES_RESISTANCE 1000.0f
 #define SCALEVAL_DEFAULT (((SERIES_RESISTANCE+LOAD_RESISTOR)/LOAD_RESISTOR)/VOLTS_TO_COUNTS)
 #define OFFSET_DEFAULT 0.0f
-
-
-#define REVERSE_CURRENT 0.1E-06f
-#define AC_RECTIFICATION_FACTOR 0.5f
-#define THRESHOLD_VOLTAGE ((LOAD_RESISTOR*REVERSE_CURRENT)/AC_RECTIFICATION_FACTOR)
-#define LOGOFFSET_DEFAULT (1.0f/(VOLTS_TO_COUNTS*THRESHOLD_VOLTAGE))
-#define KTOVERQ 0.000f
-#define EMISSION_COEFF 1.0f
-#define LOGSCALE_DEFAULT (KTOVERQ/EMISSION_COEFF)
 
 #define NUMBER_SWR_SAMPLES 11
 
@@ -245,4 +237,3 @@ void SWRMeter::swrmeterPrintDebugStatus(void)
   }
 }
 #endif
-

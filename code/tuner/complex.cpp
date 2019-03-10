@@ -61,12 +61,12 @@ float Complex::absq()
 
 float Complex::absv()
 {
-	return sqrt(real*real+imag*imag);
+	return sqrtf(real*real+imag*imag);
 }
 
 float Complex::arg()
 {
-	return atan2(imag, real);
+	return atan2f(imag, real);
 }
 
 void Complex::polar(float modulus, float phase)
@@ -85,6 +85,11 @@ Complex Complex::recip() const
 {
   float mag = real*real+imag*imag;
   return Complex(real/mag,-imag/mag);
+}
+
+Complex Complex::conj() const
+{
+  return Complex(real,-imag);
 }
 
 Complex Complex::parallel(const Complex &cmplx) const
@@ -107,6 +112,11 @@ Complex Complex::operator-(const Complex &val) const
 	c.real = real - val.real;
 	c.imag = imag - val.imag;
 	return c;
+}
+
+Complex Complex::operator-() const
+{
+  return Complex(-real,-imag);
 }
 
 Complex Complex::operator*(const Complex &val) const
@@ -169,3 +179,16 @@ bool Complex::operator!=(const Complex &val)
 	return ((real != val.real) || (imag != val.imag));
 }
 
+Complex Complex::bilinear(const Complex &val) const
+{
+  Complex c = *this - val;
+  Complex d = *this + val;
+  return c/d;
+}
+
+Complex Complex::bilinear(float val) const
+{ 
+  Complex c = *this - val;
+  Complex d = *this + val;
+  return c/d;
+}

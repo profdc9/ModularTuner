@@ -841,12 +841,12 @@ $EndComp
 $Comp
 L Jumper_NC_Small JP12
 U 1 1 5C77AC18
-P 5400 2250
-F 0 "JP12" H 5400 2330 50  0000 C CNN
-F 1 "Jumper_NC_Small" H 5410 2190 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 5400 2250 50  0001 C CNN
-F 3 "" H 5400 2250 50  0001 C CNN
-	1    5400 2250
+P 5300 2250
+F 0 "JP12" H 5300 2330 50  0000 C CNN
+F 1 "Jumper_NC_Small" H 5310 2190 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 5300 2250 50  0001 C CNN
+F 3 "" H 5300 2250 50  0001 C CNN
+	1    5300 2250
 	0    1    1    0   
 $EndComp
 $Comp
@@ -1059,11 +1059,9 @@ F 3 "" H 6600 3200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4250 2800 5600 2800
+	4250 2800 5350 2800
 Wire Wire Line
 	2400 3600 2400 3400
-Wire Wire Line
-	2050 2800 2950 2800
 Wire Wire Line
 	5050 3700 5050 3500
 Wire Wire Line
@@ -1185,7 +1183,6 @@ Wire Wire Line
 Connection ~ 2450 2100
 Wire Wire Line
 	2450 2550 2450 2800
-Connection ~ 2450 2800
 Wire Wire Line
 	5050 2350 5050 2100
 Connection ~ 5050 2100
@@ -1233,15 +1230,10 @@ Wire Wire Line
 Wire Wire Line
 	2400 6450 2400 6400
 Wire Wire Line
-	2700 2550 2700 2800
+	2700 2800 2700 2550
 Connection ~ 2700 2800
-Connection ~ 5400 2800
 Wire Wire Line
-	5650 1250 5400 1250
-Wire Wire Line
-	5400 2350 5400 2800
-Wire Wire Line
-	5400 1250 5400 2150
+	5300 1250 5650 1250
 Wire Wire Line
 	5450 4650 5450 4950
 Wire Wire Line
@@ -1411,4 +1403,38 @@ Connection ~ 10250 1750
 Connection ~ 10250 2000
 Connection ~ 10250 2600
 Connection ~ 10250 2300
+Wire Wire Line
+	2350 2800 2950 2800
+$Comp
+L Jumper_NC_Small JP7
+U 1 1 5C82E8F5
+P 2250 2800
+F 0 "JP7" H 2250 2880 50  0000 C CNN
+F 1 "Jumper_NC_Small" H 2260 2740 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 2250 2800 50  0001 C CNN
+F 3 "" H 2250 2800 50  0001 C CNN
+	1    2250 2800
+	-1   0    0    1   
+$EndComp
+Connection ~ 2450 2800
+Wire Wire Line
+	2150 2800 2050 2800
+Wire Wire Line
+	5300 2800 5300 2350
+Wire Wire Line
+	5300 2150 5300 1250
+$Comp
+L Jumper_NC_Small JP8
+U 1 1 5C82F0DD
+P 5450 2800
+F 0 "JP8" H 5450 2880 50  0000 C CNN
+F 1 "Jumper_NC_Small" H 5460 2740 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 5450 2800 50  0001 C CNN
+F 3 "" H 5450 2800 50  0001 C CNN
+	1    5450 2800
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	5600 2800 5550 2800
+Connection ~ 5300 2800
 $EndSCHEMATC

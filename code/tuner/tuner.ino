@@ -22,6 +22,7 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
  */
 
+#include "tuner.h"
 #include "swrmeter.h"
 #include "invFrequencyCounter.h"
 #include "FrequencyCounter.h"
@@ -32,6 +33,8 @@ freely, subject to the following restrictions:
 #include "complex.h"
 #include "debugmsg.h"
 #include "EEPROMobjectstore.h"
+#include "mini-printf.h"
+#include "tinycl.h"
 
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
@@ -40,10 +43,8 @@ SWRMeter swrMeter;
 //InvFrequencyCounter invCounter(PB8,PB9,1u);
 FrequencyCounter freqCounter(PB9,16u,1,10000);
 
-int capacitances[] = { 7, 15, 33, 66, 125, 250, 500, 1000 };
-int inductances[] = { 75, 150, 300, 600, 1200, 2400, 5000, 10000 };
-RelayModule capRelay1(capacitances,5,0x21);
-RelayModule indRelay1(inductances,20,0x20);
+int n_relays = 0;
+RelayModule *relays[10];
 
 #undef USER_INTERFACE
 
@@ -59,6 +60,15 @@ ButtonPanel buttonPanel(4,button_list,10,10);
 #define DWT_CYCCNT      ((volatile uint32_t *)0xE0001004)
 #define CPU_CYCLES      *DWT_CYCCNT
 #define DEMCR_TRCENA    0x01000000
+
+void initialize_relays(void)
+{
+  n_relays = 2;
+  relays[0] = new RelayModule(indRelay8);
+  relays[0]->setup();
+  relays[1] = new RelayModule(capRelay8);
+  relays[1]->setup();
+}
 
 static void initialize_cortex_m3_cycle_counter(void)
 {
@@ -76,8 +86,8 @@ void setup() {
   setDebugMsgMode(0);
 #endif
 
- indRelay1.setup();
- capRelay1.setup();
+ delay(250);
+ initialize_relays();
 
   swrMeter.setImpedance(50.0f);
 
@@ -88,7 +98,7 @@ void setup() {
     swrMeter.setImpedance(50.0f);
     //invCounter.setup();
     freqCounter.setup();
-    Serial.begin(115200); // Ignored by Maple. But needed by boards using Hardware serial via a USB to Serial Adaptor
+    Serial.begin(115200); 
 
 #ifdef USER_INTERFACE
   buttonPanel.setup();
@@ -101,7 +111,7 @@ void setup() {
   interruptButtons = &buttonPanel;
   freqCounter.setAuxFunction(pollButtons_interrupt);
 #endif
-  EEPROMstore.setup(2);
+  //EEPROMstore.setup(2);
   //EEPROMstore.formatBank(0);
 }
 
@@ -171,14 +181,14 @@ void testRelay(void)
      static int rly2=5;
      for (int i=0;i<1;i++)
      {
-        indRelay1.setRelayState(rly1,0);
-        capRelay1.setRelayState(rly2,0);
+        relays[0]->setRelayState(rly1,0);
+        relays[1]->setRelayState(rly2,0);
         rly1++;
         if (rly1>=8) rly1=0;
         rly2--;
         if (rly2<0) rly2=7;
-        indRelay1.setRelayState(rly1,1);
-        capRelay1.setRelayState(rly2,1);
+        relays[0]->setRelayState(rly1,1);
+        relays[1]->setRelayState(rly2,1);
         Serial.print("relay = ");
         Serial.print(rly1);
         Serial.print(" ");
@@ -229,8 +239,207 @@ static void heartbeat(void)
   digitalWrite(SWRMETER_SAMPLE_LEVEL_IO, LOW);
 }
 
+int dotune = 0;
+
+int tune_cmd(int args, tinycl_parameter *tp, void *v)
+{
+  int p = tp[0].ti.i;
+  dotune = p;
+  Serial.print("tunestate=");
+  Serial.println(dotune);
+}
+
+int setrly_cmd(int args, tinycl_parameter *tp, void *v)
+{
+  int rlyno = tp[0].ti.i;
+  int rlyval = tp[1].ti.i;
+  int method = tp[2].ti.i;
+  Serial.print("Setting relay #");
+  Serial.print(rlyno);
+  Serial.print(" to value ");
+  Serial.println(rlyval);
+  int val;
+  if ((rlyno < 1) || (rlyno > n_relays))
+  {
+    Serial.println("Invalid relay #");
+    return 1;
+  }
+  RelayModule *r = relays[rlyno-1];
+  r->setCurrentValue(rlyval,method);
+  val = r->getCurrentValue();
+  Serial.print("Achieved value ");
+  Serial.println(val);
+  return 1;
+}
+
+const tinycl_command tcmds[] =
+{
+/*  { "CSV", "Set Comma Separated Values Mode", csv_cmd, TINYCL_PARM_INT, TINYCL_PARM_END },
+  { "ATTEN", "Attenuator Setting", atten_cmd, TINYCL_PARM_INT, TINYCL_PARM_END },
+  { "DEBUG", "Debug Messages", debug_cmd, TINYCL_PARM_INT, TINYCL_PARM_END },
+  { "AVERAGES", "Set Averages", averages_cmd, TINYCL_PARM_INT, TINYCL_PARM_INT, TINYCL_PARM_END },
+  { "IMACQ", "Immediate Acquisition", imacq_cmd, TINYCL_PARM_INT, TINYCL_PARM_INT, TINYCL_PARM_INT },
+  { "SETACQ", "Set Acquisition Parameters", setacq_cmd, TINYCL_PARM_INT, TINYCL_PARM_INT, TINYCL_PARM_INT, TINYCL_PARM_END },
+  { "DOACQ", "Do Acquisition Parameters", doacq_cmd, TINYCL_PARM_END },
+  { "ACQ", "Acquisition of Ref/Thru", acq_cmd, TINYCL_PARM_END },
+  { "SPARM", "Acquisition of Ref/Thru S parameters", sparm_cmd, TINYCL_PARM_END },
+  { "SHUNT", "Series/Shunt 2 Port Impedance", shunt_cmd, TINYCL_PARM_INT, TINYCL_PARM_END },
+  { "SHORT", "Short Calibration", shortcalib_cmd, TINYCL_PARM_END },
+  { "OPEN", "Open Calibration", opencalib_cmd, TINYCL_PARM_END },
+  { "LOAD", "Load Calibration", loadcalib_cmd, TINYCL_PARM_INT, TINYCL_PARM_END },
+  { "THRU", "Two Port Calibration", twocalib_cmd, TINYCL_PARM_END },
+  { "LISTCAL", "List Calibration States", listcal_cmd, TINYCL_PARM_END },
+  { "WRITECAL", "Write Calibration State", writecal_cmd, TINYCL_PARM_INT, TINYCL_PARM_END },
+  { "READCAL", "Read Calibration State", readcal_cmd, TINYCL_PARM_INT, TINYCL_PARM_END }, */
+  { "TUNE", "Do a tuning cycle", tune_cmd, { TINYCL_PARM_INT, TINYCL_PARM_END } },
+  { "SETRLY", "Set Relay To Value", setrly_cmd, { TINYCL_PARM_INT, TINYCL_PARM_INT, TINYCL_PARM_INT, TINYCL_PARM_END } },
+  { "HELP", "Display This Help", help_cmd, {TINYCL_PARM_END } },
+};
+
+int help_cmd(int args, tinycl_parameter *tp, void *v)
+{
+  tinycl_print_commands(sizeof(tcmds) / sizeof(tinycl_command), tcmds);
+  return 1;
+}
+
+typedef struct _tuner_parameters
+{
+  float tune_min_power;
+  float tune_max_power;
+  float tune_max_ref;
+  float tune_retune_thr;
+} tuner_parameters;
+
+tuner_parameters tpar = { 0.25f, 2.0f, 0.2f, 0.25f };
+
+void printSWRState(void)
+{
+  char s[100];
+  swrMeter.sampleSWR();
+  float fwd = swrMeter.fwdPower();
+  float rev = swrMeter.revPower();
+  float cur = swrMeter.curPower();
+  float swr = swrMeter.SWR();
+  float refAngle = RAD2DEG(swrMeter.reflectionPhase());
+  float curAngle = RAD2DEG(swrMeter.currentPhase());
+  Complex refCoef = swrMeter.reflectionCoefficient();
+  Complex impedance = swrMeter.calculateImpedance();
+  //Complex curCoef = currentCoefficient();
+  mini_snprintf(s,sizeof(s)-1,"Fwd power = %04f  Rev power = %04f  Cur Power = %04f",float2int32(fwd),float2int32(rev),float2int32(cur));
+  Serial.println(s);
+  mini_snprintf(s,sizeof(s)-1,"Ref Angle = %04f  Cur Angle = %04f  SWR = %02f",float2int32(refAngle),float2int32(curAngle),float2int32(swr));
+  Serial.println(s);
+  mini_snprintf(s,sizeof(s)-1,"Impedance = %04f + j%04f   Ref = %04f + j %04f",float2int32(impedance.re()),float2int32(impedance.im()),float2int32(refCoef.re()),float2int32(refCoef.im()));
+  Serial.println(s);
+}
+
+int minimize_swr_step(RelayModule *r, int relstep, float &currentRef)
+{
+  int dir;
+  int stepsize = (r->getMaxValue() - r->getMinValue()) >> relstep;
+  int currentValue = r->getCurrentValue();
+  swrMeter.sampleSWR();
+  currentRef = swrMeter.revPower() / swrMeter.fwdPower();
+  for (dir=0;dir<2;dir++)
+  {
+    for (;;)
+    {
+       int nextval = currentValue + stepsize * (dir ? -1 : 1);
+       int lastval = r->getCurrentValue();
+       r->setCurrentValue(nextval,dir ? 1 : 2);
+       if (r->getCurrentValue() == lastval) break;
+       delay(r->getRelaySettleTime());
+       swrMeter.sampleSWR();
+       float sampSWR = swrMeter.SWR();
+       float fwd = swrMeter.fwdPower();
+       float rev = swrMeter.revPower();
+       float testRef = rev/fwd;
+       if ((fwd < tpar.tune_min_power) || (fwd > tpar.tune_max_power))
+          return -1;
+       DEBUGMSG("stepsize=%d dir=%d currentValue=%d nextval=%d actval=%d ref=%04f",stepsize,dir,currentValue,nextval,r->getCurrentValue(),float2int32(testRef));
+       if (testRef < currentRef)
+       { 
+          currentRef = testRef;
+          currentValue = r->getCurrentValue();
+       } else break;
+    }
+  }
+  r->setCurrentValue(currentValue);
+  delay(r->getRelaySettleTime());
+  return currentValue;
+}
+
+void simple_tune(void)
+{
+  int s,n,r;
+  float freq;
+  freqCounter.armCounter();
+  delay(100);
+  freqCounter.requestUpdate();
+  delay(10);
+  freq = freqCounter.readUpdate();
+  {
+    char s[100];
+    mini_snprintf(s,sizeof(s)-1,"frequency=%f",float2int32(freq));
+    Serial.println(s);
+  }
+  float currentRef;
+  for (s=0;s<4;s++)
+  {
+    if (s == 2)
+      for (int r=0;r<n_relays;r++) relays[r]->setCurrentValue(0);   
+    relays[1]->setSwitchState(0,s & 0x1);
+    for (n=2;n<8;n++)
+    {
+      bool improved;
+      do
+      {
+        improved = false;
+        for (int r=0;r<n_relays;r++)
+        {
+          DEBUGMSG("pass=%d step=%d relay=%d",s,n,r);
+          int val = relays[r]->getCurrentValue();
+          if (minimize_swr_step(relays[r],n,currentRef) < 0) return;
+          if (val != relays[r]->getCurrentValue())
+              improved = true;
+          if (currentRef < tpar.tune_max_ref)
+          {
+              printSWRState();
+              return;
+          }
+        }
+      } while (improved);
+      DEBUGMSG("pass=%d capacitor Inductance=%d nH capacitance=%d pF",s,relays[0]->getCurrentValue(),relays[1]->getCurrentValue());
+    }
+  } 
+}
+
+void tuner_task(void)
+{  
+  swrMeter.sampleSWR();
+  float fwd = swrMeter.fwdPower();
+  float rev = swrMeter.revPower();
+  if ((fwd < tpar.tune_min_power) || (fwd > tpar.tune_max_power))
+      return;
+  float ref = rev/fwd;
+  if ((dotune) || (ref > tpar.tune_retune_thr))
+  {
+    Serial.println("Tuning...");
+    DEBUGMSG("initial reflection=%04f",float2int32(ref));
+    simple_tune();
+    dotune = 0;
+  }
+}
+
 void loop() {
-  testRelay();
+  if (tinycl_task(sizeof(tcmds) / sizeof(tinycl_command), tcmds, NULL))
+  {
+    tinycl_do_echo = 1;
+    Serial.print("> ");
+  }
+  tuner_task();
+
+/*  testRelay();
   //testLnetwork();
   heartbeat();
   testFrequencyCounter();
@@ -241,6 +450,5 @@ void loop() {
   unsigned int x2=CPU_CYCLES;
   //DEBUGMSG("total cycles=%u",x2-x1);
   swrMeter.swrmeterPrintDebugStatus();
-  delay(2000);
+  delay(2000); */
 }
-

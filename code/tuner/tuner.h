@@ -1,3 +1,6 @@
+#ifndef _TUNER_H
+#define _TUNER_H
+
 /*
  * Copyright (c) 2018 Daniel Marks
 
@@ -18,39 +21,6 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
  */
 
-#include "Arduino.h"
-#include <stdarg.h>
-#include "debugmsg.h"
+#include "complex.h"
 
-#define USE_MINIPRINTF
-
-#ifdef USE_MINIPRINTF
-#include "mini-printf.h"
-#endif
-
-#ifdef DEBUGM
-
-unsigned char debugmsg_state = 0;
-
-void setDebugMsgMode(unsigned char state)
-{
-  debugmsg_state = state;
-}
-
-void debugmsgprintf(const char *format, ...)
-{
-  char msg[MAXMSG];
-  va_list ap;
-
-  if (!debugmsg_state) return;
-	va_start(ap, format);
-#ifdef USE_MINIPRINTF
-  mini_vsnprintf(msg,sizeof(msg)-1,(const char *)format,ap);
-#else
-  vsnprintf(msg,sizeof(msg)-1,(const char *)format,ap);
-#endif
-	msg[MAXMSG-1] = '\000';
-	Serial.println(msg);
-}
-
-#endif
+#endif  /* _TUNER_H */

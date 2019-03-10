@@ -21,11 +21,13 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
  */
 
+extern unsigned char debugmsg_state;
+
 void debugmsgprintf(const char *format, ...);
 void setDebugMsgMode(unsigned char state);
 
 #define DEBUGM
-#define MAXMSG 80
+#define MAXMSG 200
 
 #ifdef DEBUGM
 #define DEBUGMSG(...)  debugmsgprintf(__VA_ARGS__)
