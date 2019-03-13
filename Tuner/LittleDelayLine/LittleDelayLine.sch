@@ -48,7 +48,7 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-Text GLabel 2250 3450 3    60   Input ~ 0
+Text GLabel 1100 3400 3    60   Input ~ 0
 RFOUT
 Text GLabel 5900 7150 2    60   Input ~ 0
 RLY1
@@ -1267,17 +1267,6 @@ F 3 "" H 11100 1000 50  0001 C CNN
 	1    11100 1000
 	1    0    0    -1  
 $EndComp
-$Comp
-L DPDTRelay RLY1
-U 1 1 5C74004F
-P 1700 3150
-F 0 "RLY1" H 1950 3000 60  0000 C CNN
-F 1 "DPDTRelay" H 1400 3450 60  0000 C CNN
-F 2 "tuner:G2VRelay" H 1700 3150 60  0001 C CNN
-F 3 "" H 1700 3150 60  0001 C CNN
-	1    1700 3150
-	1    0    0    -1  
-$EndComp
 Text GLabel 1000 3350 0    60   Input ~ 0
 RLY1
 Text GLabel 950  3050 0    60   Input ~ 0
@@ -1566,7 +1555,7 @@ F 3 "" H 7750 2200 50  0001 C CNN
 $EndComp
 Text GLabel 7900 1850 2    60   Input ~ 0
 RFGND
-Text GLabel 8450 1900 3    60   Input ~ 0
+Text GLabel 8800 1900 3    60   Input ~ 0
 RFGND
 Connection ~ 9650 5350
 Wire Wire Line
@@ -2075,29 +2064,15 @@ Wire Wire Line
 Wire Wire Line
 	950  3050 1000 3050
 Wire Wire Line
-	1000 3050 1000 2850
+	1000 3050 1000 2950
 Wire Wire Line
-	1000 2850 900  2850
-Wire Wire Line
-	1150 2700 1150 3050
-Wire Wire Line
-	1150 2750 1150 2800
-Wire Wire Line
-	850  2750 1150 2750
-Connection ~ 1150 2800
-Wire Wire Line
-	2250 2600 2250 3200
+	2250 2600 2250 2950
 Wire Wire Line
 	2250 2600 2200 2600
 Wire Wire Line
 	2250 2950 2200 2950
 Wire Wire Line
-	2200 2800 2400 2800
-Wire Wire Line
-	2300 2800 2300 3150
-Wire Wire Line
-	2300 3150 2200 3150
-Connection ~ 2300 2800
+	2400 3150 2200 3150
 Wire Wire Line
 	1000 950  1000 1050
 Wire Wire Line
@@ -2217,7 +2192,7 @@ Wire Wire Line
 Wire Wire Line
 	4600 800  4600 1050
 Wire Wire Line
-	2400 2800 2400 2550
+	2400 2550 2400 3150
 Wire Wire Line
 	2400 2550 600  2550
 Wire Wire Line
@@ -2314,23 +2289,15 @@ Connection ~ 7200 1550
 Wire Wire Line
 	8250 1300 8250 1650
 Wire Wire Line
-	8250 1500 8650 1500
-Connection ~ 8250 1500
+	8600 1500 8650 1500
 Wire Wire Line
 	7900 1850 7750 1850
 Wire Wire Line
 	7750 1850 7750 2000
-Wire Wire Line
-	8450 1900 8450 1600
-Wire Wire Line
-	8450 1600 8550 1600
 Text GLabel 8950 1300 2    60   Input ~ 0
 RFOUT
 Wire Wire Line
-	8950 1300 8400 1300
-Wire Wire Line
-	8400 1300 8400 1500
-Connection ~ 8400 1500
+	8950 1300 8600 1300
 $Comp
 L R R1
 U 1 1 5C758092
@@ -2423,9 +2390,7 @@ F 3 "" H 700 2750 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 Wire Wire Line
-	900  2850 900  2950
-Wire Wire Line
-	900  2950 700  2950
+	1000 2950 700  2950
 $Comp
 L Conn_Coaxial J9
 U 1 1 5C7C0EBB
@@ -2438,21 +2403,41 @@ F 3 "" H 8800 1500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8550 1600 8550 1700
-Wire Wire Line
-	8550 1700 8800 1700
-$Comp
-L Jumper_NC_Small JP5
-U 1 1 5C7C4162
-P 2250 3300
-F 0 "JP5" H 2250 3380 50  0000 C CNN
-F 1 "Jumper_NC_Small" H 2260 3240 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 2250 3300 50  0001 C CNN
-F 3 "" H 2250 3300 50  0001 C CNN
-	1    2250 3300
-	0    1    1    0   
-$EndComp
-Connection ~ 2250 2950
-Wire Wire Line
 	2250 3400 2250 3450
+Wire Wire Line
+	8600 1300 8600 1500
+Wire Wire Line
+	8800 1700 8800 1900
+Text GLabel 8450 1700 3    60   Input ~ 0
+RFTHRU
+Wire Wire Line
+	8450 1700 8450 1450
+Wire Wire Line
+	8450 1450 8250 1450
+Connection ~ 8250 1450
+$Comp
+L DPDTRelay RLY1
+U 1 1 5C74004F
+P 1700 3150
+F 0 "RLY1" H 1950 3000 60  0000 C CNN
+F 1 "DPDTRelay" H 1400 3450 60  0000 C CNN
+F 2 "tuner:G2VRelay" H 1700 3150 60  0001 C CNN
+F 3 "" H 1700 3150 60  0001 C CNN
+	1    1700 3150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1150 3050 1050 3050
+Wire Wire Line
+	1050 3050 1050 2750
+Wire Wire Line
+	1050 2750 850  2750
+Wire Wire Line
+	1100 3400 1100 2700
+Wire Wire Line
+	1100 2700 1150 2700
+Text GLabel 2500 2800 2    60   Input ~ 0
+RFTHRU
+Wire Wire Line
+	2500 2800 2200 2800
 $EndSCHEMATC
