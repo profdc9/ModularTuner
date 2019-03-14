@@ -32,19 +32,30 @@ freely, subject to the following restrictions:
 #include "RelayModule.h"
 #include "complex.h"
 #include "debugmsg.h"
-#include "EEPROMobjectstore.h"
+//#include "EEPROMobjectstore.h"
 #include "mini-printf.h"
 #include "tinycl.h"
+#include "structconf.h"
+#include "flashstruct.h"
 
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
+
+tuner_ready_state tuner_ready = TUNER_READY_STANDBY;
+const char *tuner_state_string[3] = { "STANDBY", "FORCE TUNE", "DISABLED" };
+float last_frequency = 0;
+
+swr_state last_swr_state = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, Complex(0.0f, 0.0f), Complex(0.0f, 0.0f) };
 
 SWRMeter swrMeter;
 //InvFrequencyCounter invCounter(PB8,PB9,1u);
 FrequencyCounter freqCounter(PB9,16u,1,10000);
 
-int n_relays = 0;
-RelayModule *relays[10];
+tuner_parameters tpar = { {"NONE"}, 0.25f, 2.0f, 0.2f, 0.25f };
+
+tuner_cache_entry tce[TUNER_CACHE_ENTRIES];
+
+RelayModule relays[TUNER_MAX_RELAYS];
 
 #undef USER_INTERFACE
 
@@ -61,13 +72,28 @@ ButtonPanel buttonPanel(4,button_list,10,10);
 #define CPU_CYCLES      *DWT_CYCCNT
 #define DEMCR_TRCENA    0x01000000
 
-void initialize_relays(void)
+float ref_to_swr(float ref)
 {
-  n_relays = 2;
-  relays[0] = new RelayModule(indRelay8);
-  relays[0]->setup();
-  relays[1] = new RelayModule(capRelay8);
-  relays[1]->setup();
+   return (1.0f+ref)/(1.0f-ref); 
+}
+
+void initialize_tuner_cache_entries(void)
+{
+  memset(tce,'\000',sizeof(tce));
+}
+
+void restore_relays(void)
+{
+  int r;
+  for (r=0;r<TUNER_MAX_RELAYS;r++)
+     relays[r].setup();
+}
+
+void initialize_default_relays(void)
+{
+  memset(relays,'\000',sizeof(relays));
+  relays[0].setup(indRelay8);
+  relays[1].setup(capRelay8);
 }
 
 static void initialize_cortex_m3_cycle_counter(void)
@@ -78,6 +104,8 @@ static void initialize_cortex_m3_cycle_counter(void)
 }
 
 void setup() {
+   afio_cfg_debug_ports(AFIO_DEBUG_NONE);
+   afio_cfg_debug_ports(AFIO_DEBUG_SW_ONLY);
   initialize_cortex_m3_cycle_counter();
   // default debug messages off if on UART1 (might need it for rig)
 #ifdef SERIAL_USB
@@ -87,18 +115,17 @@ void setup() {
 #endif
 
  delay(250);
- initialize_relays();
-
-  swrMeter.setImpedance(50.0f);
-
-  // put your setup code here, to run once:
-    //afio_cfg_debug_ports(AFIO_DEBUG_NONE);
-    //afio_cfg_debug_ports(AFIO_DEBUG_SW_ONLY);
-    swrMeter.setup();
-    swrMeter.setImpedance(50.0f);
-    //invCounter.setup();
-    freqCounter.setup();
-    Serial.begin(115200); 
+ if (tuner_readstate(1))
+    restore_relays();
+ else
+ { 
+   initialize_tuner_cache_entries();
+   initialize_default_relays();
+ }
+ swrMeter.setup();
+ swrMeter.setImpedance(50.0f);
+ freqCounter.setup();
+ Serial.begin(115200); 
 
 #ifdef USER_INTERFACE
   buttonPanel.setup();
@@ -114,6 +141,8 @@ void setup() {
   //EEPROMstore.setup(2);
   //EEPROMstore.formatBank(0);
 }
+
+/*
 
 void testLnetwork(void)
 {
@@ -150,59 +179,6 @@ void testFrequencyCounter(void)
    // delay(100);
 }
 
-#if 0
-void testInverseFrequencyCounter(void)
-{
-    // put your main code here, to run repeatedly:
-    Serial.println("starting acquisition" );
-    invCounter.armCounter();
-    int i;
-    for (int i=0;i<9;i++)
-    {
-      invCounter.requestUpdate();
-      delay(100);
-      Serial.print("frequency = ");
-      float freq = invCounter.readUpdate();
-      if (freq < 0.0f)
-          Serial.println("failed");
-      else
-          Serial.println((unsigned int)freq);
-    }
-    float freq = invCounter.readFinalFrequency();
-    delay(100);
-}
-#endif
-
-void testRelay(void)
-{
-     static int cnt=0;
-     cnt++;
-     static int rly1=6;
-     static int rly2=5;
-     for (int i=0;i<1;i++)
-     {
-        relays[0]->setRelayState(rly1,0);
-        relays[1]->setRelayState(rly2,0);
-        rly1++;
-        if (rly1>=8) rly1=0;
-        rly2--;
-        if (rly2<0) rly2=7;
-        relays[0]->setRelayState(rly1,1);
-        relays[1]->setRelayState(rly2,1);
-        Serial.print("relay = ");
-        Serial.print(rly1);
-        Serial.print(" ");
-        Serial.println(rly2);
-        /*
-        if ((cnt & 0x03) == 0) indRelay1.setSwitchState(0, indRelay1.getSwitchState(0) == 0);
-        if ((cnt & 0x01) == 0) indRelay1.setSwitchState(1, indRelay1.getSwitchState(1) == 0);
-        if ((cnt & 0x01) == 0) capRelay1.setSwitchState(0, capRelay1.getSwitchState(0) == 0);
-        if ((cnt & 0x03) == 0) capRelay1.setSwitchState(1, capRelay1.getSwitchState(1) == 0);
-        */
-        delay(10);
-     }
-
-}
 
 void testEEPROMobjectstore(void)
 {
@@ -230,23 +206,29 @@ void testEEPROMobjectstore(void)
    }
    Serial.println("");
 }
+*/
 
-static void heartbeat(void)
-{
-  pinMode(SWRMETER_SAMPLE_LEVEL_IO,OUTPUT);
-  digitalWrite(SWRMETER_SAMPLE_LEVEL_IO, HIGH);
-  delay(100); 
-  digitalWrite(SWRMETER_SAMPLE_LEVEL_IO, LOW);
-}
-
-int dotune = 0;
+const structure_entry tuner_parameter_fields[5] =
+{ { "LABEL",           STRUCTCONF_STRING,     offsetof(tuner_parameters,tune_label), sizeof(tpar.tune_label), NULL },
+  { "MINTUNINGPOWER",  STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_min_power), 1, NULL },
+  { "MAXTUNINGPOWER",  STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_max_power), 1, NULL },
+  { "MAXREFLECTION",   STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_max_ref), 1, NULL },
+  { "RETUNETHRESHOLD", STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_retune_thr), 1, NULL }
+};
 
 int tune_cmd(int args, tinycl_parameter *tp, void *v)
 {
   int p = tp[0].ti.i;
-  dotune = p;
-  Serial.print("tunestate=");
-  Serial.println(dotune);
+  if ((p<1)||(p>3))
+  {
+    Serial.println("Invalid tuner state");
+  } else
+  {
+    tuner_ready = (tuner_ready_state) (p-1);
+    Serial.print("Tune State: ");
+    Serial.println(tuner_state_string[tuner_ready]);
+  }
+  return 1;
 }
 
 int setrly_cmd(int args, tinycl_parameter *tp, void *v)
@@ -259,77 +241,155 @@ int setrly_cmd(int args, tinycl_parameter *tp, void *v)
   Serial.print(" to value ");
   Serial.println(rlyval);
   int val;
-  if ((rlyno < 1) || (rlyno > n_relays))
+  if ((rlyno < 1) || (rlyno > TUNER_MAX_RELAYS))
   {
     Serial.println("Invalid relay #");
     return 1;
   }
-  RelayModule *r = relays[rlyno-1];
-  r->setCurrentValue(rlyval,method);
-  val = r->getCurrentValue();
+  RelayModule *rm = &relays[rlyno-1];
+  if (!rm->isValidModule())
+  {
+    Serial.println("Invalid relay #");
+    return 1;
+  }  
+  rm->setCurrentValue(rlyval,method);
+  val = rm->getCurrentValue();
   Serial.print("Achieved value ");
   Serial.println(val);
   return 1;
 }
 
-const tinycl_command tcmds[] =
+int print_tuner_data_cmd(int args, tinycl_parameter *tp, void *v)
 {
-/*  { "CSV", "Set Comma Separated Values Mode", csv_cmd, TINYCL_PARM_INT, TINYCL_PARM_END },
-  { "ATTEN", "Attenuator Setting", atten_cmd, TINYCL_PARM_INT, TINYCL_PARM_END },
-  { "DEBUG", "Debug Messages", debug_cmd, TINYCL_PARM_INT, TINYCL_PARM_END },
-  { "AVERAGES", "Set Averages", averages_cmd, TINYCL_PARM_INT, TINYCL_PARM_INT, TINYCL_PARM_END },
-  { "IMACQ", "Immediate Acquisition", imacq_cmd, TINYCL_PARM_INT, TINYCL_PARM_INT, TINYCL_PARM_INT },
-  { "SETACQ", "Set Acquisition Parameters", setacq_cmd, TINYCL_PARM_INT, TINYCL_PARM_INT, TINYCL_PARM_INT, TINYCL_PARM_END },
-  { "DOACQ", "Do Acquisition Parameters", doacq_cmd, TINYCL_PARM_END },
-  { "ACQ", "Acquisition of Ref/Thru", acq_cmd, TINYCL_PARM_END },
-  { "SPARM", "Acquisition of Ref/Thru S parameters", sparm_cmd, TINYCL_PARM_END },
-  { "SHUNT", "Series/Shunt 2 Port Impedance", shunt_cmd, TINYCL_PARM_INT, TINYCL_PARM_END },
-  { "SHORT", "Short Calibration", shortcalib_cmd, TINYCL_PARM_END },
-  { "OPEN", "Open Calibration", opencalib_cmd, TINYCL_PARM_END },
-  { "LOAD", "Load Calibration", loadcalib_cmd, TINYCL_PARM_INT, TINYCL_PARM_END },
-  { "THRU", "Two Port Calibration", twocalib_cmd, TINYCL_PARM_END },
-  { "LISTCAL", "List Calibration States", listcal_cmd, TINYCL_PARM_END },
-  { "WRITECAL", "Write Calibration State", writecal_cmd, TINYCL_PARM_INT, TINYCL_PARM_END },
-  { "READCAL", "Read Calibration State", readcal_cmd, TINYCL_PARM_INT, TINYCL_PARM_END }, */
-  { "TUNE", "Do a tuning cycle", tune_cmd, { TINYCL_PARM_INT, TINYCL_PARM_END } },
-  { "SETRLY", "Set Relay To Value", setrly_cmd, { TINYCL_PARM_INT, TINYCL_PARM_INT, TINYCL_PARM_INT, TINYCL_PARM_END } },
-  { "HELP", "Display This Help", help_cmd, {TINYCL_PARM_END } },
-};
-
-int help_cmd(int args, tinycl_parameter *tp, void *v)
-{
-  tinycl_print_commands(sizeof(tcmds) / sizeof(tinycl_command), tcmds);
+  Serial.println("Tuner data:");
+  se_print_structure(sizeof(tuner_parameter_fields)/sizeof(tuner_parameter_fields[0]), tuner_parameter_fields, &tpar);
   return 1;
 }
 
-typedef struct _tuner_parameters
+int set_tuner_data_cmd(int args, tinycl_parameter *tp, void *v)
 {
-  float tune_min_power;
-  float tune_max_power;
-  float tune_max_ref;
-  float tune_retune_thr;
-} tuner_parameters;
+  char *str = tp[0].ts.str;
+  se_set_structure_field(sizeof(tuner_parameter_fields)/sizeof(tuner_parameter_fields[0]), tuner_parameter_fields, &tpar, str);
+  se_print_structure(sizeof(tuner_parameter_fields)/sizeof(tuner_parameter_fields[0]), tuner_parameter_fields, &tpar);
+  return 1;
+}
 
-tuner_parameters tpar = { 0.25f, 2.0f, 0.2f, 0.25f };
+int print_relay_data_cmd(int args, tinycl_parameter *tp, void *v)
+{
+  int r;
+  for (r=0;r<TUNER_MAX_RELAYS;r++)
+  {
+     RelayModule *rm = &relays[r];
+     if (rm->isValidModule())
+     {
+       Serial.print("Relay bank ");
+       Serial.println(r+1);
+       se_print_structure(sizeof(relay_fields)/sizeof(relay_fields[0]), relay_fields, rm);
+       Serial.println("");
+     }
+  }
+  return 1;
+}
+int set_relay_data_cmd(int args, tinycl_parameter *tp, void *v)
+{
+  int rlyno = tp[0].ti.i;
+  char *str = tp[1].ts.str;
+  if ((rlyno < 1) || (rlyno > TUNER_MAX_RELAYS))
+  {
+    Serial.println("Invalid relay #");
+    return 1;
+  }
+  RelayModule *rm = &relays[rlyno-1];
+  if (!rm->isValidModule())
+  {
+    Serial.println("Invalid relay #");
+    return 1;
+  }  
+  Serial.print("Setting relay #");
+  Serial.print(rlyno);
+  Serial.print(" ");
+  Serial.println(str);
+  se_set_structure_field(sizeof(relay_fields)/sizeof(relay_fields[0]), relay_fields, rm, str);
+  se_print_structure(sizeof(relay_fields)/sizeof(relay_fields[0]), relay_fields, rm);
+  return 1;
+}
 
-void printSWRState(void)
+int rlydef_cmd(int args, tinycl_parameter *tp, void *v)
+{
+  int rlyno = tp[0].ti.i;
+  int rlydef = tp[1].ti.i;
+  Serial.print("Setting relay #");
+  Serial.print(rlyno);
+  Serial.print(" to default # ");
+  Serial.println(rlydef);
+  int val;
+  if ((rlyno < 1) || (rlyno > TUNER_MAX_RELAYS))
+  {
+    Serial.println("Invalid relay #");
+    return 1;
+  }
+  if ((rlydef < 1) || (rlydef > RELAY_DEFAULT_STRUCTS_NUM))
+  {
+    Serial.println("Invalid default #");
+    return 1;
+  }
+  RelayModule *rm = &relays[rlyno-1];
+  rm->setup(*relay_default_structs[rlydef-1]);
+  Serial.println("New default set");
+  return 1;
+}
+
+int clear_cache_cmd(int args, tinycl_parameter *tp, void *v)
+{ 
+  initialize_tuner_cache_entries();
+  Serial.println("Tuner cache cleared");
+  return 1;
+}
+
+int show_cache_cmd(int args, tinycl_parameter *tp, void *v)
+{ 
+  int i,p;
+  char s[80];
+  Serial.println("Tuner cache contents:");
+  for (i=0;i<TUNER_CACHE_ENTRIES;i++)
+  { 
+    tuner_cache_entry *t = &tce[i];
+    if (t->frequency_khz > 0)
+    {
+      char s[80];
+      mini_snprintf(s,sizeof(s)-1,"%03u %05u ",i+1,t->frequency_khz);
+      Serial.print(s);
+      for (p=0;p<TUNER_CACHE_NPARMS;p++)
+      {
+         mini_snprintf(s,sizeof(s)-1," %05u%c%c",t->parm[p],t->switch_state & (1<<(p*2)) ? '+' : '-',t->switch_state & (1<<(p*2+1)) ? '+' : '-');
+         Serial.print(s);
+      }
+      Serial.println("");
+    }
+  }
+  return 1;
+}
+
+void updateSWRState(swr_state *state)
+{
+  state->fwd = swrMeter.fwdPower();
+  state->rev = swrMeter.revPower();
+  state->cur = swrMeter.curPower();
+  state->swr = swrMeter.SWR();
+  state->refAngle = RAD2DEG(swrMeter.reflectionPhase());
+  state->curAngle = RAD2DEG(swrMeter.currentPhase());
+  state->refCoef = swrMeter.reflectionCoefficient();
+  state->impedance = swrMeter.calculateImpedance();
+}
+
+void printSWRState(swr_state *state)
 {
   char s[100];
-  swrMeter.sampleSWR();
-  float fwd = swrMeter.fwdPower();
-  float rev = swrMeter.revPower();
-  float cur = swrMeter.curPower();
-  float swr = swrMeter.SWR();
-  float refAngle = RAD2DEG(swrMeter.reflectionPhase());
-  float curAngle = RAD2DEG(swrMeter.currentPhase());
-  Complex refCoef = swrMeter.reflectionCoefficient();
-  Complex impedance = swrMeter.calculateImpedance();
-  //Complex curCoef = currentCoefficient();
-  mini_snprintf(s,sizeof(s)-1,"Fwd power = %04f  Rev power = %04f  Cur Power = %04f",float2int32(fwd),float2int32(rev),float2int32(cur));
+  mini_snprintf(s,sizeof(s)-1,"Fwd power = %04f  Rev power = %04f  Cur Power = %04f",float2int32(state->fwd),float2int32(state->rev),float2int32(state->cur));
   Serial.println(s);
-  mini_snprintf(s,sizeof(s)-1,"Ref Angle = %04f  Cur Angle = %04f  SWR = %02f",float2int32(refAngle),float2int32(curAngle),float2int32(swr));
+  mini_snprintf(s,sizeof(s)-1,"Ref Angle = %04f  Cur Angle = %04f  SWR = %02f",float2int32(state->refAngle),float2int32(state->curAngle),float2int32(state->swr));
   Serial.println(s);
-  mini_snprintf(s,sizeof(s)-1,"Impedance = %04f + j%04f   Ref = %04f + j %04f",float2int32(impedance.re()),float2int32(impedance.im()),float2int32(refCoef.re()),float2int32(refCoef.im()));
+  mini_snprintf(s,sizeof(s)-1,"Impedance = %04f + j%04f   Ref = %04f + j %04f",float2int32(state->impedance.re()),float2int32(state->impedance.im()),float2int32(state->refCoef.re()),float2int32(state->refCoef.im()));
   Serial.println(s);
 }
 
@@ -350,7 +410,6 @@ int minimize_swr_step(RelayModule *r, int relstep, float &currentRef)
        if (r->getCurrentValue() == lastval) break;
        delay(r->getRelaySettleTime());
        swrMeter.sampleSWR();
-       float sampSWR = swrMeter.SWR();
        float fwd = swrMeter.fwdPower();
        float rev = swrMeter.revPower();
        float testRef = rev/fwd;
@@ -369,66 +428,321 @@ int minimize_swr_step(RelayModule *r, int relstep, float &currentRef)
   return currentValue;
 }
 
-void simple_tune(void)
+int exhaustive_tune(bool withoutdefault)
 {
   int s,n,r;
-  float freq;
-  freqCounter.armCounter();
-  delay(100);
-  freqCounter.requestUpdate();
-  delay(10);
-  freq = freqCounter.readUpdate();
-  {
-    char s[100];
-    mini_snprintf(s,sizeof(s)-1,"frequency=%f",float2int32(freq));
-    Serial.println(s);
-  }
   float currentRef;
   for (s=0;s<4;s++)
   {
     if (s == 2)
-      for (int r=0;r<n_relays;r++) relays[r]->setCurrentValue(0);   
-    relays[1]->setSwitchState(0,s & 0x1);
+    {
+      for (int r=0;r<TUNER_MAX_RELAYS;r++) 
+      {
+         RelayModule *rc = &relays[r];
+         if ((rc->rms.relay_module_type != RELAY_MODULE_INDUCTOR) && (rc->rms.relay_module_type != RELAY_MODULE_CAPACITOR)) continue;
+         rc->setCurrentValue(0);   
+      }
+    }
+    relays[1].setSwitchState(0,!relays[1].getSwitchState(0));
     for (n=2;n<8;n++)
     {
       bool improved;
       do
       {
         improved = false;
-        for (int r=0;r<n_relays;r++)
+        for (int r=0;r<TUNER_MAX_RELAYS;r++)
         {
+          RelayModule *rc = &relays[r];
+          if ((rc->rms.relay_module_type != RELAY_MODULE_INDUCTOR) && (rc->rms.relay_module_type != RELAY_MODULE_CAPACITOR)) continue;
           DEBUGMSG("pass=%d step=%d relay=%d",s,n,r);
-          int val = relays[r]->getCurrentValue();
-          if (minimize_swr_step(relays[r],n,currentRef) < 0) return;
-          if (val != relays[r]->getCurrentValue())
+          int val = rc->getCurrentValue();
+          if (minimize_swr_step(rc,n,currentRef) < 0) return -1;
+          if (val != rc->getCurrentValue())
               improved = true;
           if (currentRef < tpar.tune_max_ref)
-          {
-              printSWRState();
-              return;
-          }
+              return 0;
         }
       } while (improved);
-      DEBUGMSG("pass=%d capacitor Inductance=%d nH capacitance=%d pF",s,relays[0]->getCurrentValue(),relays[1]->getCurrentValue());
+      DEBUGMSG("pass=%d capacitor Inductance=%d nH capacitance=%d pF",s,relays[0].getCurrentValue(),relays[1].getCurrentValue());
     }
   } 
+  return -1;
+}
+
+int tuner_search_cache(uint16_t entry_hz)
+{
+  //DEBUGMSG("search for=%u",entry_hz);
+  int i;
+  for (i=0;i<TUNER_CACHE_ENTRIES;i++)
+     if (tce[i].frequency_khz == entry_hz) 
+  { 
+  //  DEBUGMSG("found %u",entry_hz);
+    return i;
+  }
+  //DEBUGMSG("did not find %u",entry_hz);
+  return -1;
+}
+
+int tuner_cache_move_to_top(uint16_t entry_hz)
+{
+  int n;
+  int nent = tuner_search_cache(entry_hz);
+  if (nent < 0) return -1;
+  tuner_cache_entry temp = tce[nent];
+  for (n = nent;n>0;n--)
+     tce[n] = tce[n-1];
+  tce[0] = temp;
+  //DEBUGMSG("moved %u to top",entry_hz);
+  return nent;
+}
+
+int tuner_update_cache(uint16_t entry_hz, uint16_t parms[], uint16_t switch_state)
+{
+  int p;
+  if (tuner_cache_move_to_top(entry_hz) < 0)
+  {
+    for (int n = TUNER_CACHE_ENTRIES-1;n>0;n--)
+      tce[n] = tce[n-1];
+  }
+  tce[0].frequency_khz = entry_hz;
+  tce[0].switch_state = switch_state;
+  for (p=0;p<TUNER_CACHE_NPARMS;p++)
+      tce[0].parm[p] = parms[p];
+  //DEBUGMSG("updated entry %u",entry_hz);
+  return 0;
+}
+
+int tuner_update_current_state(uint16_t freqkhz)
+{
+  int p;
+  uint16_t switch_state = 0;
+  uint16_t parm[p];
+  for (p=0;p<TUNER_CACHE_NPARMS;p++)
+  {
+    RelayModule *r = &relays[p];
+    parm[p] = r->getCurrentValue();
+    switch_state |= r->getSwitchState(0) ? (1<<(2*p)) : 0;
+    switch_state |= r->getSwitchState(1) ? (1<<(2*p+1)) : 0;
+  }
+  return tuner_update_cache(freqkhz, parm, switch_state);
+}
+
+int tuner_restore_state(uint16_t freqkhz)
+{
+  int p;
+  int entno = tuner_search_cache(freqkhz);
+  if (entno < 0) return -1;
+  tuner_cache_entry *t = &tce[entno];
+  for (p=0;p<TUNER_CACHE_NPARMS;p++)
+  {
+    RelayModule *r = &relays[p];
+    if (r->isValidModule())
+    {
+       r->setCurrentValue(t->parm[p]);
+       r->setSwitchState(0,t->switch_state & (1<<(2*p)) ? true : false);
+       r->setSwitchState(1,t->switch_state & (1<<(2*p+1)) ? true : false);
+       delay(r->getRelaySettleTime());
+    }
+  }
+  return 0;
 }
 
 void tuner_task(void)
 {  
   swrMeter.sampleSWR();
   float fwd = swrMeter.fwdPower();
-  float rev = swrMeter.revPower();
-  if ((fwd < tpar.tune_min_power) || (fwd > tpar.tune_max_power))
+  if (fwd < tpar.tune_min_power)
       return;
+
+  float freq;
+  uint16_t freqkhz;
+  freqCounter.armCounter();
+  delay(100);
+  freqCounter.requestUpdate();
+  delay(10);
+  freq = freqCounter.readUpdate();
+   
+  swrMeter.sampleSWR();
+  fwd = swrMeter.fwdPower();
+  if (fwd > tpar.tune_min_power)
+     last_frequency = freq;
+  else
+     return;
+  if ((fwd > tpar.tune_max_power))
+      return;
+  float rev = swrMeter.revPower();
   float ref = rev/fwd;
-  if ((dotune) || (ref > tpar.tune_retune_thr))
+  updateSWRState(&last_swr_state);
+  if ((tuner_ready == TUNER_READY_FORCETUNE) || ((tuner_ready == TUNER_READY_STANDBY) && (ref > tpar.tune_retune_thr)))
   {
     Serial.println("Tuning...");
     DEBUGMSG("initial reflection=%04f",float2int32(ref));
-    simple_tune();
-    dotune = 0;
+    uint16_t freqkhz = (uint16_t) floorf((freq + 499.0f) / 1000.0f);
+    if (exhaustive_tune(tuner_restore_state(freqkhz) < 0 ? true : false) >= 0)
+        tuner_update_current_state(freqkhz);
+    if (tuner_ready == TUNER_READY_FORCETUNE)
+        tuner_ready = TUNER_READY_STANDBY;
   }
+}
+
+int save_cache_cmd(int args, tinycl_parameter* tp, void *v)
+{
+  int freq = tp[0].ti.i;
+  if ((freq < 1) || (freq > 65535))
+  {
+    Serial.println("Invalid frequency kHz");
+    return 1;
+  }
+  tuner_update_current_state((uint16_t)freq);
+  Serial.print("Cache entry updated at frequency ");
+  Serial.println(freq);
+  return 1;
+}
+
+int recall_cache_cmd(int args, tinycl_parameter* tp, void *v)
+{
+  int freq = tp[0].ti.i;
+  if ((freq < 1) || (freq > 65535))
+  {
+    Serial.println("Invalid frequency kHz");
+    return 1;
+  }
+  if (tuner_restore_state((uint16_t)freq) < 0)
+  {
+     Serial.println("Cache entry not found");
+  } else
+  {
+      Serial.print("Cache entry recalled at frequency ");
+      Serial.println(freq);
+  }
+  return 1;
+}
+
+const tuner_flash_header flash_header = { TUNER_MAGIC_1, TUNER_MAGIC_2 };
+const unsigned int flash_pages[] = { 0x08018000u, 0x08019000u, 0x0801A000u, 0x0801B000u, 0x0801C000u, 0x0801D000u, 0x0801E000u, 0x0801F000u };
+#define NUM_FLASH_PAGES ((sizeof(flash_pages)/sizeof(void *)))
+
+int tuner_readstate(int n)
+{
+  int err;
+  tuner_flash_header rd_flash_header;
+  void *vp[4];
+  int b[4];
+  if ((n < 1) || (n > NUM_FLASH_PAGES)) return 0;
+
+  vp[0] = &rd_flash_header;
+  b[0] = sizeof(rd_flash_header);
+  readflashstruct((void *)flash_pages[n - 1], 1, vp, b);
+  if (!((rd_flash_header.flash_header_1 == flash_header.flash_header_1) && (rd_flash_header.flash_header_2 == flash_header.flash_header_2)))
+    return 0;
+  vp[0] = NULL;
+  b[0] = sizeof(flash_header);
+  vp[1] = &tpar;
+  b[1] = sizeof(tpar);
+  vp[2] = relays;
+  b[2] = sizeof(relays);
+  vp[3] = tce;
+  b[3] = sizeof(tce);
+  err = readflashstruct((void *)flash_pages[n - 1], 4, vp, b);
+  return err;
+}
+
+int tuner_writestate(int n)
+{
+  void *vp[4];
+  int b[4];
+
+  if ((n < 1) || (n > NUM_FLASH_PAGES)) return 0;
+  vp[0] = (void *)&flash_header;
+  b[0] = sizeof(flash_header);
+  vp[1] = &tpar;
+  b[1] = sizeof(tpar);
+  vp[2] = relays;
+  b[2] = sizeof(relays);
+  vp[3] = tce;
+  b[3] = sizeof(tce);
+  return writeflashstruct((void *)flash_pages[n - 1], 4, vp, b);
+}
+
+int writestate_cmd(int args, tinycl_parameter* tp, void *v)
+{
+  int n = tp[0].ti.i;
+  if ((n < 1) || (n > NUM_FLASH_PAGES))
+  {
+    Serial.println("Invalid state number");
+    return 1;
+  }
+  Serial.print("Writing state ");
+  Serial.print(n);
+  Serial.println(tuner_writestate(n) ? ": written" : ": failed");
+  return 1;
+}
+
+int readstate_cmd(int args, tinycl_parameter* tp, void *v)
+{
+  int n = tp[0].ti.i;
+ 
+  if ((n < 1) || (n > NUM_FLASH_PAGES))
+  {
+    Serial.println("Invalid state number");
+    return 1;
+  }
+  if (tuner_readstate(n))
+  {
+    Serial.print("Read state ");
+    Serial.println(n);
+  } else
+    Serial.println("No state to retrieve");
+  return 1;
+}
+
+int status_cmd(int args, tinycl_parameter* tp, void *v)
+{
+   int p;
+   char s[80];
+   mini_snprintf(s,sizeof(s)-1,"Tuner status:   %s",tuner_state_string[tuner_ready]);
+   Serial.println(s);
+   mini_snprintf(s,sizeof(s)-1,"Last frequency: %f",float2int32(last_frequency));
+   Serial.println(s);
+   printSWRState(&last_swr_state);
+   for (p=0;p<TUNER_MAX_RELAYS;p++)
+   {
+      RelayModule *r = &relays[p];
+      if (r->isValidModule())
+      {
+        mini_snprintf(s,sizeof(s)-1,"Relay #%u, setting %u, switch 1 (%c) switch 2 (%c)", p+1,
+                r->getCurrentValue(), r->getSwitchState(0)? '+' : '-', r->getSwitchState(1)? '+' : '-');
+        Serial.println(s);
+      }
+   }
+   return 1;
+}
+
+int help_cmd(int args, tinycl_parameter *tp, void *v);
+
+const tinycl_command tcmds[] =
+{
+  { "STATUS", "Tuner status", status_cmd, { TINYCL_PARM_END } },
+  { "TUNE", "Do a tuning cycle", tune_cmd, { TINYCL_PARM_INT, TINYCL_PARM_END } },
+  { "SETRELAY", "Set Relay Data", set_relay_data_cmd, { TINYCL_PARM_INT, TINYCL_PARM_STR, TINYCL_PARM_END } },
+  { "RELAY?", "Print Relay Data", print_relay_data_cmd, { TINYCL_PARM_END } },
+  { "SETRLY", "Set Relay To Value", setrly_cmd, { TINYCL_PARM_INT, TINYCL_PARM_INT, TINYCL_PARM_INT, TINYCL_PARM_END } },
+  { "RLYDEF", "Reset relay unit to default", rlydef_cmd, { TINYCL_PARM_INT, TINYCL_PARM_INT, TINYCL_PARM_END } },
+  { "SETTUNER", "Set Tuner Data", set_tuner_data_cmd, { TINYCL_PARM_STR, TINYCL_PARM_END } },
+  { "TUNER?", "Print Tuner Data", print_tuner_data_cmd, { TINYCL_PARM_END } },
+  { "CLEARCACHE", "Clear the Cache", clear_cache_cmd, { TINYCL_PARM_END } },
+  { "SHOWCACHE", "Show the Cache", show_cache_cmd, { TINYCL_PARM_END } },
+  { "SAVECACHE", "Save to cache", save_cache_cmd, { TINYCL_PARM_INT, TINYCL_PARM_END } },
+  { "RECALLCACHE", "Recall from Cache", recall_cache_cmd, { TINYCL_PARM_INT, TINYCL_PARM_END } },
+  { "WRITESTATE", "Write state to flash", writestate_cmd, { TINYCL_PARM_INT, TINYCL_PARM_END } },
+  { "READSTATE", "Read state from flash", readstate_cmd, { TINYCL_PARM_INT, TINYCL_PARM_END } },
+  { "HELP", "Display This Help", help_cmd, {TINYCL_PARM_END } },
+};
+
+int help_cmd(int args, tinycl_parameter *tp, void *v)
+{
+  tinycl_print_commands(sizeof(tcmds) / sizeof(tinycl_command), tcmds);
+  return 1;
 }
 
 void loop() {

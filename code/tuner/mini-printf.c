@@ -114,7 +114,7 @@ mini_strlen(const char *s)
 	return len;
 }
 
-static unsigned int
+unsigned int
 mini_itoa(int value, unsigned int radix, unsigned int uppercase, unsigned int unsig,
 	 char *buffer, unsigned int zero_pad)
 {

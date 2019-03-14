@@ -23,7 +23,9 @@ freely, subject to the following restrictions:
 
 #include <math.h>
 #include <Arduino.h>
+#include "structconf.h"
 
+#define RELAY_MODULE_NONE 0
 #define RELAY_MODULE_INDUCTOR 1
 #define RELAY_MODULE_CAPACITOR 2
 #define RELAY_MODULE_DELAY 3
@@ -54,16 +56,9 @@ class RelayModule
     uint16_t            relay_port_mask;
     uint16_t            switch_bits_mask;
     
-
-    RelayModule(const relay_module_specs &pRms)
-    {
-      rms = pRms;
-      curval = 0;
-      curbits = 0;
-      CalculateMasks();
-    };
-
     void setup(void);
+    void setup(const relay_module_specs &pRMS);
+    bool isValidModule(void) { return (rms.relay_module_type != RELAY_MODULE_NONE); };
     int getCurrentValue(void);
     int getMaxValue(void) { return maxval; };
     int getMinValue(void) { return rms.offsetval; };
@@ -80,7 +75,15 @@ class RelayModule
     void CalculateMasks(void);
 };
 
+extern const relay_module_specs blankRelay;
 extern const relay_module_specs indRelay8;
 extern const relay_module_specs capRelay8;
+extern const relay_module_specs dlyRelay8;
+extern const relay_module_specs indRelay7;
+extern const relay_module_specs capRelay7;
+extern const relay_module_specs dlyRelay7;
+#define RELAY_DEFAULT_STRUCTS_NUM 7
+extern const relay_module_specs *relay_default_structs[RELAY_DEFAULT_STRUCTS_NUM];
+extern const structure_entry relay_fields[10];
 
 #endif  /* _RELAYMODULE_H */

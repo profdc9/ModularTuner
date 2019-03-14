@@ -23,6 +23,7 @@
 #include <Wire.h>
 #include "RelayModule.h"
 #include "debugmsg.h"
+#include "structconf.h"
 
 /*
   const uint16_t board8_relay_port_bits[8] = { 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01 };
@@ -35,6 +36,17 @@
   int inductances[] = { 75, 150, 300, 600, 1200, 2400, 5000, 10000 };
 */
 
+const relay_module_specs blankRelay = { RELAY_MODULE_NONE,
+                                       0,
+                                       0,
+                                       0,
+                                       0x00,
+                                       0,
+                                       0,
+{  },
+{  },
+{  } };
+
 const relay_module_specs indRelay8 = { RELAY_MODULE_INDUCTOR,
                                        8,
                                        2,
@@ -44,8 +56,7 @@ const relay_module_specs indRelay8 = { RELAY_MODULE_INDUCTOR,
                                        15,
 { 75, 150, 300, 600, 1200, 2400, 5000, 10000 },
 { 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01 },
-{ 0x8000, 0x4000 }
-                                     };
+{ 0x8000, 0x4000 } };
 
 const relay_module_specs capRelay8 = { RELAY_MODULE_CAPACITOR,
                                        8,
@@ -56,9 +67,66 @@ const relay_module_specs capRelay8 = { RELAY_MODULE_CAPACITOR,
                                        15,
 { 7, 15, 33, 66, 125, 250, 500, 1000 },
 { 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01 },
-{ 0x8000, 0x4000 }
-                                     };
+{ 0x8000, 0x4000 } };
 
+const relay_module_specs dlyRelay8 = { RELAY_MODULE_DELAY,
+                                       8,
+                                       2,
+                                       1,
+                                       0x22,
+                                       0,
+                                       15,
+{ 10, 20, 40, 80, 160, 320, 640, 1280 },
+{ 0x8000, 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02  },
+{ 0x01, 0x4000 } };
+                                     
+const relay_module_specs indRelay7 = { RELAY_MODULE_INDUCTOR,
+                                       7,
+                                       1,
+                                       0,
+                                       0x20,
+                                       20,
+                                       15,
+{ 150, 300, 600, 1200, 2400, 5000, 10000 },
+{ 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01 },
+{ 0x80 } };
+ 
+const relay_module_specs capRelay7 = { RELAY_MODULE_CAPACITOR,
+                                       7,
+                                       1,
+                                       0,
+                                       0x21,
+                                       5,
+                                       15,
+{ 15, 33, 66, 125, 250, 500, 1000 },
+{ 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01 },
+{ 0x80 } };
+
+const relay_module_specs dlyRelay7 = { RELAY_MODULE_DELAY,
+                                       7,
+                                       1,
+                                       0,
+                                       0x22,
+                                       0,
+                                       15,
+{ 20, 40, 80, 160, 320, 640, 1280 },
+{ 0x40, 0x20, 0x10, 0x08, 0x04, 0x02  },
+{ 0x01, 0x80 } };
+
+const relay_module_specs *relay_default_structs[RELAY_DEFAULT_STRUCTS_NUM] = { &blankRelay, &indRelay8, &capRelay8, &dlyRelay8, &indRelay7, &capRelay7, &dlyRelay7 };
+
+const structure_entry relay_fields[10] =
+{ { "MODULETYPE",   STRUCTCONF_INT8,       offsetof(relay_module_specs,relay_module_type), 1, "1=inductor,2=capacitor,3=delay" },
+  { "NORELAYPORTS", STRUCTCONF_INT8,       offsetof(relay_module_specs,no_relay_ports), 1, NULL },
+  { "NOSWITCHES",   STRUCTCONF_INT8,       offsetof(relay_module_specs,no_switches), 1, NULL },
+  { "MCP23017",     STRUCTCONF_INT8,       offsetof(relay_module_specs,mcp23017), 1, "0=MCP23008, 1=MCP23017" },
+  { "I2CADDR",      STRUCTCONF_INT8_HEX,   offsetof(relay_module_specs,i2caddr), 1, "Hex values" },
+  { "OFFSETVAL",    STRUCTCONF_INT32,      offsetof(relay_module_specs,offsetval), 1, NULL },
+  { "SETTLETIME",   STRUCTCONF_INT16,      offsetof(relay_module_specs,relay_settle_time), 1, NULL },
+  { "COMPVALUE",    STRUCTCONF_INT32,      offsetof(relay_module_specs,regs), MAX_NUMBER_RELAYS, NULL },
+  { "PORTBITS",     STRUCTCONF_INT16_HEX,  offsetof(relay_module_specs,relay_port_bits), MAX_NUMBER_RELAYS, "Hex values" },
+  { "SWITCHBITS",   STRUCTCONF_INT16_HEX,  offsetof(relay_module_specs,switch_bits), MAX_NUMBER_SWITCHES, "Hex values" }
+}; 
 
 void RelayModule::CalculateMasks(void)
 {
@@ -76,6 +144,7 @@ void RelayModule::CalculateMasks(void)
 
 void RelayModule::InitializeMCP23008(void)
 {
+  if (rms.i2caddr == 0) return;
   Wire.begin();
   for (int i = 0; i < 10; i++)
   {
@@ -89,6 +158,7 @@ void RelayModule::InitializeMCP23008(void)
 
 void RelayModule::OutputBitsMCP23008(uint16_t bitval)
 {
+  if (rms.i2caddr == 0) return;
   Wire.beginTransmission(rms.i2caddr);
   if (rms.mcp23017)
   {
@@ -105,9 +175,26 @@ void RelayModule::OutputBitsMCP23008(uint16_t bitval)
 
 void RelayModule::setup(void)
 {
-  rms.i2caddr = (rms.i2caddr & 0x07) | 0x20;
+  curval = 0;
+  curbits = 0;
+  if (rms.relay_module_type != RELAY_MODULE_NONE)
+     rms.i2caddr = (rms.i2caddr & 0x07) | 0x20;
+  else
+  {
+     rms.i2caddr = 0;
+     rms.no_relay_ports = 0;
+     rms.no_switches = 0;
+     return;
+  }
+  CalculateMasks();
   InitializeMCP23008();
   OutputBitsMCP23008(0);
+}
+
+void RelayModule::setup(const relay_module_specs &pRMS)
+{
+  rms = pRMS;
+  setup();
 }
 
 int RelayModule::getCurrentValue(void)
