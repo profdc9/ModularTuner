@@ -270,7 +270,7 @@ bool RelayModule::getSwitchState(byte switchno)
 
 void RelayModule::setSwitchState(byte switchno, bool state)
 {
-  if (switchno >= rms.no_switches)
+  if ((switchno < 0) || (switchno >= rms.no_switches))
     return;
   if (state)
     curbits |= rms.switch_bits[switchno];
@@ -281,7 +281,7 @@ void RelayModule::setSwitchState(byte switchno, bool state)
 
 void RelayModule::setRelayState(int relay, bool state)
 {
-  if (relay >= rms.no_relay_ports)
+  if ((relay < 0) || (relay >= rms.no_relay_ports))
     return;
   if  (state)
     curbits |= rms.relay_port_bits[relay];

@@ -30,7 +30,7 @@ typedef enum { TUNER_READY_STANDBY=0, TUNER_READY_FORCETUNE=1, TUNER_READY_DISAB
 #define TUNER_MAX_RELAYS 8
 
 #define TUNER_MAGIC_1 0xA1B2C3D4
-#define TUNER_MAGIC_2 0xFEEDC0A1
+#define TUNER_MAGIC_2 0xFEEDC0A2
 
 typedef struct _tuner_flash_header
 {
@@ -43,6 +43,7 @@ typedef struct _tuner_flash_header
 typedef struct _tuner_parameters
 {
   char       tune_label[16];
+  float      tune_power_calib;
   float      tune_min_power;
   float      tune_max_power;
   float      tune_max_ref;

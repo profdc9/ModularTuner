@@ -55,7 +55,7 @@ SWRMeter swrMeter;
 //InvFrequencyCounter invCounter(PB8,PB9,1u);
 FrequencyCounter freqCounter(PB9,16u,1,10000);
 
-tuner_parameters tpar = { {"NONE"}, 0.25f, 2.0f, 0.2f, 0.25f,
+tuner_parameters tpar = { {"NONE"}, 11.5f, 0.5f, 15.0f, 0.2f, 0.25f,
                           { 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
                           { 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
                           { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -226,8 +226,9 @@ void testEEPROMobjectstore(void)
 }
 */
 
-const structure_entry tuner_parameter_fields[11] =
+const structure_entry tuner_parameter_fields[12] =
 { { "LABEL",           STRUCTCONF_STRING,     offsetof(tuner_parameters,tune_label), sizeof(tpar.tune_label), NULL },
+  { "POWERCALIB",      STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_power_calib), 1, NULL },
   { "MINTUNINGPOWER",  STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_min_power), 1, NULL },
   { "MAXTUNINGPOWER",  STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_max_power), 1, NULL },
   { "MAXREFLECTION",   STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_max_ref), 1, NULL },
@@ -239,6 +240,11 @@ const structure_entry tuner_parameter_fields[11] =
   { "SWITCHSTATE5",    STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_switchstate_5), TUNE_SWITCHSTATE_PER_STATE*3, NULL },
   { "SWITCHSTATE6",    STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_switchstate_6), TUNE_SWITCHSTATE_PER_STATE*3, NULL },
 };
+
+float adjust_pwr(float rawpwr)
+{
+  return tpar.tune_power_calib*rawpwr*rawpwr;
+}
 
 int tune_cmd(int args, tinycl_parameter *tp, void *v)
 {
@@ -261,6 +267,31 @@ int debug_cmd(int args, tinycl_parameter *tp, void *v)
   setDebugMsgMode(d);
   Serial.print("Debug State: ");
   Serial.println(d);
+  return 1;
+}
+
+int test_relay_cmd(int args, tinycl_parameter *tp, void *v)
+{
+  int rlyno = tp[0].ti.i;
+  int isswitch = tp[1].ti.i;
+  int number = tp[2].ti.i;
+  int setting = tp[3].ti.i;
+
+  if ((rlyno < 1) || (rlyno > TUNER_MAX_RELAYS))
+  {
+    Serial.println("Invalid relay #");
+    return 1;
+  }
+  RelayModule *rm = &relays[rlyno-1];
+  if (!rm->isValidModule())
+  {
+    Serial.println("Invalid relay #");
+    return 1;
+  }  
+  if (isswitch)
+      rm->setSwitchState(number-1,setting);
+  else
+      rm->setRelayState(number-1,setting);
   return 1;
 }
 
@@ -429,7 +460,7 @@ void updateSWRState(swr_state *state)
 void printSWRState(swr_state *state)
 {
   char s[100];
-  mini_snprintf(s,sizeof(s)-1,"Fwd power = %04f  Rev power = %04f  Cur Power = %04f",float2int32(state->fwd),float2int32(state->rev),float2int32(state->cur));
+  mini_snprintf(s,sizeof(s)-1,"Fwd power = %04f  Rev power = %04f  Cur Power = %04f",float2int32(adjust_pwr(state->fwd)),float2int32(adjust_pwr(state->rev)),float2int32(state->cur));
   Serial.println(s);
   mini_snprintf(s,sizeof(s)-1,"Ref Angle = %04f  Cur Angle = %04f  SWR = %02f",float2int32(state->refAngle),float2int32(state->curAngle),float2int32(state->swr));
   Serial.println(s);
@@ -457,7 +488,8 @@ int minimize_swr_step(RelayModule *r, int relstep, float &currentRef)
        float fwd = swrMeter.fwdPower();
        float rev = swrMeter.revPower();
        float testRef = rev/fwd;
-       if ((fwd < tpar.tune_min_power) || (fwd > tpar.tune_max_power))
+       float adjfwd = adjust_pwr(fwd);
+       if ((adjfwd < tpar.tune_min_power) || (adjfwd > tpar.tune_max_power))
           return -1;
        DEBUGMSG("stepsize=%d dir=%d currentValue=%d nextval=%d actval=%d ref=%04f",stepsize,dir,currentValue,nextval,r->getCurrentValue(),float2int32(testRef));
        if (testRef < currentRef)
@@ -630,7 +662,7 @@ void tuner_task(void)
 {  
   swrMeter.sampleSWR();
   float fwd = swrMeter.fwdPower();
-  if (fwd < tpar.tune_min_power)
+  if (adjust_pwr(fwd) < tpar.tune_min_power)
       return;
 
   float freq;
@@ -643,11 +675,12 @@ void tuner_task(void)
    
   swrMeter.sampleSWR();
   fwd = swrMeter.fwdPower();
-  if (fwd < tpar.tune_min_power)
+  float adjfwd = adjust_pwr(fwd);
+  if (adjfwd < tpar.tune_min_power)
      return;
   last_frequency = freq;
   updateSWRState(&last_swr_state);
-  if ((fwd > tpar.tune_max_power))
+  if ((adjfwd > tpar.tune_max_power))
       return;
   float ref = swrMeter.revPower()/fwd;
   if ((tuner_ready == TUNER_READY_FORCETUNE) || ((tuner_ready == TUNER_READY_STANDBY) && (ref > tpar.tune_retune_thr)))
@@ -801,7 +834,7 @@ int status_cmd(int args, tinycl_parameter* tp, void *v)
       RelayModule *r = &relays[p];
       if (r->isValidModule())
       {
-        mini_snprintf(s,sizeof(s)-1,"Relay #%u, setting %u, switch 1 (%c) switch 2 (%c)", p+1,
+        mini_snprintf(s,sizeof(s)-1,"Relay Unit #%u, setting %u, switch 1 (%c) switch 2 (%c)", p+1,
                 r->getCurrentValue(), r->getSwitchState(0)? '+' : '-', r->getSwitchState(1)? '+' : '-');
         Serial.println(s);
       }
@@ -820,6 +853,7 @@ const tinycl_command tcmds[] =
   { "RELAY?", "Print Relay Data", print_relay_data_cmd, { TINYCL_PARM_END } },
   { "SETRLY", "Set Relay To Value", setrly_cmd, { TINYCL_PARM_INT, TINYCL_PARM_INT, TINYCL_PARM_INT, TINYCL_PARM_END } },
   { "RLYDEF", "Reset relay unit to default", rlydef_cmd, { TINYCL_PARM_INT, TINYCL_PARM_INT, TINYCL_PARM_END } },
+  { "TESTRELAY", "Manually switch relay", test_relay_cmd, { TINYCL_PARM_INT, TINYCL_PARM_INT, TINYCL_PARM_INT, TINYCL_PARM_INT } },
   { "SETTUNER", "Set Tuner Data", set_tuner_data_cmd, { TINYCL_PARM_STR, TINYCL_PARM_END } },
   { "TUNER?", "Print Tuner Data", print_tuner_data_cmd, { TINYCL_PARM_END } },
   { "CLEARCACHE", "Clear the Cache", clear_cache_cmd, { TINYCL_PARM_END } },
@@ -858,16 +892,4 @@ void loop() {
   }
   tuner_task();
   save_state_task();
-/*  testRelay();
-  //testLnetwork();
-  heartbeat();
-  testFrequencyCounter();
-  //testEEPROMobjectstore();
-  delay(100);
-  unsigned int x1=CPU_CYCLES;
-  swrMeter.sampleSWR();
-  unsigned int x2=CPU_CYCLES;
-  //DEBUGMSG("total cycles=%u",x2-x1);
-  swrMeter.swrmeterPrintDebugStatus();
-  delay(2000); */
 }
