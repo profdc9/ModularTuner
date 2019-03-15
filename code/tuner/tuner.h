@@ -25,6 +25,8 @@ freely, subject to the following restrictions:
 
 typedef enum { TUNER_READY_STANDBY=0, TUNER_READY_FORCETUNE=1, TUNER_READY_DISABLE=2 } tuner_ready_state;
 
+#define TUNER_UPDATE_TICKS 100000u
+
 #define TUNER_MAX_RELAYS 8
 
 #define TUNER_MAGIC_1 0xA1B2C3D4
@@ -36,6 +38,8 @@ typedef struct _tuner_flash_header
   uint32_t flash_header_2;
 } tuner_flash_header;
 
+#define TUNE_SWITCHSTATE_PER_STATE 6
+
 typedef struct _tuner_parameters
 {
   char       tune_label[16];
@@ -43,6 +47,12 @@ typedef struct _tuner_parameters
   float      tune_max_power;
   float      tune_max_ref;
   float      tune_retune_thr;
+  uint8_t    tune_switchstate_1[TUNE_SWITCHSTATE_PER_STATE*3];
+  uint8_t    tune_switchstate_2[TUNE_SWITCHSTATE_PER_STATE*3];
+  uint8_t    tune_switchstate_3[TUNE_SWITCHSTATE_PER_STATE*3];
+  uint8_t    tune_switchstate_4[TUNE_SWITCHSTATE_PER_STATE*3];
+  uint8_t    tune_switchstate_5[TUNE_SWITCHSTATE_PER_STATE*3];
+  uint8_t    tune_switchstate_6[TUNE_SWITCHSTATE_PER_STATE*3];
 } tuner_parameters;
 
 #define TUNER_CACHE_ENTRIES 200

@@ -57,7 +57,7 @@ class FrequencyCounter
 	unsigned int getCount(void);
   void stopCounter(void);
   void setAuxFunction(AuxCounterFunction pAuxFcn);
+  unsigned int cumulativeTicks(void);
 };
 
 #endif /* _INVFREQUENCYCOUNTER_H */
-

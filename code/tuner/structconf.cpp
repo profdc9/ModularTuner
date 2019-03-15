@@ -47,7 +47,7 @@ void se_printchar(char c)
 
 void se_printstring(const char *c)
 {
-  Serial.print(c);
+  while (*c != 0) se_printchar(*c++);
 }
 
 void se_printnum(int num, int radix)
@@ -221,6 +221,7 @@ void se_set_structure_field(int nentries, const structure_entry se[], void *str,
               } else break;
             }
           }
+          break;
        case STRUCTCONF_INT32:
        case STRUCTCONF_INT16:
        case STRUCTCONF_INT8:

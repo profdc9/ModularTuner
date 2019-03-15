@@ -39,6 +39,7 @@ typedef struct _active_counter
 	unsigned int number_of_ticks;
 	unsigned int read_total_counts;
 	unsigned int read_number_of_ticks;
+  unsigned int cumulative_ticks;
   AuxCounterFunction aux_fcn;
 } freq_active_counter;
 
@@ -56,6 +57,7 @@ void FrequencyCounter::resetExternalDivider(void)
 static void freqCounterInterrupt(void)
 {
 	unsigned short current_cnt = time2.getCount();  // must be first in interrupt!
+  active_ctr.cumulative_ticks++;
   if (active_ctr.aux_fcn != NULL)
       (*active_ctr.aux_fcn)();
 	if (active_ctr.state == FREQ_COUNTER_PULSES)
@@ -78,6 +80,11 @@ static void freqCounterInterrupt(void)
 		active_ctr.state = FREQ_COUNTER_PULSES;
 		return;
 	}
+}
+
+unsigned int FrequencyCounter::cumulativeTicks(void)
+{
+  return active_ctr.cumulative_ticks;
 }
 
 void FrequencyCounter::armCounter(void)
@@ -163,6 +170,7 @@ void FrequencyCounter::setup(void)
 
   tickTime = ((float)(prescaleFactor * checkInterval))/((float)CPU_CLOCK_RATE);
 
+  active_ctr.cumulative_ticks = 0;
   active_ctr.state = FREQ_COUNTER_IDLE;
   active_ctr.state_read = FREQ_COUNTER_READ_IDLE;
   active_ctr.aux_fcn = NULL;

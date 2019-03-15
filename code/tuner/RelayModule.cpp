@@ -103,13 +103,13 @@ const relay_module_specs capRelay7 = { RELAY_MODULE_CAPACITOR,
 { 0x80 } };
 
 const relay_module_specs dlyRelay7 = { RELAY_MODULE_DELAY,
-                                       7,
-                                       1,
+                                       6,
+                                       2,
                                        0,
                                        0x22,
                                        0,
                                        15,
-{ 20, 40, 80, 160, 320, 640, 1280 },
+{ 40, 80, 160, 320, 640, 1280 },
 { 0x40, 0x20, 0x10, 0x08, 0x04, 0x02  },
 { 0x01, 0x80 } };
 
