@@ -30,7 +30,7 @@ typedef enum { TUNER_READY_STANDBY=0, TUNER_READY_FORCETUNE=1, TUNER_READY_DISAB
 #define TUNER_MAX_RELAYS 8
 
 #define TUNER_MAGIC_1 0xA1B2C3D4
-#define TUNER_MAGIC_2 0xFEEDC0A2
+#define TUNER_MAGIC_2 0xFEEDC0A1
 
 typedef struct _tuner_flash_header
 {
@@ -40,6 +40,8 @@ typedef struct _tuner_flash_header
 
 #define TUNE_SWITCHSTATE_PER_STATE 6
 
+typedef enum { TUNER_NO_RIG_CONTROL=0, TUNER_RIG_CONTROL_ICOM=1, TUNER_RIG_CONTROL_KENWOOD=2, TUNER_RIG_CONTROL_YAESU=3 } tuner_rig_control_type;
+
 typedef struct _tuner_parameters
 {
   char       tune_label[16];
@@ -48,6 +50,7 @@ typedef struct _tuner_parameters
   float      tune_max_power;
   float      tune_max_ref;
   float      tune_retune_thr;
+  uint8_t    tune_rig_control;
   uint8_t    tune_switchstate_1[TUNE_SWITCHSTATE_PER_STATE*3];
   uint8_t    tune_switchstate_2[TUNE_SWITCHSTATE_PER_STATE*3];
   uint8_t    tune_switchstate_3[TUNE_SWITCHSTATE_PER_STATE*3];

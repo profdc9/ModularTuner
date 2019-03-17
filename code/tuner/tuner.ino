@@ -43,6 +43,7 @@ freely, subject to the following restrictions:
 
 tuner_ready_state tuner_ready = TUNER_READY_STANDBY;
 const char *tuner_state_string[3] = { "STANDBY", "FORCE TUNE", "DISABLED" };
+
 float last_frequency = 0;
 
 unsigned int      last_update_tick;
@@ -55,11 +56,11 @@ SWRMeter swrMeter;
 //InvFrequencyCounter invCounter(PB8,PB9,1u);
 FrequencyCounter freqCounter(PB9,16u,1,10000);
 
-tuner_parameters tpar = { {"NONE"}, 11.5f, 0.5f, 15.0f, 0.2f, 0.25f,
-                          { 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                          { 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                          { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                          { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+tuner_parameters tpar = { {"NONE"}, 11.5f, 0.5f, 15.0f, 0.2f, 0.25f, 0,
+                          { 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                          { 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                          { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                          { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 };
 
 tuner_cache_entry tce[TUNER_CACHE_ENTRIES];
@@ -112,6 +113,22 @@ static void initialize_cortex_m3_cycle_counter(void)
   DWT_CTRL |= CYCCNTENA;
 }
 
+void initialize_rig_control(void)
+{
+  switch (tpar.tune_rig_control)
+  {
+    case TUNER_RIG_CONTROL_ICOM:
+        pinMode(PB13,INPUT);
+        pinMode(PB12,OUTPUT);
+        digitalWrite(PB12,HIGH);
+        break;
+    case TUNER_RIG_CONTROL_KENWOOD:
+        break;
+    case TUNER_RIG_CONTROL_YAESU:
+        break;
+  }
+}
+
 void check_i2c_active(void)
 {
   pinMode(PB6,INPUT);
@@ -158,6 +175,7 @@ void setup() {
 #endif
   //EEPROMstore.setup(2);
   //EEPROMstore.formatBank(0);
+  initialize_rig_control();
 }
 
 /*
@@ -226,13 +244,14 @@ void testEEPROMobjectstore(void)
 }
 */
 
-const structure_entry tuner_parameter_fields[12] =
+const structure_entry tuner_parameter_fields[13] =
 { { "LABEL",           STRUCTCONF_STRING,     offsetof(tuner_parameters,tune_label), sizeof(tpar.tune_label), NULL },
   { "POWERCALIB",      STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_power_calib), 1, NULL },
   { "MINTUNINGPOWER",  STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_min_power), 1, NULL },
   { "MAXTUNINGPOWER",  STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_max_power), 1, NULL },
   { "MAXREFLECTION",   STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_max_ref), 1, NULL },
   { "RETUNETHRESHOLD", STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_retune_thr), 1, NULL },
+  { "RIGCONTROL",      STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_rig_control), 1, "0=NONE 1=ICOM 2=KENWOOD 3=YAESU" },
   { "SWITCHSTATE1",    STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_switchstate_1), TUNE_SWITCHSTATE_PER_STATE*3, NULL },
   { "SWITCHSTATE2",    STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_switchstate_2), TUNE_SWITCHSTATE_PER_STATE*3, NULL },
   { "SWITCHSTATE3",    STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_switchstate_3), TUNE_SWITCHSTATE_PER_STATE*3, NULL },
@@ -474,6 +493,7 @@ int minimize_swr_step(RelayModule *r, int relstep, float &currentRef)
   int stepsize = (r->getMaxValue() - r->getMinValue()) >> relstep;
   int currentValue = r->getCurrentValue();
   swrMeter.sampleSWR();
+  if (check_for_rig_tune_abort()) return -1;
   currentRef = swrMeter.revPower() / swrMeter.fwdPower();
   for (dir=0;dir<2;dir++)
   {
@@ -485,6 +505,7 @@ int minimize_swr_step(RelayModule *r, int relstep, float &currentRef)
        if (r->getCurrentValue() == lastval) break;
        delay(r->getRelaySettleTime());
        swrMeter.sampleSWR();
+       if (check_for_rig_tune_abort()) return -1;
        float fwd = swrMeter.fwdPower();
        float rev = swrMeter.revPower();
        float testRef = rev/fwd;
@@ -658,13 +679,72 @@ int tuner_restore_state(uint16_t freqkhz)
   return 0;
 }
 
+bool check_for_rig_tune_initiation(void)
+{
+  switch (tpar.tune_rig_control)
+  {
+    case TUNER_RIG_CONTROL_ICOM:
+    {
+        int pinSet = digitalRead(PB13);
+        if (pinSet == HIGH) return false;
+        delay(50);
+        return (digitalRead(PB13) == LOW ? true : false);
+    }
+    case TUNER_RIG_CONTROL_KENWOOD:
+        break;
+    case TUNER_RIG_CONTROL_YAESU:
+        break;
+  }
+  return false;
+}
+
+bool check_for_rig_tune_abort(void)
+{
+  switch (tpar.tune_rig_control)
+  {
+    case TUNER_RIG_CONTROL_ICOM:
+        break;
+    case TUNER_RIG_CONTROL_KENWOOD:
+        break;
+    case TUNER_RIG_CONTROL_YAESU:
+        break;
+  }
+  return false;
+}
+
+void send_rig_tune_reply_signal(bool initiate)
+{
+  switch (tpar.tune_rig_control)
+  {
+    case TUNER_RIG_CONTROL_ICOM:
+        digitalWrite(PB12,initiate ? LOW : HIGH);
+        if (initiate == true)
+            delay(100);  // wait for power to start
+        return;
+    case TUNER_RIG_CONTROL_KENWOOD:
+        break;
+    case TUNER_RIG_CONTROL_YAESU:
+        break;
+  }
+  return;  
+}
+
 void tuner_task(void)
 {  
-  swrMeter.sampleSWR();
-  float fwd = swrMeter.fwdPower();
-  if (adjust_pwr(fwd) < tpar.tune_min_power)
-      return;
-
+  bool rigtune;
+  float fwd;
+  if (check_for_rig_tune_initiation())
+  {
+     send_rig_tune_reply_signal(true);
+     rigtune = true;
+  } else
+  {
+     swrMeter.sampleSWR();
+     fwd = swrMeter.fwdPower();
+     if (adjust_pwr(fwd) < tpar.tune_min_power)
+        return;
+     rigtune = false;
+  }
   float freq;
   uint16_t freqkhz;
   freqCounter.armCounter();
@@ -688,10 +768,14 @@ void tuner_task(void)
     DEBUGMSG("Tuning: initial reflection=%04f",float2int32(ref));
     uint16_t freqkhz = (uint16_t) floorf((freq + 499.0f) / 1000.0f);
     if (exhaustive_tune(tuner_restore_state(freqkhz) < 0 ? true : false) >= 0)
+    {
+        updateSWRState(&last_swr_state);
         tuner_update_current_state(freqkhz);
+    }
     if (tuner_ready == TUNER_READY_FORCETUNE)
         tuner_ready = TUNER_READY_STANDBY;
   }
+  if (rigtune) send_rig_tune_reply_signal(false);
 }
 
 int save_cache_cmd(int args, tinycl_parameter* tp, void *v)

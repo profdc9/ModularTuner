@@ -1376,17 +1376,6 @@ F 3 "" H 1800 5850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR014
-U 1 1 5BA4E273
-P 1850 5300
-F 0 "#PWR014" H 1850 5150 50  0001 C CNN
-F 1 "+5V" H 1850 5440 50  0000 C CNN
-F 2 "" H 1850 5300 50  0001 C CNN
-F 3 "" H 1850 5300 50  0001 C CNN
-	1    1850 5300
-	0    1    1    0   
-$EndComp
-$Comp
 L +5V #PWR015
 U 1 1 5BA4E663
 P 1200 5700
@@ -2557,4 +2546,11 @@ $EndComp
 Wire Wire Line
 	9750 3750 9900 3750
 Connection ~ 9900 3750
+Wire Wire Line
+	800  5500 800  5200
+Wire Wire Line
+	800  5200 1850 5200
+Wire Wire Line
+	1850 5200 1850 5300
+Connection ~ 800  5500
 $EndSCHEMATC

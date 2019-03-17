@@ -963,17 +963,6 @@ F 3 "" H 1800 5850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR8
-U 1 1 5BA4E273
-P 1850 5300
-F 0 "#PWR8" H 1850 5150 50  0001 C CNN
-F 1 "+5V" H 1850 5440 50  0000 C CNN
-F 2 "" H 1850 5300 50  0001 C CNN
-F 3 "" H 1850 5300 50  0001 C CNN
-	1    1850 5300
-	0    1    1    0   
-$EndComp
-$Comp
 L +5V #PWR6
 U 1 1 5BA4E663
 P 1200 5700
@@ -2440,4 +2429,11 @@ Text GLabel 2500 2800 2    60   Input ~ 0
 RFTHRU
 Wire Wire Line
 	2500 2800 2200 2800
+Wire Wire Line
+	850  5500 850  5200
+Wire Wire Line
+	850  5200 1850 5200
+Wire Wire Line
+	1850 5200 1850 5300
+Connection ~ 850  5500
 $EndSCHEMATC
