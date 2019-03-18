@@ -44,6 +44,10 @@
 #include "mini-printf.h"
 
 #ifdef MINI_PRINTF_FTOA
+#include <math.h>
+#endif
+
+#ifdef MINI_PRINTF_FTOA
 float ipow10f(int p)
 {
   float f = 1.0f;

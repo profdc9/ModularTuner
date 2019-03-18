@@ -50,7 +50,10 @@ typedef struct _tuner_parameters
   float      tune_max_power;
   float      tune_max_ref;
   float      tune_retune_thr;
+  float      tune_search_relaxation;
+  uint16_t   tune_search_khz_spacing;
   uint8_t    tune_rig_control;
+  uint8_t    tune_switchstate_bypass[TUNE_SWITCHSTATE_PER_STATE*3];
   uint8_t    tune_switchstate_1[TUNE_SWITCHSTATE_PER_STATE*3];
   uint8_t    tune_switchstate_2[TUNE_SWITCHSTATE_PER_STATE*3];
   uint8_t    tune_switchstate_3[TUNE_SWITCHSTATE_PER_STATE*3];

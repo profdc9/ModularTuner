@@ -40,6 +40,7 @@ typedef struct _relay_module_specs
   byte     no_switches;
   byte     mcp23017;
   byte     i2caddr;
+  byte     autotune;
   int      offsetval;
   uint16   relay_settle_time;
   int      regs[MAX_NUMBER_RELAYS];
@@ -65,6 +66,7 @@ class RelayModule
     int getRelaySettleTime(void) { return rms.relay_settle_time; };
     int setCurrentValue(int nCurval, int method=0);
     bool getSwitchState(byte switchno);
+    bool getAutoTune(void) { return (rms.autotune != 0); };
     void setSwitchState(byte switchno, bool state);
     int findOptimalValue(int nCurVal, uint16_t &bestcombo, int method);
     void updateCurval(void);
@@ -84,6 +86,6 @@ extern const relay_module_specs capRelay7;
 extern const relay_module_specs dlyRelay7;
 #define RELAY_DEFAULT_STRUCTS_NUM 7
 extern const relay_module_specs *relay_default_structs[RELAY_DEFAULT_STRUCTS_NUM];
-extern const structure_entry relay_fields[10];
+extern const structure_entry relay_fields[11];
 
 #endif  /* _RELAYMODULE_H */
