@@ -112,17 +112,17 @@ const relay_module_specs dlyRelay7 = { RELAY_MODULE_DELAY,
 const relay_module_specs *relay_default_structs[RELAY_DEFAULT_STRUCTS_NUM] = { &blankRelay, &indRelay8, &capRelay8, &dlyRelay8, &indRelay7, &capRelay7, &dlyRelay7 };
 
 const structure_entry relay_fields[11] =
-{ { "MODULETYPE",   STRUCTCONF_INT8,       offsetof(relay_module_specs,relay_module_type), 1, "1=inductor,2=capacitor,3=delay" },
-  { "NORELAYPORTS", STRUCTCONF_INT8,       offsetof(relay_module_specs,no_relay_ports), 1, NULL },
-  { "NOSWITCHES",   STRUCTCONF_INT8,       offsetof(relay_module_specs,no_switches), 1, NULL },
-  { "MCP23017",     STRUCTCONF_INT8,       offsetof(relay_module_specs,mcp23017), 1, "0=MCP23008, 1=MCP23017" },
-  { "I2CADDR",      STRUCTCONF_INT8_HEX,   offsetof(relay_module_specs,i2caddr), 1, "Hex values" },
-  { "AUTOTUNE",     STRUCTCONF_INT8,       offsetof(relay_module_specs,autotune), 1, "0=No, 1=Yes" },
-  { "OFFSETVAL",    STRUCTCONF_INT32,      offsetof(relay_module_specs,offsetval), 1, NULL },
-  { "SETTLETIME",   STRUCTCONF_INT16,      offsetof(relay_module_specs,relay_settle_time), 1, NULL },
-  { "COMPVALUE",    STRUCTCONF_INT32,      offsetof(relay_module_specs,regs), MAX_NUMBER_RELAYS, NULL },
-  { "PORTBITS",     STRUCTCONF_INT16_HEX,  offsetof(relay_module_specs,relay_port_bits), MAX_NUMBER_RELAYS, "Hex values" },
-  { "SWITCHBITS",   STRUCTCONF_INT16_HEX,  offsetof(relay_module_specs,switch_bits), MAX_NUMBER_SWITCHES, "Hex values" }
+{ { "MODULETYPE",   STRUCTCONF_INT8,       offsetof(relay_module_specs,relay_module_type), 1, 0, 3, "1=inductor,2=capacitor,3=delay" },
+  { "NORELAYPORTS", STRUCTCONF_INT8,       offsetof(relay_module_specs,no_relay_ports), 1, 0, 16, NULL },
+  { "NOSWITCHES",   STRUCTCONF_INT8,       offsetof(relay_module_specs,no_switches), 1, 0, 2, NULL },
+  { "MCP23017",     STRUCTCONF_INT8,       offsetof(relay_module_specs,mcp23017), 1, 0, 1, "0=MCP23008, 1=MCP23017" },
+  { "I2CADDR",      STRUCTCONF_INT8_HEX,   offsetof(relay_module_specs,i2caddr), 1, 0x00, 0xFF, "Hex values" },
+  { "AUTOTUNE",     STRUCTCONF_INT8,       offsetof(relay_module_specs,autotune), 1, 0, 1, "0=No, 1=Yes" },
+  { "OFFSETVAL",    STRUCTCONF_INT32,      offsetof(relay_module_specs,offsetval), 1, 0, STRUCTCONF_INTMAX, NULL },
+  { "SETTLETIME",   STRUCTCONF_INT16,      offsetof(relay_module_specs,relay_settle_time), 1, 0, 1000, NULL },
+  { "COMPVALUE",    STRUCTCONF_INT32,      offsetof(relay_module_specs,regs), MAX_NUMBER_RELAYS, 0, STRUCTCONF_INTMAX, NULL },
+  { "PORTBITS",     STRUCTCONF_INT16_HEX,  offsetof(relay_module_specs,relay_port_bits), MAX_NUMBER_RELAYS, 0, 0xFFFF, "Hex values" },
+  { "SWITCHBITS",   STRUCTCONF_INT16_HEX,  offsetof(relay_module_specs,switch_bits), MAX_NUMBER_SWITCHES, 0, 0xFFFF, "Hex values" }
 }; 
 
 void RelayModule::CalculateMasks(void)

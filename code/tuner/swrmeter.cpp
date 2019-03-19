@@ -175,7 +175,7 @@ float SWRMeter::SWR(void)
 float SWRMeter::reflectionPhase(void)
 {
   float phaseReflection = FM_PI*((float)sampleREVPHASE)/((float)sampleMAXVOLTAGELEVEL);
-  if (sampleREVDELAYPHASE > sampleREVPHASE)
+  if (sampleREVDELAYPHASE < sampleREVPHASE)
     phaseReflection = -phaseReflection;
   return phaseReflection;
 }
@@ -183,7 +183,7 @@ float SWRMeter::reflectionPhase(void)
 float SWRMeter::currentPhase(void)
 {
   float phaseCur = FM_PI*((float)sampleCURPHASE)/((float)sampleMAXVOLTAGELEVEL);
-  if (sampleCURDELAYPHASE > sampleCURPHASE)
+  if (sampleCURDELAYPHASE < sampleCURPHASE)
     phaseCur = -phaseCur;
   return phaseCur;
 }

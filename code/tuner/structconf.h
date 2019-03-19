@@ -24,12 +24,17 @@ freely, subject to the following restrictions:
 typedef enum { STRUCTCONF_INT32=0, STRUCTCONF_INT16, STRUCTCONF_INT8, STRUCTCONF_INT32_HEX, STRUCTCONF_INT16_HEX, STRUCTCONF_INT8_HEX,
     STRUCTCONF_FLOAT, STRUCTCONF_STRING } structconf_datatype;
 
+#define STRUCTCONF_INTMIN -2147483648
+#define STRUCTCONF_INTMAX 2147483647
+
 typedef struct _structure_entry
 { 
    const char          *parmname;
    structconf_datatype  dtype;
    uint16_t             offset;
    uint16_t             nentries;
+   int                  minval;
+   int                  maxval;
    const char          *description;
 } structure_entry;
 

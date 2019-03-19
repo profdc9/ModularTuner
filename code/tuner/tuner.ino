@@ -49,6 +49,10 @@ float last_frequency = 0;
 unsigned int      last_update_tick;
 int               current_memory = -1;
 bool              needs_update = false;
+bool              tuner_bypass_mode = true;
+tunerr_condition  tunerr_last = TUNERR_SUCCESS;
+
+const char *tuner_error_condition_string[5] = { "SUCCESS", "HIGH SWR", "POWER LOSS", "POWER HIGH", "ABORTED" };
 
 swr_state last_swr_state = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, Complex(0.0f, 0.0f), Complex(0.0f, 0.0f) };
 
@@ -56,7 +60,7 @@ SWRMeter swrMeter;
 //InvFrequencyCounter invCounter(PB8,PB9,1u);
 FrequencyCounter freqCounter(PB9,16u,1,10000);
 
-tuner_parameters tpar = { {"NONE"}, 12.0f, 0.5f, 15.0f, 0.2f, 0.25f, 1.1f, 10, 0,
+tuner_parameters tpar = { {"NONE"}, 12.0f, 0.5f, 15.0f, 0.2f, 0.25f, 1.05f, 10, 0,
                           { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
                           { 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
                           { 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -67,22 +71,22 @@ tuner_parameters tpar = { {"NONE"}, 12.0f, 0.5f, 15.0f, 0.2f, 0.25f, 1.1f, 10, 0
 };
 
 const structure_entry tuner_parameter_fields[16] =
-{ { "LABEL",           STRUCTCONF_STRING,     offsetof(tuner_parameters,tune_label), sizeof(tpar.tune_label), NULL },
-  { "POWERCALIB",      STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_power_calib), 1, NULL },
-  { "MINTUNINGPOWER",  STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_min_power), 1, NULL },
-  { "MAXTUNINGPOWER",  STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_max_power), 1, NULL },
-  { "MAXREFLECTION",   STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_max_ref), 1, NULL },
-  { "RETUNETHRESHOLD", STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_retune_thr), 1, NULL },
-  { "SEARCHRELAXATION",STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_search_relaxation), 1, NULL },
-  { "SEARCHKHZSPACING",STRUCTCONF_INT16,      offsetof(tuner_parameters,tune_search_khz_spacing), 1, NULL },
-  { "RIGCONTROL",      STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_rig_control), 1, "0=NONE 1=ICOM 2=KENWOOD 3=YAESU" },
-  { "SWITCHBYPASS",    STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_switchstate_bypass), TUNE_SWITCHSTATE_PER_STATE*3, NULL },
-  { "SWITCHSTATE1",    STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_switchstate_1), TUNE_SWITCHSTATE_PER_STATE*3, NULL },
-  { "SWITCHSTATE2",    STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_switchstate_2), TUNE_SWITCHSTATE_PER_STATE*3, NULL },
-  { "SWITCHSTATE3",    STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_switchstate_3), TUNE_SWITCHSTATE_PER_STATE*3, NULL },
-  { "SWITCHSTATE4",    STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_switchstate_4), TUNE_SWITCHSTATE_PER_STATE*3, NULL },
-  { "SWITCHSTATE5",    STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_switchstate_5), TUNE_SWITCHSTATE_PER_STATE*3, NULL },
-  { "SWITCHSTATE6",    STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_switchstate_6), TUNE_SWITCHSTATE_PER_STATE*3, NULL },
+{ { "LABEL",           STRUCTCONF_STRING,     offsetof(tuner_parameters,tune_label), sizeof(tpar.tune_label), STRUCTCONF_INTMIN, STRUCTCONF_INTMAX, NULL },
+  { "POWERCALIB",      STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_power_calib), 1, 0, STRUCTCONF_INTMAX,  },
+  { "MINTUNINGPOWER",  STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_min_power), 1, 0,  STRUCTCONF_INTMAX, NULL },
+  { "MAXTUNINGPOWER",  STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_max_power), 1, 0, STRUCTCONF_INTMAX, NULL },
+  { "MAXREFLECTION",   STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_max_ref), 1, 0, 1, NULL },
+  { "RETUNETHRESHOLD", STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_retune_thr), 1, 0, 1, NULL },
+  { "SEARCHRELAXATION",STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_search_relaxation), 1, 1, 2, NULL },
+  { "SEARCHKHZSPACING",STRUCTCONF_INT16,      offsetof(tuner_parameters,tune_search_khz_spacing), 1, 0, 100, NULL },
+  { "RIGCONTROL",      STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_rig_control), 1, 0, 3, "0=NONE 1=ICOM 2=KENWOOD 3=YAESU" },
+  { "SWITCHBYPASS",    STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_switchstate_bypass), TUNE_SWITCHSTATE_PER_STATE*3, 0, 255, NULL },
+  { "SWITCHSTATE1",    STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_switchstate_1), TUNE_SWITCHSTATE_PER_STATE*3, 0, 255, NULL },
+  { "SWITCHSTATE2",    STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_switchstate_2), TUNE_SWITCHSTATE_PER_STATE*3, 0, 255, NULL },
+  { "SWITCHSTATE3",    STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_switchstate_3), TUNE_SWITCHSTATE_PER_STATE*3, 0, 255, NULL },
+  { "SWITCHSTATE4",    STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_switchstate_4), TUNE_SWITCHSTATE_PER_STATE*3, 0, 255, NULL },
+  { "SWITCHSTATE5",    STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_switchstate_5), TUNE_SWITCHSTATE_PER_STATE*3, 0, 255, NULL },
+  { "SWITCHSTATE6",    STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_switchstate_6), TUNE_SWITCHSTATE_PER_STATE*3, 0, 255, NULL },
 };
 
 tuner_cache_entry tce[TUNER_CACHE_ENTRIES];
@@ -182,6 +186,7 @@ void setup() {
     initialize_tuner_cache_entries();
     initialize_default_relays();
   }
+ tuner_set_bypass();
  Serial.begin(115200); 
 
 #ifdef USER_INTERFACE
@@ -200,8 +205,8 @@ void setup() {
   initialize_rig_control();
 }
 
-/*
 
+/*
 void testLnetwork(void)
 {
   LNetwork lNetwork(50.0f,3500.0f,2000.0f,10000.0f);
@@ -212,11 +217,14 @@ void testLnetwork(void)
   Serial.println("series shunt series shunt");
   doubleL.debugPrintSolutions();
 }
+*/
+
 
 void testFrequencyCounter(void)
 {
     static int cnt=0;
-    Serial.println(String("starting acquisition ")+cnt);
+    Serial.print("Starting acquisition ");
+    Serial.println(cnt);
     cnt++;
     freqCounter.armCounter();
     int i;
@@ -238,6 +246,7 @@ void testFrequencyCounter(void)
 }
 
 
+/*
 void testEEPROMobjectstore(void)
 {
    int inct; 
@@ -493,13 +502,13 @@ void printSWRState(swr_state *state)
   Serial.println(s);
 }
 
-int minimize_swr_step(RelayModule *r, int relstep, float &currentRef)
+tunerr_condition minimize_swr_step(RelayModule *r, int relstep, float &currentRef, int &currentValue)
 {
   int dir;
   int stepsize = (r->getMaxValue() - r->getMinValue()) >> relstep;
-  int currentValue = r->getCurrentValue();
+  currentValue = r->getCurrentValue();
   swrMeter.sampleSWR();
-  if (check_for_rig_tune_abort()) return -1;
+  if (check_for_rig_tune_abort()) return TUNERR_ABORT;
   currentRef = swrMeter.revPower() / swrMeter.fwdPower();
   for (dir=1;dir>=-1;dir-=2)
   {
@@ -509,18 +518,17 @@ int minimize_swr_step(RelayModule *r, int relstep, float &currentRef)
     {
        nextval += stepsize * dir;
        int lastval = r->getCurrentValue();
-//       DEBUGMSG("nextval=%d %d",nextval,lastval);
        r->setCurrentValue(nextval,dir < 0 ? 1 : 2);
        if (r->getCurrentValue() == lastval) break;
        delay(r->getRelaySettleTime());
        swrMeter.sampleSWR();
-       if (check_for_rig_tune_abort()) return -1;
+       if (check_for_rig_tune_abort()) return TUNERR_ABORT;
        float fwd = swrMeter.fwdPower();
        float rev = swrMeter.revPower();
        float testRef = rev/fwd;
        float adjfwd = adjust_pwr(fwd);
-       if ((adjfwd < tpar.tune_min_power) || (adjfwd > tpar.tune_max_power))
-          return -1;
+       if (adjfwd < tpar.tune_min_power) return TUNERR_POWERLOSS;
+       if (adjfwd > tpar.tune_max_power) return TUNERR_POWERHIGH;
        DEBUGMSG("stepsize=%d dir=%d currentValue=%d nextval=%d actval=%d ref=%04f cref=%04f",stepsize,dir,currentValue,nextval,r->getCurrentValue(),float2int32(testRef),float2int32(currentRef));
        nextval = r->getCurrentValue();
        if (testRef < currentRef)
@@ -535,7 +543,7 @@ int minimize_swr_step(RelayModule *r, int relstep, float &currentRef)
   }
   r->setCurrentValue(currentValue);
   delay(r->getRelaySettleTime());
-  return currentValue;
+  return TUNERR_SUCCESS;
 }
 
 void tuner_set_switches(uint8_t *u)
@@ -553,11 +561,27 @@ void tuner_set_switches(uint8_t *u)
   }
 }
 
-int exhaustive_tune(bool withoutdefault)
+void tuner_zero_adjustable_relays(void)
+{
+   for (int r=0;r<TUNER_MAX_RELAYS;r++) 
+   {
+      RelayModule *rc = &relays[r];
+      if (rc->getAutoTune()) rc->setCurrentValue(0);
+   }      
+}
+
+void tuner_set_bypass(void)
+{
+  tuner_zero_adjustable_relays();
+  tuner_set_switches(tpar.tune_switchstate_bypass);
+  tuner_bypass_mode = true;
+}
+
+tunerr_condition exhaustive_tune(bool withoutdefault)
 {
   int s,n,r;
   float currentRef;
-  for (s=withoutdefault ? 1 : 0;s<5;s++)
+  for (s=withoutdefault ? 1 : 0;s<7;s++)
   {
     switch (s)
     {
@@ -580,15 +604,7 @@ int exhaustive_tune(bool withoutdefault)
                tuner_set_switches(tpar.tune_switchstate_6);
                break;           
     }
-    if (s > 0)
-    {
-      for (int r=0;r<TUNER_MAX_RELAYS;r++) 
-      {
-         RelayModule *rc = &relays[r];
-         if (!rc->getAutoTune()) continue;
-         rc->setCurrentValue(0);   
-      }      
-    }
+    if (s > 0) tuner_zero_adjustable_relays();
     for (n=2;n<8;n++)
     {
       bool improved;
@@ -601,17 +617,19 @@ int exhaustive_tune(bool withoutdefault)
           if (!rc->getAutoTune()) continue;
           DEBUGMSG("pass=%d step=%d relay=%d",s,n,r);
           int val = rc->getCurrentValue();
-          if (minimize_swr_step(rc,n,currentRef) < 0) return -1;
+          int currentval;
+          tunerr_condition err = minimize_swr_step(rc,n,currentRef,currentval);
+          if (err != TUNERR_SUCCESS) return err;
           if (val != rc->getCurrentValue())
               improved = true;
           if (currentRef < tpar.tune_max_ref)
-              return 0;
+              return TUNERR_SUCCESS;
         }
       } while (improved);
       DEBUGMSG("pass=%d capacitor Inductance=%d nH capacitance=%d pF",s,relays[0].getCurrentValue(),relays[1].getCurrentValue());
     }
   } 
-  return -1;
+  return TUNERR_HIGHSWR;
 }
 
 int tuner_search_cache(uint16_t entry_hz, uint16_t width)
@@ -641,7 +659,6 @@ int tuner_cache_move_to_top(uint16_t entry_hz)
 
 int tuner_update_cache(uint16_t entry_hz, uint16_t parms[], uint16_t switch_state)
 {
-  int p;
   if (tuner_cache_move_to_top(entry_hz) < 0)
   {
     for (int n = TUNER_CACHE_ENTRIES-1;n>0;n--)
@@ -649,8 +666,8 @@ int tuner_update_cache(uint16_t entry_hz, uint16_t parms[], uint16_t switch_stat
   }
   tce[0].frequency_khz = entry_hz;
   tce[0].switch_state = switch_state;
-  for (p=0;p<TUNER_CACHE_NPARMS;p++)
-      tce[0].parm[p] = parms[p];
+  for (int n=0;n<TUNER_CACHE_NPARMS;n++)
+      tce[0].parm[n] = parms[n];
   trigger_update();
   return 0;
 }
@@ -659,7 +676,7 @@ int tuner_update_current_state(uint16_t freqkhz)
 {
   int p;
   uint16_t switch_state = 0;
-  uint16_t parm[p];
+  uint16_t parm[TUNER_CACHE_NPARMS];
   for (p=0;p<TUNER_CACHE_NPARMS;p++)
   {
     RelayModule *r = &relays[p];
@@ -702,8 +719,9 @@ bool check_for_rig_tune_initiation(void)
     {
         int pinSet = digitalRead(PB13);
         if (pinSet == HIGH) return false;
-        delay(50);
-        return (digitalRead(PB13) == LOW ? true : false);
+        delay(90);
+        pinSet = digitalRead(PB13);
+        return pinSet == HIGH ? false : true;
     }
     case TUNER_RIG_CONTROL_KENWOOD:
         break;
@@ -734,6 +752,7 @@ bool send_rig_tune_power_control(bool power, bool success)
     case TUNER_RIG_CONTROL_ICOM:
         if (power)
         {
+          delay(250);
           digitalWrite(PB12,LOW);
           delay(200);
         }
@@ -742,11 +761,11 @@ bool send_rig_tune_power_control(bool power, bool success)
           digitalWrite(PB12,HIGH);
           if (!success)
           {
-            delay(15);
+            delay(20);
             digitalWrite(PB12,LOW);
             delay(200);
             digitalWrite(PB12,HIGH);
-          }
+          } 
         }
         return true;
     case TUNER_RIG_CONTROL_KENWOOD:
@@ -768,8 +787,7 @@ void tuner_task(void)
   {
      swrMeter.sampleSWR();
      fwd = swrMeter.fwdPower();
-     if (adjust_pwr(fwd) < tpar.tune_min_power)
-        return;
+     if (adjust_pwr(fwd) < tpar.tune_min_power) return;
    }
   float freq;
   uint16_t freqkhz;
@@ -792,6 +810,7 @@ void tuner_task(void)
   if (adjfwd > tpar.tune_max_power)
   {
       if (rigtune) send_rig_tune_power_control(false,false);
+      tunerr_last = TUNERR_POWERHIGH;
       return;
   }
   float ref = swrMeter.revPower()/fwd;
@@ -800,11 +819,25 @@ void tuner_task(void)
     DEBUGMSG("Tuning: initial reflection=%04f",float2int32(ref));
     uint16_t freqkhz = (uint16_t) floorf((freq + 499.0f) / 1000.0f);
     if (!rigtune) rigtune = send_rig_tune_power_control(true,false);
-    if (success=(exhaustive_tune(tuner_restore_state(freqkhz) < 0 ? true : false) >= 0))
+    bool withoutdefault = tuner_restore_state(freqkhz) < 0 ? true : false;
+    tunerr_condition err;
+    tunerr_last = exhaustive_tune(withoutdefault);
+    success = false;
+    switch (tunerr_last)
     {
+      case TUNERR_SUCCESS:
         swrMeter.sampleSWR();
         updateSWRState(&last_swr_state);
         tuner_update_current_state(freqkhz);
+        success = true;
+        tuner_bypass_mode = false;
+        break;
+      case TUNERR_HIGHSWR:
+      case TUNERR_ABORT:
+      case TUNERR_POWERLOSS:
+      case TUNERR_POWERHIGH:
+        tuner_set_bypass();
+        break;
     }
   }
   if (tuner_ready == TUNER_READY_FORCETUNE)
@@ -846,7 +879,7 @@ int recall_cache_cmd(int args, tinycl_parameter* tp, void *v)
 }
 
 const tuner_flash_header flash_header = { TUNER_MAGIC_1, TUNER_MAGIC_2 };
-const unsigned int flash_pages[] = { 0x08018000u, 0x08019000u, 0x0801A000u, 0x0801B000u, 0x0801C000u, 0x0801D000u, 0x0801E000u, 0x0801F000u };
+const unsigned int flash_pages[] = { 0x0801C000u, 0x0801D000u, 0x0801E000u, 0x0801F000u };
 #define NUM_FLASH_PAGES ((sizeof(flash_pages)/sizeof(void *)))
 
 void tuner_clear_update(int n)
@@ -933,18 +966,26 @@ int readstate_cmd(int args, tinycl_parameter* tp, void *v)
   return 1;
 }
 
+int bypass_cmd(int args, tinycl_parameter* tp, void *v)
+{
+    tuner_set_bypass();
+    Serial.println("Bypass mode set");
+}
+
 int status_cmd(int args, tinycl_parameter* tp, void *v)
 {
    int p;
    char s[80];
    if (current_memory>0)
    {
-      mini_snprintf(s,sizeof(s)-1,"Current Memory: %u Saved? %c",current_memory,needs_update ? 'N' : 'Y');
+      mini_snprintf(s,sizeof(s)-1,"Current Memory:  %u Saved? %c",current_memory,needs_update ? 'N' : 'Y');
       Serial.println(s);
    }
-   mini_snprintf(s,sizeof(s)-1,"Tuner status:   %s",tuner_state_string[tuner_ready]);
+   mini_snprintf(s,sizeof(s)-1,   "Tuner status:    %s  Bypass: %c",tuner_state_string[tuner_ready],tuner_bypass_mode ? 'Y' : 'N');
    Serial.println(s);
-   mini_snprintf(s,sizeof(s)-1,"Last frequency: %f",float2int32(last_frequency));
+   mini_snprintf(s,sizeof(s)-1,   "Tuned condition: %s",tuner_error_condition_string[(int)tunerr_last]);
+   Serial.println(s);
+   mini_snprintf(s,sizeof(s)-1,   "Last frequency:  %f",float2int32(last_frequency));
    Serial.println(s);
    printSWRState(&last_swr_state);
    for (p=0;p<TUNER_MAX_RELAYS;p++)
@@ -965,6 +1006,7 @@ int help_cmd(int args, tinycl_parameter *tp, void *v);
 const tinycl_command tcmds[] =
 {
   { "STATUS", "Tuner status", status_cmd, { TINYCL_PARM_END } },
+  { "BYPASS", "Tuner placed into bypass", bypass_cmd, { TINYCL_PARM_END } },
   { "DEBUG", "Debugging on/off", debug_cmd, { TINYCL_PARM_INT, TINYCL_PARM_END } },
   { "TUNE", "Do a tuning cycle", tune_cmd, { TINYCL_PARM_INT, TINYCL_PARM_END } },
   { "SETRELAY", "Set Relay Data", set_relay_data_cmd, { TINYCL_PARM_INT, TINYCL_PARM_STR, TINYCL_PARM_END } },

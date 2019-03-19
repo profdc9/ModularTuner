@@ -25,7 +25,7 @@ freely, subject to the following restrictions:
 
 typedef enum { TUNER_READY_STANDBY=0, TUNER_READY_FORCETUNE=1, TUNER_READY_DISABLE=2 } tuner_ready_state;
 
-#define TUNER_UPDATE_TICKS 100000u
+#define TUNER_UPDATE_TICKS 300000u
 
 #define TUNER_MAX_RELAYS 8
 
@@ -39,6 +39,8 @@ typedef struct _tuner_flash_header
 } tuner_flash_header;
 
 #define TUNE_SWITCHSTATE_PER_STATE 6
+
+typedef enum { TUNERR_SUCCESS=0, TUNERR_HIGHSWR=1, TUNERR_POWERLOSS=2, TUNERR_POWERHIGH=3, TUNERR_ABORT=4 } tunerr_condition;
 
 typedef enum { TUNER_NO_RIG_CONTROL=0, TUNER_RIG_CONTROL_ICOM=1, TUNER_RIG_CONTROL_KENWOOD=2, TUNER_RIG_CONTROL_YAESU=3 } tuner_rig_control_type;
 
@@ -85,9 +87,8 @@ typedef struct _swr_state
 } swr_state;
 
 extern tuner_cache_entry tce[TUNER_CACHE_ENTRIES];
-
 extern tuner_parameters tpar;
-
 int tuner_readstate(int n);
+void tuner_set_bypass(void);
 
 #endif  /* _TUNER_H */

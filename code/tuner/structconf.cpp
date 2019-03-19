@@ -26,20 +26,6 @@ freely, subject to the following restrictions:
 #include "mini-printf.h"
 #include "debugmsg.h"
 
-/*
- * typedef struct _structure_entry
-{ 
-   const char          *parmname;
-   structconf_datatype  dtype;
-   uint16_t             offset;
-   uint16_t             nentries;
-   const char          *description;
-} structure_entry;
-
-typedef enum { STRUCTCONF_INT32=0, STRUCTCONF_INT16, STRUCTCONF_INT8, STRUCTCONF_INT32_HEX, STRUCTCONF_INT16_HEX, STRUCTCONF_INT8_HEX,
-    STRUCTCONF_FLOAT, STRUCTCONF_STRING } structconf_datatype;
-*/
-
 void se_printchar(char c)
 {
   Serial.print(c);
@@ -213,7 +199,10 @@ void se_set_structure_field(int nentries, const structure_entry se[], void *str,
             {
               float num;
               if (char2float(&c,&num))
-                ((float *)dptr)[ct] = num;
+              {
+                if ((num >= s->minval) && (num <= s->maxval))
+                  ((float *)dptr)[ct] = num;
+              }
               else break;
               if (*c == ',')
               {
@@ -248,9 +237,12 @@ void se_set_structure_field(int nentries, const structure_entry se[], void *str,
                    num = num * 10 + (*c++ - '0');            
               }
               if (neg) num = -num;
-              if ((s->dtype == STRUCTCONF_INT32) || (s->dtype == STRUCTCONF_INT32_HEX)) ((uint32_t *)dptr)[ct] = num;
-              if ((s->dtype == STRUCTCONF_INT16) || (s->dtype == STRUCTCONF_INT16_HEX)) ((uint16_t *)dptr)[ct] = num;
-              if ((s->dtype == STRUCTCONF_INT8) || (s->dtype == STRUCTCONF_INT8_HEX)) ((uint8_t *)dptr)[ct] = num;
+              if ((num >= s->minval) && (num <= s->maxval))
+              {
+                if ((s->dtype == STRUCTCONF_INT32) || (s->dtype == STRUCTCONF_INT32_HEX)) ((uint32_t *)dptr)[ct] = num;
+                if ((s->dtype == STRUCTCONF_INT16) || (s->dtype == STRUCTCONF_INT16_HEX)) ((uint16_t *)dptr)[ct] = num;
+                if ((s->dtype == STRUCTCONF_INT8) || (s->dtype == STRUCTCONF_INT8_HEX)) ((uint8_t *)dptr)[ct] = num;
+              }
               if (*c == ',')
               {
                  c++; ct++;
