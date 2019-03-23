@@ -166,6 +166,7 @@ void LiquidCrystal_I2C::setBacklightPin ( uint8_t value, t_backlighPol pol = POS
 // setBacklight
 void LiquidCrystal_I2C::setBacklight( uint8_t value ) 
 {
+#ifndef LCD_ATTACHED_BUTTONS
    // Check if backlight is available
    // ----------------------------------------------------
    if ( _backlightPinMask != 0x0 )
@@ -183,8 +184,32 @@ void LiquidCrystal_I2C::setBacklight( uint8_t value )
       }
       _i2cio.write( _backlightStsMask );
    }
+#else
+      _backlightStsMask = _backlightPinMask;
+      _i2cio.write( _backlightStsMask );
+#endif
 }
 
+#ifdef LCD_ATTACHED_BUTTONS
+//
+// read Buttons
+uint8_t LiquidCrystal_I2C::readButtons ( void )
+{
+      uint8_t buttons = 0, readstate;
+	  _i2cio.write ((~_En) & (~_backlightStsMask));
+      _i2cio.portMode ( INPUT );  // Set the entire IO extender to INPUT
+	  readstate = _i2cio.read();
+	  _i2cio.portMode ( OUTPUT );
+	  _i2cio.write (~_En);
+	  if (!(readstate & _Rs)) buttons |= LCD_BUTTON_1;
+	  if (!(readstate & _Rw)) buttons |= LCD_BUTTON_2;
+	  if (!(readstate & _data_pins[0])) buttons |= LCD_BUTTON_3;
+	  if (!(readstate & _data_pins[1])) buttons |= LCD_BUTTON_4;
+	  if (!(readstate & _data_pins[2])) buttons |= LCD_BUTTON_5;
+	  if (!(readstate & _data_pins[3])) buttons |= LCD_BUTTON_6;
+	  return buttons;
+}
+#endif
 
 // PRIVATE METHODS
 // ---------------------------------------------------------------------------

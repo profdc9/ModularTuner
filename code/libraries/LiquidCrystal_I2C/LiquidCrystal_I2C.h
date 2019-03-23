@@ -25,6 +25,8 @@
 //
 //
 // @author F. Malpartida - fmalpartida@gmail.com
+//
+// @author D. Marks - modified to add button controls
 // ---------------------------------------------------------------------------
 #ifndef LiquidCrystal_I2C_h
 #define LiquidCrystal_I2C_h
@@ -34,6 +36,7 @@
 #include "I2CIO.h"
 #include "LCD.h"
 
+#define LCD_ATTACHED_BUTTONS
 
 class LiquidCrystal_I2C : public LCD
 {
@@ -144,6 +147,25 @@ public:
     */
    void setBacklight ( uint8_t value );
 
+#ifdef LCD_ATTACHED_BUTTONS
+   /*!
+    @function
+    @abstract   Read the buttons in the buttons attached mode.
+    @discussion In this mode, the backlight pin is disabled and 
+	attached to the buttons.
+
+    @param      value: pressed (1)/not pressed (0) state of each button
+    */
+   uint8_t readButtons ( void );
+   
+#define LCD_BUTTON_1  0x01
+#define LCD_BUTTON_2  0x02
+#define LCD_BUTTON_3  0x04
+#define LCD_BUTTON_4  0x08
+#define LCD_BUTTON_5  0x10
+#define LCD_BUTTON_6  0x20
+#endif
+
 private:
 
    /*!
@@ -188,7 +210,6 @@ private:
     or write operation.
     */
    void pulseEnable(uint8_t);
-
 
    uint8_t _Addr;             // I2C Address of the IO expander
    uint8_t _backlightPinMask; // Backlight IO pin mask
