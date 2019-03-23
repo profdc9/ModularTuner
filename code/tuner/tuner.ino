@@ -24,27 +24,21 @@ freely, subject to the following restrictions:
 
 #include "tuner.h"
 #include "swrmeter.h"
-#include "invFrequencyCounter.h"
 #include "FrequencyCounter.h"
-#include "ButtonPanel.h"
 #include "LNetwork.h"
-#include "DoubleL.h"
 #include "RelayModule.h"
 #include "complex.h"
 #include "debugmsg.h"
-//#include "EEPROMobjectstore.h"
 #include "mini-printf.h"
 #include "tinycl.h"
 #include "structconf.h"
 #include "flashstruct.h"
-
-#include <Wire.h>
-#include <LiquidCrystal_I2C.h>
+#include "interface.h"
 
 tuner_ready_state tuner_ready = TUNER_READY_STANDBY;
 const char *tuner_state_string[3] = { "STANDBY", "FORCE TUNE", "DISABLED" };
 
-float last_frequency = 0;
+const char *tuner_short_state_string[3] = { "SBY", "FTN", "DI" };
 
 unsigned int      last_update_tick;
 int               current_memory = -1;
@@ -54,10 +48,9 @@ tunerr_condition  tunerr_last = TUNERR_SUCCESS;
 
 const char *tuner_error_condition_string[5] = { "SUCCESS", "HIGH SWR", "POWER LOSS", "POWER HIGH", "ABORTED" };
 
-swr_state last_swr_state = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, Complex(0.0f, 0.0f), Complex(0.0f, 0.0f) };
+swr_state last_swr_state = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, Complex(0.0f, 0.0f), Complex(0.0f, 0.0f), 0.0f };
 
 SWRMeter swrMeter;
-//InvFrequencyCounter invCounter(PB8,PB9,1u);
 FrequencyCounter freqCounter(PB9,16u,1,10000);
 
 tuner_parameters tpar = { {"NONE"}, 12.0f, 0.5f, 15.0f, 0.2f, 0.25f, 1.05f, 10, 0,
@@ -90,16 +83,7 @@ const structure_entry tuner_parameter_fields[16] =
 };
 
 tuner_cache_entry tce[TUNER_CACHE_ENTRIES];
-
 RelayModule relays[TUNER_MAX_RELAYS];
-
-#undef USER_INTERFACE
-
-#ifdef USER_INTERFACE
-const byte button_list[4] = {PB12,PB13,PB14,PB15};
-LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
-ButtonPanel buttonPanel(4,button_list,10,10);
-#endif
 
 #define DEMCR           (*((volatile uint32_t *)0xE000EDFC))
 #define DWT_CTRL        (*(volatile uint32_t *)0xe0001000)
@@ -107,11 +91,6 @@ ButtonPanel buttonPanel(4,button_list,10,10);
 #define DWT_CYCCNT      ((volatile uint32_t *)0xE0001004)
 #define CPU_CYCLES      *DWT_CYCCNT
 #define DEMCR_TRCENA    0x01000000
-
-float ref_to_swr(float ref)
-{
-   return (1.0f+ref)/(1.0f-ref); 
-}
 
 void initialize_tuner_cache_entries(void)
 {
@@ -189,22 +168,11 @@ void setup() {
  tuner_set_bypass();
  Serial.begin(115200); 
 
-#ifdef USER_INTERFACE
-  buttonPanel.setup();
-  // initialize the LCD
-  lcd.begin(40,4);  
-  // Turn on the blacklight and print a message.
-  lcd.setBacklight(1);
-  lcd.clear();
-  lcd.setCursor(0,1);
-  interruptButtons = &buttonPanel;
-  freqCounter.setAuxFunction(pollButtons_interrupt);
+#ifdef TUNER_USER_INTERFACE
+  interface_initialize();
 #endif
-  //EEPROMstore.setup(2);
-  //EEPROMstore.formatBank(0);
   initialize_rig_control();
 }
-
 
 /*
 void testLnetwork(void)
@@ -220,6 +188,7 @@ void testLnetwork(void)
 */
 
 
+/*
 void testFrequencyCounter(void)
 {
     static int cnt=0;
@@ -244,7 +213,7 @@ void testFrequencyCounter(void)
     //freqCounter.stopCounter();
    // delay(100);
 }
-
+*/
 
 /*
 void testEEPROMobjectstore(void)
@@ -280,6 +249,26 @@ float adjust_pwr(float rawpwr)
   return tpar.tune_power_calib*rawpwr*rawpwr;
 }
 
+void tuner_set_state(tuner_ready_state p)
+{
+  tuner_ready = p;
+}
+
+tuner_ready_state tuner_get_state(void)
+{
+  return tuner_ready;
+}
+
+const char *tuner_ready_string(tuner_ready_state p)
+{
+  return tuner_state_string[tuner_ready];
+}
+
+const char *tuner_ready_short_string(tuner_ready_state p)
+{
+  return tuner_short_state_string[tuner_ready];
+}
+
 int tune_cmd(int args, tinycl_parameter *tp, void *v)
 {
   int p = tp[0].ti.i;
@@ -288,9 +277,9 @@ int tune_cmd(int args, tinycl_parameter *tp, void *v)
     Serial.println("Invalid tuner state");
   } else
   {
-    tuner_ready = (tuner_ready_state) (p-1);
+    tuner_set_state((tuner_ready_state) (p-1));
     Serial.print("Tune State: ");
-    Serial.println(tuner_state_string[tuner_ready]);
+    Serial.println(tuner_ready_string(tuner_get_state()));
   }
   return 1;
 }
@@ -369,7 +358,7 @@ void trigger_update(void)
   if (!needs_update)
   {
     needs_update = true;
-    last_update_tick = freqCounter.cumulativeTicks();
+    last_update_tick = millis();
   }
 }
 
@@ -479,7 +468,7 @@ int show_cache_cmd(int args, tinycl_parameter *tp, void *v)
   return 1;
 }
 
-void updateSWRState(swr_state *state)
+void updateSWRState(swr_state *state, float freq)
 {
   state->fwd = swrMeter.fwdPower();
   state->rev = swrMeter.revPower();
@@ -489,11 +478,14 @@ void updateSWRState(swr_state *state)
   state->curAngle = RAD2DEG(swrMeter.currentPhase());
   state->refCoef = swrMeter.reflectionCoefficient();
   state->impedance = swrMeter.calculateImpedance();
+  if (freq > 0.0f) state->last_frequency = freq;
 }
 
 void printSWRState(swr_state *state)
 {
   char s[100];
+  mini_snprintf(s,sizeof(s)-1,"Frequency = %f",float2int32(state->last_frequency));
+  Serial.println(s);
   mini_snprintf(s,sizeof(s)-1,"Fwd power = %04f  Rev power = %04f  Cur Power = %04f",float2int32(adjust_pwr(state->fwd)),float2int32(adjust_pwr(state->rev)),float2int32(state->cur));
   Serial.println(s);
   mini_snprintf(s,sizeof(s)-1,"Ref Angle = %04f  Cur Angle = %04f  SWR = %02f",float2int32(state->refAngle),float2int32(state->curAngle),float2int32(state->swr));
@@ -776,6 +768,13 @@ bool send_rig_tune_power_control(bool power, bool success)
   return false;  
 }
 
+void tuner_update_swr_interface(void)
+{
+#ifdef TUNER_USER_INTERFACE
+  interface_update_swr(&last_swr_state);
+#endif
+}
+
 void tuner_task(void)
 {  
   bool rigtune = false;
@@ -805,12 +804,12 @@ void tuner_task(void)
       if (rigtune) send_rig_tune_power_control(false,false);
       return;
   }
-  last_frequency = freq;
-  updateSWRState(&last_swr_state);
+  updateSWRState(&last_swr_state, freq);
   if (adjfwd > tpar.tune_max_power)
   {
       if (rigtune) send_rig_tune_power_control(false,false);
       tunerr_last = TUNERR_POWERHIGH;
+      tuner_update_swr_interface();
       return;
   }
   float ref = swrMeter.revPower()/fwd;
@@ -827,7 +826,7 @@ void tuner_task(void)
     {
       case TUNERR_SUCCESS:
         swrMeter.sampleSWR();
-        updateSWRState(&last_swr_state);
+        updateSWRState(&last_swr_state, 0.0f);
         tuner_update_current_state(freqkhz);
         success = true;
         tuner_bypass_mode = false;
@@ -843,6 +842,7 @@ void tuner_task(void)
   if (tuner_ready == TUNER_READY_FORCETUNE)
      tuner_ready = TUNER_READY_STANDBY;
   if (rigtune) send_rig_tune_power_control(false,success);
+  tuner_update_swr_interface();
 }
 
 int save_cache_cmd(int args, tinycl_parameter* tp, void *v)
@@ -885,7 +885,7 @@ const unsigned int flash_pages[] = { 0x0801C000u, 0x0801D000u, 0x0801E000u, 0x08
 void tuner_clear_update(int n)
 {
   current_memory = n;
-  last_update_tick = freqCounter.cumulativeTicks();
+  last_update_tick = millis();
   needs_update = false;  
 }
 
@@ -985,8 +985,6 @@ int status_cmd(int args, tinycl_parameter* tp, void *v)
    Serial.println(s);
    mini_snprintf(s,sizeof(s)-1,   "Tuned condition: %s",tuner_error_condition_string[(int)tunerr_last]);
    Serial.println(s);
-   mini_snprintf(s,sizeof(s)-1,   "Last frequency:  %f",float2int32(last_frequency));
-   Serial.println(s);
    printSWRState(&last_swr_state);
    for (p=0;p<TUNER_MAX_RELAYS;p++)
    {
@@ -1000,6 +998,7 @@ int status_cmd(int args, tinycl_parameter* tp, void *v)
    }
    return 1;
 }
+
 
 int help_cmd(int args, tinycl_parameter *tp, void *v);
 
@@ -1036,7 +1035,7 @@ void save_state_task(void)
   unsigned int curtick, diftick;
   if (current_memory <= 0) return;
   if (!needs_update) return;
-  curtick = freqCounter.cumulativeTicks();
+  curtick = millis();
   diftick = curtick - last_update_tick;
   if (diftick < TUNER_UPDATE_TICKS) return;
   tuner_writestate(current_memory);
@@ -1052,4 +1051,7 @@ void loop() {
   }
   tuner_task();
   save_state_task();
+#ifdef TUNER_USER_INTERFACE
+  interface_task();
+#endif
 }

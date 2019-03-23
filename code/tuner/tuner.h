@@ -23,6 +23,9 @@ freely, subject to the following restrictions:
 
 #include "complex.h"
 
+/* Define if the LCD is attached */
+#define TUNER_USER_INTERFACE
+
 typedef enum { TUNER_READY_STANDBY=0, TUNER_READY_FORCETUNE=1, TUNER_READY_DISABLE=2 } tuner_ready_state;
 
 #define TUNER_UPDATE_TICKS 300000u
@@ -84,11 +87,17 @@ typedef struct _swr_state
   float curAngle;
   Complex refCoef;
   Complex impedance;
+  float last_frequency;
 } swr_state;
 
 extern tuner_cache_entry tce[TUNER_CACHE_ENTRIES];
 extern tuner_parameters tpar;
 int tuner_readstate(int n);
 void tuner_set_bypass(void);
+float adjust_pwr(float rawpwr);
+void tuner_set_state(tuner_ready_state p);
+tuner_ready_state tuner_get_state(void);
+const char *tuner_ready_string(tuner_ready_state p);
+const char *tuner_ready_short_string(tuner_ready_state p);
 
 #endif  /* _TUNER_H */

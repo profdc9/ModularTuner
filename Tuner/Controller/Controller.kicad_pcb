@@ -3,9 +3,9 @@
   (general
     (links 401)
     (no_connects 0)
-    (area 52.252381 23.9975 155.74762 130.223619)
+    (area 53.924999 27.924999 154.075001 128.075001)
     (thickness 1.6)
-    (drawings 55)
+    (drawings 57)
     (tracks 1681)
     (zones 0)
     (modules 180)
@@ -37,7 +37,7 @@
   )
 
   (setup
-    (last_trace_width 0.35)
+    (last_trace_width 0.25)
     (user_trace_width 0.35)
     (user_trace_width 0.5)
     (user_trace_width 1)
@@ -7855,6 +7855,12 @@
     )
   )
 
+  (gr_text +5V (at 140.462 116.459) (layer F.SilkS)
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+  (gr_text +V (at 140.589 121.539) (layer F.SilkS)
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
   (gr_text 1 (at 147.48764 41.95064 90) (layer F.SilkS)
     (effects (font (size 1 1) (thickness 0.15)))
   )
