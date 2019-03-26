@@ -25,15 +25,16 @@ freely, subject to the following restrictions:
 #include "structconf.h"
 #include "mini-printf.h"
 #include "debugmsg.h"
+#include "consoleio.h"
 
 void se_printchar(char c)
 {
-  Serial.print(c);
+  console_printchar(c);
 }
 
 void se_printstring(const char *c)
 {
-  while (*c != 0) se_printchar(*c++);
+  while (*c != 0) console_printchar(*c++);
 }
 
 void se_printnum(int num, int radix)

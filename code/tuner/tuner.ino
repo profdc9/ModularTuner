@@ -34,11 +34,13 @@ freely, subject to the following restrictions:
 #include "structconf.h"
 #include "flashstruct.h"
 #include "interface.h"
+#include "consoleio.h"
+#include "remote.h"
 
 tuner_ready_state tuner_ready = TUNER_READY_STANDBY;
 const char *tuner_state_string[3] = { "STANDBY", "FORCE TUNE", "DISABLED" };
 
-const char *tuner_short_state_string[3] = { "SBY", "FTN", "DI" };
+const char *tuner_short_state_string[3] = { "SBY", "FTN", "DIS" };
 
 unsigned int      last_update_tick;
 int               current_memory = -1;
@@ -53,17 +55,26 @@ swr_state last_swr_state = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, Complex(0.0f, 0
 SWRMeter swrMeter;
 FrequencyCounter freqCounter(PB9,16u,1,10000);
 
-tuner_parameters tpar = { {"NONE"}, 12.0f, 0.5f, 15.0f, 0.2f, 0.25f, 1.05f, 10, 0,
-                          { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                          { 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                          { 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                          { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                          { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                          { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                          { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+tuner_parameters tpar = { {"NONE"},         /* tune_label */
+                          12.0f,            /* tune_power_calib */
+                          0.5f,             /* tune_min_power */
+                          15.0f,            /* tune_max_power */
+                          0.2f,             /* tune_max_ref */
+                          0.25f,            /* tune_return_thr */
+                          1.05f,            /* tune_search_relaxation */
+                          1,                /* tune_remote_channel_no */
+                          10,               /* tune_search_khz_spacing */
+                          0,                /* tune_rig_control */
+                          { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_bypass */
+                          { 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_1 */
+                          { 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_2 */
+                          { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_3 */
+                          { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_4 */
+                          { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_5 */
+                          { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_6 */
 };
 
-const structure_entry tuner_parameter_fields[16] =
+const structure_entry tuner_parameter_fields[17] =
 { { "LABEL",           STRUCTCONF_STRING,     offsetof(tuner_parameters,tune_label), sizeof(tpar.tune_label), STRUCTCONF_INTMIN, STRUCTCONF_INTMAX, NULL },
   { "POWERCALIB",      STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_power_calib), 1, 0, STRUCTCONF_INTMAX,  },
   { "MINTUNINGPOWER",  STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_min_power), 1, 0,  STRUCTCONF_INTMAX, NULL },
@@ -71,6 +82,7 @@ const structure_entry tuner_parameter_fields[16] =
   { "MAXREFLECTION",   STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_max_ref), 1, 0, 1, NULL },
   { "RETUNETHRESHOLD", STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_retune_thr), 1, 0, 1, NULL },
   { "SEARCHRELAXATION",STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_search_relaxation), 1, 1, 2, NULL },
+  { "REMOTECHANNELNO", STRUCTCONF_INT16,      offsetof(tuner_parameters,tune_remote_channel_no), 1, 0, 127, NULL },
   { "SEARCHKHZSPACING",STRUCTCONF_INT16,      offsetof(tuner_parameters,tune_search_khz_spacing), 1, 0, 100, NULL },
   { "RIGCONTROL",      STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_rig_control), 1, 0, 3, "0=NONE 1=ICOM 2=KENWOOD 3=YAESU" },
   { "SWITCHBYPASS",    STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_switchstate_bypass), TUNE_SWITCHSTATE_PER_STATE*3, 0, 255, NULL },
@@ -140,7 +152,7 @@ void check_i2c_active(void)
   pinMode(PB7,INPUT);
   while ((!digitalRead(PB6)) || (!digitalRead(PB7)))
   {
-    Serial.println("Waiting for power");
+    console_println("Waiting for power");
     delay(250);
   }
   delay(250);
@@ -171,6 +183,9 @@ void setup() {
 #ifdef TUNER_USER_INTERFACE
   interface_initialize();
 #endif
+#ifdef TUNER_REMOTE_WIRELESS
+  remote_initialize(tpar.tune_remote_channel_no);
+#endif
   initialize_rig_control();
 }
 
@@ -182,7 +197,7 @@ void testLnetwork(void)
   lNetwork.debugPrintSolutions();
   DoubleL doubleL(50.0f,3500.0f,2000.0f,10000.0f);
   doubleL.matchLoad(500.0f,-500.0f,150.0f,1,1);
-  Serial.println("series shunt series shunt");
+  console_println("series shunt series shunt");
   doubleL.debugPrintSolutions();
 }
 */
@@ -192,8 +207,8 @@ void testLnetwork(void)
 void testFrequencyCounter(void)
 {
     static int cnt=0;
-    Serial.print("Starting acquisition ");
-    Serial.println(cnt);
+    console_print("Starting acquisition ");
+    console_println(cnt);
     cnt++;
     freqCounter.armCounter();
     int i;
@@ -201,8 +216,8 @@ void testFrequencyCounter(void)
     freqCounter.requestUpdate();
     delay(10);
     float freq = freqCounter.readUpdate();
-    Serial.print("frequency = ");
-    Serial.println((int)freq);
+    console_print("frequency = ");
+    console_println((int)freq);
 #ifdef USER_INTERFACE
     lcd.setCursor(0,0);
     lcd.print(String("Frequency ")+((unsigned int)freq)+"   ");
@@ -224,23 +239,23 @@ void testEEPROMobjectstore(void)
    for (int i=0;i<(sizeof(block)/sizeof(unsigned char));i++)
       block[i] = 0;
    EEPROMstore.readBlock(0,10,block,sizeof(block));
-   Serial.print("b4: ");
+   console_print("b4: ");
    for (int i=0;i<(sizeof(block)/sizeof(unsigned char));i++)
    {
-        Serial.print((int)(block[i]));
-        Serial.print(' ');
+        console_print((int)(block[i]));
+        console_print(' ');
    }
-   Serial.println("");
+   console_println("");
    inct = block[sizeof(block)-1];
    for (int i=0;i<(sizeof(block)/sizeof(unsigned char));i++)
         block[i] = inct+i;
    EEPROMstore.writeBlock(0,10,block,sizeof(block));   
    for (int i=0;i<(sizeof(block)/sizeof(unsigned char));i++)
    {
-        Serial.print((int)(block[i]));
-        Serial.print(' ');
+        console_print((int)(block[i]));
+        console_print(' ');
    }
-   Serial.println("");
+   console_println("");
 }
 */
 
@@ -274,12 +289,12 @@ int tune_cmd(int args, tinycl_parameter *tp, void *v)
   int p = tp[0].ti.i;
   if ((p<1)||(p>3))
   {
-    Serial.println("Invalid tuner state");
+    console_println("Invalid tuner state");
   } else
   {
     tuner_set_state((tuner_ready_state) (p-1));
-    Serial.print("Tune State: ");
-    Serial.println(tuner_ready_string(tuner_get_state()));
+    console_print("Tune State: ");
+    console_println(tuner_ready_string(tuner_get_state()));
   }
   return 1;
 }
@@ -288,8 +303,8 @@ int debug_cmd(int args, tinycl_parameter *tp, void *v)
 {
   int d = tp[0].ti.i;
   setDebugMsgMode(d);
-  Serial.print("Debug State: ");
-  Serial.println(d);
+  console_print("Debug State: ");
+  console_println(d);
   return 1;
 }
 
@@ -302,13 +317,13 @@ int test_relay_cmd(int args, tinycl_parameter *tp, void *v)
 
   if ((rlyno < 1) || (rlyno > TUNER_MAX_RELAYS))
   {
-    Serial.println("Invalid relay #");
+    console_println("Invalid relay #");
     return 1;
   }
   RelayModule *rm = &relays[rlyno-1];
   if (!rm->isValidModule())
   {
-    Serial.println("Invalid relay #");
+    console_println("Invalid relay #");
     return 1;
   }  
   if (isswitch)
@@ -323,32 +338,32 @@ int setrly_cmd(int args, tinycl_parameter *tp, void *v)
   int rlyno = tp[0].ti.i;
   int rlyval = tp[1].ti.i;
   int method = tp[2].ti.i;
-  Serial.print("Setting relay #");
-  Serial.print(rlyno);
-  Serial.print(" to value ");
-  Serial.println(rlyval);
+  console_print("Setting relay #");
+  console_print(rlyno);
+  console_print(" to value ");
+  console_println(rlyval);
   int val;
   if ((rlyno < 1) || (rlyno > TUNER_MAX_RELAYS))
   {
-    Serial.println("Invalid relay #");
+    console_println("Invalid relay #");
     return 1;
   }
   RelayModule *rm = &relays[rlyno-1];
   if (!rm->isValidModule())
   {
-    Serial.println("Invalid relay #");
+    console_println("Invalid relay #");
     return 1;
   }  
   rm->setCurrentValue(rlyval,method);
   val = rm->getCurrentValue();
-  Serial.print("Achieved value ");
-  Serial.println(val);
+  console_print("Achieved value ");
+  console_println(val);
   return 1;
 }
 
 int print_tuner_data_cmd(int args, tinycl_parameter *tp, void *v)
 {
-  Serial.println("Tuner data:");
+  console_println("Tuner data:");
   se_print_structure(sizeof(tuner_parameter_fields)/sizeof(tuner_parameter_fields[0]), tuner_parameter_fields, &tpar);
   return 1;
 }
@@ -379,10 +394,10 @@ int print_relay_data_cmd(int args, tinycl_parameter *tp, void *v)
      RelayModule *rm = &relays[r];
      if (rm->isValidModule())
      {
-       Serial.print("Relay bank ");
-       Serial.println(r+1);
+       console_print("Relay bank ");
+       console_println(r+1);
        se_print_structure(sizeof(relay_fields)/sizeof(relay_fields[0]), relay_fields, rm);
-       Serial.println("");
+       console_println("");
      }
   }
   return 1;
@@ -393,19 +408,19 @@ int set_relay_data_cmd(int args, tinycl_parameter *tp, void *v)
   char *str = tp[1].ts.str;
   if ((rlyno < 1) || (rlyno > TUNER_MAX_RELAYS))
   {
-    Serial.println("Invalid relay #");
+    console_println("Invalid relay #");
     return 1;
   }
   RelayModule *rm = &relays[rlyno-1];
   if (!rm->isValidModule())
   {
-    Serial.println("Invalid relay #");
+    console_println("Invalid relay #");
     return 1;
   }  
-  Serial.print("Setting relay #");
-  Serial.print(rlyno);
-  Serial.print(" ");
-  Serial.println(str);
+  console_print("Setting relay #");
+  console_print(rlyno);
+  console_print(" ");
+  console_println(str);
   se_set_structure_field(sizeof(relay_fields)/sizeof(relay_fields[0]), relay_fields, rm, str);
   se_print_structure(sizeof(relay_fields)/sizeof(relay_fields[0]), relay_fields, rm);
   trigger_update();
@@ -416,31 +431,31 @@ int rlydef_cmd(int args, tinycl_parameter *tp, void *v)
 {
   int rlyno = tp[0].ti.i;
   int rlydef = tp[1].ti.i;
-  Serial.print("Setting relay #");
-  Serial.print(rlyno);
-  Serial.print(" to default # ");
-  Serial.println(rlydef);
+  console_print("Setting relay #");
+  console_print(rlyno);
+  console_print(" to default # ");
+  console_println(rlydef);
   int val;
   if ((rlyno < 1) || (rlyno > TUNER_MAX_RELAYS))
   {
-    Serial.println("Invalid relay #");
+    console_println("Invalid relay #");
     return 1;
   }
   if ((rlydef < 1) || (rlydef > RELAY_DEFAULT_STRUCTS_NUM))
   {
-    Serial.println("Invalid default #");
+    console_println("Invalid default #");
     return 1;
   }
   RelayModule *rm = &relays[rlyno-1];
   rm->setup(*relay_default_structs[rlydef-1]);
-  Serial.println("New default set");
+  console_println("New default set");
   return 1;
 }
 
 int clear_cache_cmd(int args, tinycl_parameter *tp, void *v)
 { 
   initialize_tuner_cache_entries();
-  Serial.println("Tuner cache cleared");
+  console_println("Tuner cache cleared");
   return 1;
 }
 
@@ -448,7 +463,7 @@ int show_cache_cmd(int args, tinycl_parameter *tp, void *v)
 { 
   int i,p;
   char s[80];
-  Serial.println("Tuner cache contents:");
+  console_println("Tuner cache contents:");
   for (i=0;i<TUNER_CACHE_ENTRIES;i++)
   { 
     tuner_cache_entry *t = &tce[i];
@@ -456,13 +471,13 @@ int show_cache_cmd(int args, tinycl_parameter *tp, void *v)
     {
       char s[80];
       mini_snprintf(s,sizeof(s)-1,"%03u %05u ",i+1,t->frequency_khz);
-      Serial.print(s);
+      console_print(s);
       for (p=0;p<TUNER_CACHE_NPARMS;p++)
       {
          mini_snprintf(s,sizeof(s)-1," %05u%c%c",t->parm[p],t->switch_state & (1<<(p*2)) ? '+' : '-',t->switch_state & (1<<(p*2+1)) ? '+' : '-');
-         Serial.print(s);
+         console_print(s);
       }
-      Serial.println("");
+      console_println("");
     }
   }
   return 1;
@@ -485,13 +500,13 @@ void printSWRState(swr_state *state)
 {
   char s[100];
   mini_snprintf(s,sizeof(s)-1,"Frequency = %f",float2int32(state->last_frequency));
-  Serial.println(s);
+  console_println(s);
   mini_snprintf(s,sizeof(s)-1,"Fwd power = %04f  Rev power = %04f  Cur Power = %04f",float2int32(adjust_pwr(state->fwd)),float2int32(adjust_pwr(state->rev)),float2int32(state->cur));
-  Serial.println(s);
+  console_println(s);
   mini_snprintf(s,sizeof(s)-1,"Ref Angle = %04f  Cur Angle = %04f  SWR = %02f",float2int32(state->refAngle),float2int32(state->curAngle),float2int32(state->swr));
-  Serial.println(s);
+  console_println(s);
   mini_snprintf(s,sizeof(s)-1,"Impedance = %04f + j%04f   Ref = %04f + j %04f",float2int32(state->impedance.re()),float2int32(state->impedance.im()),float2int32(state->refCoef.re()),float2int32(state->refCoef.im()));
-  Serial.println(s);
+  console_println(s);
 }
 
 tunerr_condition minimize_swr_step(RelayModule *r, int relstep, float &currentRef, int &currentValue)
@@ -780,6 +795,7 @@ void tuner_task(void)
   bool rigtune = false;
   bool success;
   float fwd;
+  if (tuner_ready == TUNER_READY_DISABLE) return;
   if ((tuner_ready == TUNER_READY_FORCETUNE) || (check_for_rig_tune_initiation()))
      rigtune = send_rig_tune_power_control(true,false);
   if (!rigtune)
@@ -801,13 +817,23 @@ void tuner_task(void)
   float adjfwd = adjust_pwr(fwd);
   if (adjfwd < tpar.tune_min_power)
   {
-      if (rigtune) send_rig_tune_power_control(false,false);
+      if (rigtune) 
+      { 
+          if (tuner_ready == TUNER_READY_FORCETUNE)
+            tuner_ready = TUNER_READY_STANDBY;
+          send_rig_tune_power_control(false,false);
+      }
       return;
   }
   updateSWRState(&last_swr_state, freq);
   if (adjfwd > tpar.tune_max_power)
   {
-      if (rigtune) send_rig_tune_power_control(false,false);
+      if (rigtune) 
+      {
+        if (tuner_ready == TUNER_READY_FORCETUNE)
+           tuner_ready = TUNER_READY_STANDBY;
+        send_rig_tune_power_control(false,false);
+      }
       tunerr_last = TUNERR_POWERHIGH;
       tuner_update_swr_interface();
       return;
@@ -850,12 +876,12 @@ int save_cache_cmd(int args, tinycl_parameter* tp, void *v)
   int freq = tp[0].ti.i;
   if ((freq < 1) || (freq > 65535))
   {
-    Serial.println("Invalid frequency kHz");
+    console_println("Invalid frequency kHz");
     return 1;
   }
   tuner_update_current_state((uint16_t)freq);
-  Serial.print("Cache entry updated at frequency ");
-  Serial.println(freq);
+  console_print("Cache entry updated at frequency ");
+  console_println(freq);
   return 1;
 }
 
@@ -864,16 +890,16 @@ int recall_cache_cmd(int args, tinycl_parameter* tp, void *v)
   int freq = tp[0].ti.i;
   if ((freq < 1) || (freq > 65535))
   {
-    Serial.println("Invalid frequency kHz");
+    console_println("Invalid frequency kHz");
     return 1;
   }
   if (tuner_restore_state((uint16_t)freq) < 0)
   {
-     Serial.println("Cache entry not found");
+     console_println("Cache entry not found");
   } else
   {
-      Serial.print("Cache entry recalled at frequency ");
-      Serial.println(freq);
+      console_print("Cache entry recalled at frequency ");
+      console_println(freq);
   }
   return 1;
 }
@@ -939,12 +965,12 @@ int writestate_cmd(int args, tinycl_parameter* tp, void *v)
   int n = tp[0].ti.i;
   if ((n < 1) || (n > NUM_FLASH_PAGES))
   {
-    Serial.println("Invalid state number");
+    console_println("Invalid state number");
     return 1;
   }
-  Serial.print("Writing state ");
-  Serial.print(n);
-  Serial.println(tuner_writestate(n) ? ": written" : ": failed");
+  console_print("Writing state ");
+  console_print(n);
+  console_println(tuner_writestate(n) ? ": written" : ": failed");
   return 1;
 }
 
@@ -954,56 +980,114 @@ int readstate_cmd(int args, tinycl_parameter* tp, void *v)
  
   if ((n < 1) || (n > NUM_FLASH_PAGES))
   {
-    Serial.println("Invalid state number");
+    console_println("Invalid state number");
     return 1;
   }
   if (tuner_readstate(n))
   {
-    Serial.print("Read state ");
-    Serial.println(n);
+    console_print("Read state ");
+    console_println(n);
   } else
-    Serial.println("No state to retrieve");
+    console_println("No state to retrieve");
   return 1;
 }
 
 int bypass_cmd(int args, tinycl_parameter* tp, void *v)
 {
     tuner_set_bypass();
-    Serial.println("Bypass mode set");
+    console_println("Bypass mode set");
 }
 
 int status_cmd(int args, tinycl_parameter* tp, void *v)
 {
    int p;
    char s[80];
+
+   mini_snprintf(s,sizeof(s)-1,   "Since startup:   %03f s  Last update  %03f s",float2int32(((float)millis())*0.001f),float2int32(((float)last_update_tick)*0.001f));
+   console_println(s);
    if (current_memory>0)
    {
       mini_snprintf(s,sizeof(s)-1,"Current Memory:  %u Saved? %c",current_memory,needs_update ? 'N' : 'Y');
-      Serial.println(s);
+      console_println(s);
    }
+
    mini_snprintf(s,sizeof(s)-1,   "Tuner status:    %s  Bypass: %c",tuner_state_string[tuner_ready],tuner_bypass_mode ? 'Y' : 'N');
-   Serial.println(s);
+   console_println(s);
    mini_snprintf(s,sizeof(s)-1,   "Tuned condition: %s",tuner_error_condition_string[(int)tunerr_last]);
-   Serial.println(s);
+   console_println(s);
    printSWRState(&last_swr_state);
    for (p=0;p<TUNER_MAX_RELAYS;p++)
    {
       RelayModule *r = &relays[p];
       if (r->isValidModule())
       {
-        mini_snprintf(s,sizeof(s)-1,"Relay Unit #%u, setting %u, switch 1 (%c) switch 2 (%c)", p+1,
-                r->getCurrentValue(), r->getSwitchState(0)? '+' : '-', r->getSwitchState(1)? '+' : '-');
-        Serial.println(s);
+        mini_snprintf(s,sizeof(s)-1,"Relay Unit #%u, setting %u%s, switch 1 (%c) switch 2 (%c)", p+1,
+                r->getCurrentValue(), relay_module_type_unit[r->rms.relay_module_type],
+                r->getSwitchState(0)? '+' : '-', r->getSwitchState(1)? '+' : '-');
+        console_println(s);
       }
    }
    return 1;
 }
 
 
+int term_cmd(int args, tinycl_parameter* tp, void *v)
+{
+  console_println("Entering terminal");
+  Serial3.begin(9600);
+  pinMode(PA8,OUTPUT);
+  digitalWrite(PA8,HIGH);
+  for (;;)
+  {
+    int c = console_inchar();
+    if (c == '!') break;
+    if (c > 0) Serial3.write(c);
+    if (Serial3.available())
+        console_printchar(Serial3.read());
+  }
+  console_println("Exiting terminal"); 
+  digitalWrite(PA8,LOW);
+}
+
+#ifdef TUNER_REMOTE_WIRELESS
+int remote_cmd(int args, tinycl_parameter *tp, void *v)
+{
+  remote_set_command_mode(tp[0].ti.i);
+  return 1;
+}
+
+int remote_configure_cmd(int args, tinycl_parameter *tp, void *v)
+{
+  char *str = tp[0].ts.str;
+  char buf[100];
+  remote_send_command(str,buf,sizeof(buf)-1);
+  console_print("Sent: ");
+  console_println(str);
+  console_print("Recd: ");
+  console_println(buf);
+  return 1;
+}
+
+int remote_send_packet_cmd(int args, tinycl_parameter *tp, void *v)
+{
+  char *str = tp[0].ts.str;
+  remote_transmit_packet((const byte *)str, strlen(str));
+  console_print("Packet: ");
+  console_println(str);
+  return 1;
+}
+#endif
+
 int help_cmd(int args, tinycl_parameter *tp, void *v);
 
 const tinycl_command tcmds[] =
 {
+  { "TERM", "Terminal", term_cmd, { TINYCL_PARM_END } },
+#ifdef TUNER_REMOTE_WIRELESS
+  { "REMOTE",    "Remote",             remote_cmd, { TINYCL_PARM_INT, TINYCL_PARM_END } },
+  { "REMOTECFG", "Remote Configure",   remote_configure_cmd, { TINYCL_PARM_STR, TINYCL_PARM_END } },
+  { "REMOTEPKT", "Remote Send Packet", remote_send_packet_cmd, { TINYCL_PARM_STR, TINYCL_PARM_END } },
+#endif
   { "STATUS", "Tuner status", status_cmd, { TINYCL_PARM_END } },
   { "BYPASS", "Tuner placed into bypass", bypass_cmd, { TINYCL_PARM_END } },
   { "DEBUG", "Debugging on/off", debug_cmd, { TINYCL_PARM_INT, TINYCL_PARM_END } },
@@ -1043,15 +1127,29 @@ void save_state_task(void)
   needs_update = false;
 }
 
+int tuner_adjust_relay_updown(int rlyno, int updown, int &currentVal, byte &relay_module_type)
+{
+  if ((rlyno < 1) || (rlyno > TUNER_MAX_RELAYS)) return 0;
+  RelayModule *rm = &relays[rlyno-1];
+  if (!rm->isValidModule()) return 0;
+  if (updown != 0) rm->setCurrentValue(rm->getCurrentValue(),updown < 0 ? 1 : 2);
+  currentVal = rm->getCurrentValue();
+  relay_module_type = rm->rms.relay_module_type;
+  return 1;
+}
+
 void loop() {
   if (tinycl_task(sizeof(tcmds) / sizeof(tinycl_command), tcmds, NULL))
   {
     tinycl_do_echo = 1;
-    Serial.print("> ");
+    console_print("> ");
   }
   tuner_task();
   save_state_task();
 #ifdef TUNER_USER_INTERFACE
   interface_task();
+#endif
+#ifdef TUNER_REMOTE_WIRELESS
+  remote_task();
 #endif
 }

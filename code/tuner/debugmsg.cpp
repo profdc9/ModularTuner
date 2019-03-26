@@ -21,6 +21,7 @@ freely, subject to the following restrictions:
 #include "Arduino.h"
 #include <stdarg.h>
 #include "debugmsg.h"
+#include "consoleio.h"
 
 #define USE_MINIPRINTF
 
@@ -50,7 +51,7 @@ void debugmsgprintf(const char *format, ...)
   vsnprintf(msg,sizeof(msg)-1,(const char *)format,ap);
 #endif
 	msg[MAXMSG-1] = '\000';
-	Serial.println(msg);
+	console_println(msg);
 }
 
 #endif

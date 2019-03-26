@@ -87,5 +87,6 @@ extern const relay_module_specs dlyRelay7;
 #define RELAY_DEFAULT_STRUCTS_NUM 7
 extern const relay_module_specs *relay_default_structs[RELAY_DEFAULT_STRUCTS_NUM];
 extern const structure_entry relay_fields[11];
+extern const char *relay_module_type_unit[4];
 
 #endif  /* _RELAYMODULE_H */

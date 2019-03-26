@@ -30,6 +30,7 @@ freely, subject to the following restrictions:
 #include "tuner.h"
 #include "mini-printf.h"
 #include "debugmsg.h"
+#include "RelayModule.h"
 
 #ifdef TUNER_USER_INTERFACE
 LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
@@ -50,7 +51,10 @@ void interface_initialize(void)
   lcd.begin(INTERFACE_LCD_COLUMNS,INTERFACE_LCD_ROWS);  
   lcd.setBacklight(1);
   lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("ModularTuner by");
   lcd.setCursor(0,1);
+  lcd.print("KW4TI CC-BY-SA 4.0");
 
   for (int i=0;i<INTERFACE_NUM_BUTTONS;i++)
   {
@@ -129,6 +133,41 @@ void interface_update_swr(swr_state *current_swr_state)
 #endif
 }
 
+static byte active_relay = 1;
+
+void interface_relay_updown(int code)
+{
+   int currentVal;
+   byte relay_module_type;
+   if (code == 0)
+   {
+      int nextrlyno = active_relay;
+      do
+      {
+        if ((++nextrlyno) >= TUNER_MAX_RELAYS) nextrlyno = 1;
+        if (tuner_adjust_relay_updown(nextrlyno,0,currentVal,relay_module_type) != 0) break;
+      } while (active_relay != nextrlyno);
+      active_relay = nextrlyno;
+   } else
+      tuner_adjust_relay_updown(active_relay,code,currentVal,relay_module_type);
+  lcd.clear();
+  int row=0, rlyno=0;
+  while (row<INTERFACE_LCD_ROWS)
+  {
+      for (;;)
+      {
+        if ((++rlyno) >= TUNER_MAX_RELAYS) break;
+        if (tuner_adjust_relay_updown(rlyno,0,currentVal,relay_module_type) != 0) break;
+      } 
+      if (rlyno >= TUNER_MAX_RELAYS) break;
+      char s[INTERFACE_LCD_COLUMNS+1];
+      mini_snprintf(s,sizeof(s)-1,"%c%d#: %d%s", (rlyno == active_relay) ? '*' : ' ',
+          rlyno, currentVal, relay_module_type_unit[relay_module_type]);
+      lcd.setCursor(0,row++);
+      lcd.print(s);
+  }
+}
+
 void interface_task(void)
 {
   interface_pollbuttons();
@@ -138,30 +177,11 @@ void interface_task(void)
   {
     if ((buttonNumber == 5) && (op == INTERFACE_BUTTON_PRESSED))
         tuner_set_state(TUNER_READY_FORCETUNE);
+    if ((buttonNumber == 2) && (op == INTERFACE_BUTTON_PRESSED))
+        interface_relay_updown(0);
+    if ((buttonNumber == 3) && (op == INTERFACE_BUTTON_PRESSED))
+        interface_relay_updown(-1);
+    if ((buttonNumber == 4) && (op == INTERFACE_BUTTON_PRESSED))
+        interface_relay_updown(1);
   }
 }
-
-/*
-int display_cmd(int args, tinycl_parameter *tp, void *v)
-{
-  char *str = tp[0].ts.str;
-#ifdef USER_INTERFACE
-for (int i=0;i<600;i++)
-{
-    uint8_t buttons;;
-    lcd.clear();
-    lcd.setCursor(0,0);
-    lcd.print(i);
-    lcd.print(" ");
-    lcd.print(str);
-    lcd.print(" ");
-    lcd.print(lcd.readButtons());
-    delay(200);
-}
-   // lcd.setCursor(0,2);
-   // for (int i=0;i<4;i++)
-    //    lcd.print(buttonPanel.getButtonState(i) ? '+' : '-');
-#endif
-  return 1;
-}
-*/

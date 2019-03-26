@@ -1,5 +1,5 @@
-#ifndef _EEPROMOBJECTSTORE_H
-#define _EEPROMOBJECTSTORE_H
+#ifndef _REMOTE_H
+#define _REMOTE_H
 
 /*
  * Copyright (c) 2018 Daniel Marks
@@ -21,27 +21,12 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
  */
 
-#include <Arduino.h>
+void remote_initialize(uint16_t channelno);
+void remote_task(void);
+void remote_set_command_mode(int state);
+int remote_send_command(const char *cmd, char *buf, int len);
+void remote_transmit_packet(const byte packet[], int len);
 
-#define EEPROMOBJECTSTORE_INVALID_BANK 0xBEEF
-
-class EEPROMobjectstore
-{
-  public:
-
-    int nbanks;
-
-    EEPROMobjectstore()
-    {
-    };
-
-    int setup(int pNbanks);
-    uint16 setEEPROMbank(uint16 bank);
-    uint16 formatBank(uint16 bank);
-    uint16 writeBlock(uint16 bank, uint16 address, unsigned char *block, uint16 length);
-    uint16 readBlock(uint16 bank, uint16 address, unsigned char *block, uint16 length);
-};
-
-extern EEPROMobjectstore EEPROMstore;
-
-#endif  /* _EEPROMOBJECTSTORE_H */
+#define REMOTE_SERIAL_DEVICE Serial3
+#define REMOTE_COMMAND_PIN PA8
+#endif  /* _REMOTE_H */

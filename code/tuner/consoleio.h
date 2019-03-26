@@ -1,5 +1,5 @@
-#ifndef _INVFREQUENCYCOUNTER_H
-#define _INVFREQUENCYCOUNTER_H
+#ifndef _CONSOLEIO_H
+#define _CONSOLEIO_H
 
 /*
  * Copyright (c) 2018 Daniel Marks
@@ -21,32 +21,16 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
  */
 
-#include "complex.h"
+void console_printchar(const char c);
+void console_print(const char *c);
+void console_println(const char *c);
+void console_print(int n);
+void console_print(unsigned int n);
+void console_println(int n);
+void console_println(unsigned int n);
+int console_inchar(void);
 
-#define CPU_CLOCK_RATE 72000000ul
+void console_setMainSerial(Stream *serialDevice);
+void console_setExternalSerial(Stream *serialDevice);
 
-class InvFrequencyCounter
-{
-	public:
-
-	byte clockPIN;
-	byte resetcounterPIN;
-	short dividerratio;	
-	
-	InvFrequencyCounter(byte pclockPIN, byte presetcounterPIN, short pDividerratio)
-	{
-		clockPIN = pclockPIN;
-		resetcounterPIN = presetcounterPIN;
-		dividerratio = pDividerratio;
-	};
-	
-	void setup(void);
-	void resetExternalDivider(void);
-	void armCounter(void);
-	void requestUpdate(void);
-	float readUpdate(void);
-	float readFinalFrequency(void);
-};
-
-#endif /* _INVFREQUENCYCOUNTER_H */
-
+#endif  /* _CONSOLEIO_H */

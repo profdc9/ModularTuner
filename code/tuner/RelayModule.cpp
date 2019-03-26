@@ -125,6 +125,8 @@ const structure_entry relay_fields[11] =
   { "SWITCHBITS",   STRUCTCONF_INT16_HEX,  offsetof(relay_module_specs,switch_bits), MAX_NUMBER_SWITCHES, 0, 0xFFFF, "Hex values" }
 }; 
 
+const char *relay_module_type_unit[4] = { "", " nH", " pF", "00 ps" };
+
 void RelayModule::CalculateMasks(void)
 {
   byte i;

@@ -156,8 +156,6 @@ F 3 "" H 3300 4100 60  0001 C CNN
 	1    3300 4100
 	1    0    0    -1  
 $EndComp
-Text Notes 1650 3550 0    60   ~ 0
-9:4 P3:P2\ntrifilar\nimpedance\nautotransformer
 Text Notes 3100 3500 0    60   ~ 0
 1:1 bifilar\nautotransformer
 $Comp
@@ -194,7 +192,7 @@ F 3 "" H 3350 2150 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text Notes 1700 1600 0    60   ~ 0
-9:4 P3:P2\ntrifilar\nimpedance\nautotransformer
+14:10 or 20:14 \nP3:P2 trifilar\nimpedance\nautotransformer
 Text Notes 2950 2100 0    60   ~ 0
 1:1 bifilar\nautotransformer
 $Comp
@@ -230,8 +228,6 @@ F 3 "" H 3300 6050 60  0001 C CNN
 	1    3300 6050
 	1    0    0    -1  
 $EndComp
-Text Notes 1650 5500 0    60   ~ 0
-9:4 P3:P2\ntrifilar\nimpedance\nautotransformer
 Text Notes 2900 6000 0    60   ~ 0
 1:1 bifilar\nautotransformer
 $Comp
@@ -1443,9 +1439,7 @@ Wire Wire Line
 Wire Wire Line
 	750  4150 750  4050
 Wire Wire Line
-	900  4150 1650 4150
-Wire Wire Line
-	900  3850 900  4150
+	900  3600 900  4150
 Connection ~ 7000 4050
 Connection ~ 7000 3750
 Connection ~ 7000 3500
@@ -1660,7 +1654,7 @@ Connection ~ 4200 1750
 Wire Wire Line
 	4200 2700 4200 2350
 Wire Wire Line
-	1250 4300 1250 4150
+	1250 4000 1250 4300
 Connection ~ 1250 4150
 Wire Wire Line
 	1250 4750 1250 4500
@@ -2064,4 +2058,53 @@ Wire Wire Line
 Wire Wire Line
 	5150 6450 5150 6600
 Connection ~ 5150 6600
+$Comp
+L C_Small C25
+U 1 1 5C977A27
+P 1050 4150
+F 0 "C25" H 1060 4220 50  0000 L CNN
+F 1 "NC" H 1060 4070 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm" H 1050 4150 50  0001 C CNN
+F 3 "" H 1050 4150 50  0001 C CNN
+	1    1050 4150
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1150 4150 1650 4150
+Wire Wire Line
+	900  4150 950  4150
+$Comp
+L C_Small C24
+U 1 1 5C978024
+P 1050 4000
+F 0 "C24" H 1060 4070 50  0000 L CNN
+F 1 "NC" H 1060 3920 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm" H 1050 4000 50  0001 C CNN
+F 3 "" H 1050 4000 50  0001 C CNN
+	1    1050 4000
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	950  4000 900  4000
+Connection ~ 900  4000
+Wire Wire Line
+	1150 4000 1250 4000
+$Comp
+L Conn_01x01 J16
+U 1 1 5C9788D2
+P 1200 3600
+F 0 "J16" H 1200 3700 50  0000 C CNN
+F 1 "Conn_01x01" H 1200 3500 50  0000 C CNN
+F 2 "Connectors:1pin" H 1200 3600 50  0001 C CNN
+F 3 "" H 1200 3600 50  0001 C CNN
+	1    1200 3600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	900  3600 1000 3600
+Connection ~ 900  3850
+Text Notes 1650 3550 0    60   ~ 0
+14:10 or 20:14 \nP3:P2 trifilar\nimpedance\nautotransformer
+Text Notes 1650 5550 0    60   ~ 0
+14:10 or 20:14 \nP3:P2 trifilar\nimpedance\nautotransformer
 $EndSCHEMATC
