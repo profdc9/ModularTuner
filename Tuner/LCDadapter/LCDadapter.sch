@@ -211,8 +211,6 @@ F 3 "" H 3000 2650 50  0001 C CNN
 	1    3000 2650
 	0    -1   -1   0   
 $EndComp
-NoConn ~ 3650 2250
-NoConn ~ 3150 2450
 NoConn ~ 3500 4500
 $Comp
 L 2N3904 Q1
@@ -576,7 +574,7 @@ Wire Wire Line
 Wire Wire Line
 	3700 2350 3650 2350
 Wire Wire Line
-	3700 2450 3650 2450
+	3650 2450 3850 2450
 Connection ~ 3700 2450
 Wire Wire Line
 	3700 2550 3650 2550
@@ -863,4 +861,26 @@ Wire Wire Line
 	1800 3050 1600 3050
 Wire Wire Line
 	1600 3400 1800 3400
+Wire Wire Line
+	3150 2450 3050 2450
+Wire Wire Line
+	3050 2450 3050 2000
+Wire Wire Line
+	3050 2000 3750 2000
+Wire Wire Line
+	3750 2000 3750 2250
+Wire Wire Line
+	3650 2250 3850 2250
+$Comp
+L C_Small C6
+U 1 1 5C9AA30F
+P 3850 2350
+F 0 "C6" H 3860 2420 50  0000 L CNN
+F 1 "100 nF" H 3900 2550 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 3850 2350 50  0001 C CNN
+F 3 "" H 3850 2350 50  0001 C CNN
+	1    3850 2350
+	1    0    0    -1  
+$EndComp
+Connection ~ 3750 2250
 $EndSCHEMATC
