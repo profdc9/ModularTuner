@@ -31,7 +31,7 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
-LIBS:TandemMatch-cache
+LIBS:DirectionalCoupler-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
@@ -52,7 +52,7 @@ U 1 1 5C69D435
 P 1900 2800
 F 0 "J3" H 1910 2920 50  0000 C CNN
 F 1 "Conn_Coaxial" V 2015 2800 50  0000 C CNN
-F 2 "TandemMatch:bnc_90_1-1337543-0_pad_combo" H 1900 2800 50  0001 C CNN
+F 2 "DirectionalCoupler:bnc_90_1-1337543-0_pad_combo" H 1900 2800 50  0001 C CNN
 F 3 "" H 1900 2800 50  0001 C CNN
 	1    1900 2800
 	-1   0    0    -1  
@@ -74,7 +74,7 @@ U 1 1 5C69D628
 P 5750 2800
 F 0 "J18" H 5760 2920 50  0000 C CNN
 F 1 "Conn_Coaxial" V 5865 2800 50  0000 C CNN
-F 2 "TandemMatch:bnc_90_1-1337543-0_pad_combo" H 5750 2800 50  0001 C CNN
+F 2 "DirectionalCoupler:bnc_90_1-1337543-0_pad_combo" H 5750 2800 50  0001 C CNN
 F 3 "" H 5750 2800 50  0001 C CNN
 	1    5750 2800
 	1    0    0    -1  
@@ -184,7 +184,7 @@ U 1 1 5C69DC9A
 P 1950 4300
 F 0 "J4" H 1960 4420 50  0000 C CNN
 F 1 "Conn_Coaxial" V 2065 4300 50  0000 C CNN
-F 2 "TandemMatch:bnc_90_1-1337543-0_pad_combo" H 1950 4300 50  0001 C CNN
+F 2 "DirectionalCoupler:bnc_90_1-1337543-0_pad_combo" H 1950 4300 50  0001 C CNN
 F 3 "" H 1950 4300 50  0001 C CNN
 	1    1950 4300
 	-1   0    0    -1  
@@ -206,7 +206,7 @@ U 1 1 5C69DCAE
 P 5850 4950
 F 0 "J20" H 5860 5070 50  0000 C CNN
 F 1 "Conn_Coaxial" V 5965 4950 50  0000 C CNN
-F 2 "TandemMatch:bnc_90_1-1337543-0_pad_combo" H 5850 4950 50  0001 C CNN
+F 2 "DirectionalCoupler:bnc_90_1-1337543-0_pad_combo" H 5850 4950 50  0001 C CNN
 F 3 "" H 5850 4950 50  0001 C CNN
 	1    5850 4950
 	1    0    0    -1  
@@ -437,7 +437,7 @@ U 1 1 5C69E07C
 P 2350 1650
 F 0 "R1" V 2430 1650 50  0000 C CNN
 F 1 "100R" V 2350 1650 50  0000 C CNN
-F 2 "TandemMatch:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 2280 1650 50  0001 C CNN
+F 2 "DirectionalCoupler:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 2280 1650 50  0001 C CNN
 F 3 "" H 2350 1650 50  0001 C CNN
 	1    2350 1650
 	1    0    0    -1  
@@ -448,7 +448,7 @@ U 1 1 5C69E164
 P 2550 1650
 F 0 "R2" V 2630 1650 50  0000 C CNN
 F 1 "100R" V 2550 1650 50  0000 C CNN
-F 2 "TandemMatch:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 2480 1650 50  0001 C CNN
+F 2 "DirectionalCoupler:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 2480 1650 50  0001 C CNN
 F 3 "" H 2550 1650 50  0001 C CNN
 	1    2550 1650
 	1    0    0    -1  
@@ -470,7 +470,7 @@ U 1 1 5C69E52E
 P 4950 1650
 F 0 "R3" V 5030 1650 50  0000 C CNN
 F 1 "100R" V 4950 1650 50  0000 C CNN
-F 2 "TandemMatch:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 4880 1650 50  0001 C CNN
+F 2 "DirectionalCoupler:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 4880 1650 50  0001 C CNN
 F 3 "" H 4950 1650 50  0001 C CNN
 	1    4950 1650
 	1    0    0    -1  
@@ -481,7 +481,7 @@ U 1 1 5C69E534
 P 5150 1650
 F 0 "R4" V 5230 1650 50  0000 C CNN
 F 1 "100R" V 5150 1650 50  0000 C CNN
-F 2 "TandemMatch:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 5080 1650 50  0001 C CNN
+F 2 "DirectionalCoupler:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 5080 1650 50  0001 C CNN
 F 3 "" H 5150 1650 50  0001 C CNN
 	1    5150 1650
 	1    0    0    -1  
@@ -877,7 +877,7 @@ U 1 1 5C7D71C2
 P 5800 4550
 F 0 "L1" V 5750 4550 50  0000 C CNN
 F 1 "L" V 5875 4550 50  0000 C CNN
-F 2 "TandemMatch:BigRFChokeInductor" H 5800 4550 50  0001 C CNN
+F 2 "DirectionalCoupler:BigRFChokeInductor" H 5800 4550 50  0001 C CNN
 F 3 "" H 5800 4550 50  0001 C CNN
 	1    5800 4550
 	1    0    0    -1  
@@ -965,7 +965,7 @@ U 1 1 5C7D8E57
 P 6350 4300
 F 0 "F1" V 6430 4300 50  0000 C CNN
 F 1 "Keystone 3544-2 / SL-506P" H 6700 4450 50  0000 C CNN
-F 2 "TandemMatch:SL506Pfuseholder" V 6280 4300 50  0001 C CNN
+F 2 "DirectionalCoupler:SL506Pfuseholder" V 6280 4300 50  0001 C CNN
 F 3 "" H 6350 4300 50  0001 C CNN
 	1    6350 4300
 	0    1    1    0   
@@ -1437,4 +1437,6 @@ $EndComp
 Wire Wire Line
 	5600 2800 5550 2800
 Connection ~ 5300 2800
+Text Notes 7450 6950 0    60   ~ 0
+HF Directional Coupler\nby Daniel Marks KW4TI\nCC-BY-SA 4.0\n
 $EndSCHEMATC

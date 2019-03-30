@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name DirectionalCoupler)(type KiCad)(uri "$(KIPRJMOD)/DiretionalCoupler.pretty")(options "")(descr ""))
+)

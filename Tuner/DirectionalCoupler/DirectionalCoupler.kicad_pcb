@@ -155,7 +155,7 @@
     (add_net "Net-(JP6-Pad1)")
   )
 
-  (module TandemMatch:bnc_90_1-1337543-0_pad_combo (layer F.Cu) (tedit 5C7B66B4) (tstamp 5C7E05B7)
+  (module DirectionalCoupler:bnc_90_1-1337543-0_pad_combo (layer F.Cu) (tedit 5C7B66B4) (tstamp 5C7E05B7)
     (at 40.386 56.769 270)
     (descr "BNC connector, Tyco 1-1337543-0")
     (path /5C69D435)
@@ -225,7 +225,7 @@
     )
   )
 
-  (module TandemMatch:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal (layer F.Cu) (tedit 5C797736) (tstamp 5C7990B9)
+  (module DirectionalCoupler:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal (layer F.Cu) (tedit 5C797736) (tstamp 5C7990B9)
     (at 111.0234 41.4147 270)
     (descr "Resistor, Axial_DIN0309 series, Axial, Horizontal, pin pitch=12.7mm, 0.5W = 1/2W, length*diameter=9*3.2mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
     (tags "Resistor Axial_DIN0309 series Axial Horizontal pin pitch 12.7mm 0.5W = 1/2W length 9mm diameter 3.2mm")
@@ -1498,7 +1498,7 @@
     )
   )
 
-  (module TandemMatch:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal (layer F.Cu) (tedit 5C797736) (tstamp 5C7990A2)
+  (module DirectionalCoupler:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal (layer F.Cu) (tedit 5C797736) (tstamp 5C7990A2)
     (at 114.9477 41.3385 270)
     (descr "Resistor, Axial_DIN0309 series, Axial, Horizontal, pin pitch=12.7mm, 0.5W = 1/2W, length*diameter=9*3.2mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
     (tags "Resistor Axial_DIN0309 series Axial Horizontal pin pitch 12.7mm 0.5W = 1/2W length 9mm diameter 3.2mm")
@@ -1540,7 +1540,7 @@
     )
   )
 
-  (module TandemMatch:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal (layer F.Cu) (tedit 5C797736) (tstamp 5C79908B)
+  (module DirectionalCoupler:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal (layer F.Cu) (tedit 5C797736) (tstamp 5C79908B)
     (at 66.4464 42.0243 270)
     (descr "Resistor, Axial_DIN0309 series, Axial, Horizontal, pin pitch=12.7mm, 0.5W = 1/2W, length*diameter=9*3.2mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
     (tags "Resistor Axial_DIN0309 series Axial Horizontal pin pitch 12.7mm 0.5W = 1/2W length 9mm diameter 3.2mm")
@@ -1582,7 +1582,7 @@
     )
   )
 
-  (module TandemMatch:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal (layer F.Cu) (tedit 5C797736) (tstamp 5C799074)
+  (module DirectionalCoupler:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal (layer F.Cu) (tedit 5C797736) (tstamp 5C799074)
     (at 62.484 41.9862 270)
     (descr "Resistor, Axial_DIN0309 series, Axial, Horizontal, pin pitch=12.7mm, 0.5W = 1/2W, length*diameter=9*3.2mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
     (tags "Resistor Axial_DIN0309 series Axial Horizontal pin pitch 12.7mm 0.5W = 1/2W length 9mm diameter 3.2mm")
@@ -2027,7 +2027,7 @@
     )
   )
 
-  (module TandemMatch:SL506Pfuseholder (layer F.Cu) (tedit 5C7D80BF) (tstamp 5C7D898D)
+  (module DirectionalCoupler:SL506Pfuseholder (layer F.Cu) (tedit 5C7D80BF) (tstamp 5C7D898D)
     (at 112.0775 109.093 270)
     (path /5C7D8E57)
     (fp_text reference F1 (at 0 0 360) (layer F.SilkS)
@@ -2133,7 +2133,7 @@
     )
   )
 
-  (module TandemMatch:BigRFChokeInductor (layer F.Cu) (tedit 5C7D8A73) (tstamp 5C7D699F)
+  (module DirectionalCoupler:BigRFChokeInductor (layer F.Cu) (tedit 5C7D8A73) (tstamp 5C7D699F)
     (at 130.302 107.95 90)
     (path /5C7D71C2)
     (fp_text reference L1 (at -11 3 90) (layer F.SilkS)
@@ -2166,7 +2166,7 @@
     (pad "" np_thru_hole circle (at 0 6 90) (size 4 4) (drill 4) (layers *.Cu *.Mask))
   )
 
-  (module TandemMatch:bnc_90_1-1337543-0_pad_combo (layer F.Cu) (tedit 5C7B66B4) (tstamp 5C7E05C4)
+  (module DirectionalCoupler:bnc_90_1-1337543-0_pad_combo (layer F.Cu) (tedit 5C7B66B4) (tstamp 5C7E05C4)
     (at 40.259 73.406 270)
     (descr "BNC connector, Tyco 1-1337543-0")
     (path /5C69DC9A)
@@ -2197,7 +2197,7 @@
     )
   )
 
-  (module TandemMatch:bnc_90_1-1337543-0_pad_combo (layer F.Cu) (tedit 5C7B66B4) (tstamp 5C7E05D1)
+  (module DirectionalCoupler:bnc_90_1-1337543-0_pad_combo (layer F.Cu) (tedit 5C7B66B4) (tstamp 5C7E05D1)
     (at 139.827 56.896 90)
     (descr "BNC connector, Tyco 1-1337543-0")
     (path /5C69D628)
@@ -2228,7 +2228,7 @@
     )
   )
 
-  (module TandemMatch:bnc_90_1-1337543-0_pad_combo (layer F.Cu) (tedit 5C7B66B4) (tstamp 5C7E05DE)
+  (module DirectionalCoupler:bnc_90_1-1337543-0_pad_combo (layer F.Cu) (tedit 5C7B66B4) (tstamp 5C7E05DE)
     (at 139.7 73.152 90)
     (descr "BNC connector, Tyco 1-1337543-0")
     (path /5C69DCAE)
@@ -2463,7 +2463,7 @@
   (gr_text GND (at 92.14612 45.20692) (layer F.SilkS)
     (effects (font (size 1 1) (thickness 0.15)))
   )
-  (gr_text "HF TANDEM MATCH\nKW4TI  CC-BY-SA 4.0" (at 114.808 63.246) (layer F.SilkS)
+  (gr_text "HF DIRECTIONAL COUPLER\nKW4TI  CC-BY-SA 4.0" (at 114.808 63.246) (layer F.SilkS)
     (effects (font (size 1 1) (thickness 0.15)))
   )
   (gr_text GND (at 50.546 63.119) (layer F.SilkS)
