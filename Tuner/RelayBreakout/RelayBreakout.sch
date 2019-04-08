@@ -1,0 +1,2401 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:switches
+LIBS:relays
+LIBS:motors
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Conn_02x16_Odd_Even J5
+U 1 1 5CAA87B6
+P 10200 2500
+F 0 "J5" H 10250 3300 50  0000 C CNN
+F 1 "Conn_02x16_Odd_Even" H 10250 1600 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_2x16_Pitch2.54mm" H 10200 2500 50  0001 C CNN
+F 3 "" H 10200 2500 50  0001 C CNN
+	1    10200 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_01x01 J1
+U 1 1 5CAA88EB
+P 10350 4700
+F 0 "J1" H 10350 4800 50  0000 C CNN
+F 1 "Conn_01x01" H 10350 4600 50  0000 C CNN
+F 2 "Connectors:1pin" H 10350 4700 50  0001 C CNN
+F 3 "" H 10350 4700 50  0001 C CNN
+	1    10350 4700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_01x01 J2
+U 1 1 5CAA89BA
+P 10350 5100
+F 0 "J2" H 10350 5200 50  0000 C CNN
+F 1 "Conn_01x01" H 10350 5000 50  0000 C CNN
+F 2 "Connectors:1pin" H 10350 5100 50  0001 C CNN
+F 3 "" H 10350 5100 50  0001 C CNN
+	1    10350 5100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_01x01 J3
+U 1 1 5CAA89D5
+P 10350 5500
+F 0 "J3" H 10350 5600 50  0000 C CNN
+F 1 "Conn_01x01" H 10350 5400 50  0000 C CNN
+F 2 "Connectors:1pin" H 10350 5500 50  0001 C CNN
+F 3 "" H 10350 5500 50  0001 C CNN
+	1    10350 5500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_01x01 J4
+U 1 1 5CAA89F5
+P 10350 5850
+F 0 "J4" H 10350 5950 50  0000 C CNN
+F 1 "Conn_01x01" H 10350 5750 50  0000 C CNN
+F 2 "Connectors:1pin" H 10350 5850 50  0001 C CNN
+F 3 "" H 10350 5850 50  0001 C CNN
+	1    10350 5850
+	1    0    0    -1  
+$EndComp
+$Comp
+L C_Small C1
+U 1 1 5CAA8A4C
+P 9900 4700
+F 0 "C1" H 9910 4770 50  0000 L CNN
+F 1 "100 nF" H 9910 4620 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm" H 9900 4700 50  0001 C CNN
+F 3 "" H 9900 4700 50  0001 C CNN
+	1    9900 4700
+	0    1    1    0   
+$EndComp
+$Comp
+L C_Small C2
+U 1 1 5CAA8AD4
+P 9950 5100
+F 0 "C2" H 9960 5170 50  0000 L CNN
+F 1 "100 nF" H 9960 5020 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm" H 9950 5100 50  0001 C CNN
+F 3 "" H 9950 5100 50  0001 C CNN
+	1    9950 5100
+	0    1    1    0   
+$EndComp
+$Comp
+L C_Small C3
+U 1 1 5CAA8B94
+P 9950 5500
+F 0 "C3" H 9960 5570 50  0000 L CNN
+F 1 "100 nF" H 9960 5420 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm" H 9950 5500 50  0001 C CNN
+F 3 "" H 9950 5500 50  0001 C CNN
+	1    9950 5500
+	0    1    1    0   
+$EndComp
+$Comp
+L C_Small C4
+U 1 1 5CAA8C20
+P 9950 5850
+F 0 "C4" H 9960 5920 50  0000 L CNN
+F 1 "100 nF" H 9960 5770 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm" H 9950 5850 50  0001 C CNN
+F 3 "" H 9950 5850 50  0001 C CNN
+	1    9950 5850
+	0    1    1    0   
+$EndComp
+$Comp
+L C_Small C5
+U 1 1 5CAA911A
+P 8200 1800
+F 0 "C5" H 8210 1870 50  0000 L CNN
+F 1 "10 nF" H 8210 1720 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 8200 1800 50  0001 C CNN
+F 3 "" H 8200 1800 50  0001 C CNN
+	1    8200 1800
+	0    -1   -1   0   
+$EndComp
+$Comp
+L C_Small C6
+U 1 1 5CAA9330
+P 8200 1900
+F 0 "C6" H 8210 1970 50  0000 L CNN
+F 1 "10 nF" H 8210 1820 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 8200 1900 50  0001 C CNN
+F 3 "" H 8200 1900 50  0001 C CNN
+	1    8200 1900
+	0    -1   -1   0   
+$EndComp
+$Comp
+L C_Small C7
+U 1 1 5CAA939B
+P 8200 2000
+F 0 "C7" H 8210 2070 50  0000 L CNN
+F 1 "10 nF" H 8210 1920 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 8200 2000 50  0001 C CNN
+F 3 "" H 8200 2000 50  0001 C CNN
+	1    8200 2000
+	0    -1   -1   0   
+$EndComp
+$Comp
+L C_Small C8
+U 1 1 5CAA9424
+P 8200 2100
+F 0 "C8" H 8210 2170 50  0000 L CNN
+F 1 "10 nF" H 8210 2020 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 8200 2100 50  0001 C CNN
+F 3 "" H 8200 2100 50  0001 C CNN
+	1    8200 2100
+	0    -1   -1   0   
+$EndComp
+$Comp
+L C_Small C9
+U 1 1 5CAA9499
+P 8200 2200
+F 0 "C9" H 8210 2270 50  0000 L CNN
+F 1 "10 nF" H 8210 2120 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 8200 2200 50  0001 C CNN
+F 3 "" H 8200 2200 50  0001 C CNN
+	1    8200 2200
+	0    -1   -1   0   
+$EndComp
+$Comp
+L C_Small C10
+U 1 1 5CAA9533
+P 8200 2300
+F 0 "C10" H 8210 2370 50  0000 L CNN
+F 1 "10 nF" H 8210 2220 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 8200 2300 50  0001 C CNN
+F 3 "" H 8200 2300 50  0001 C CNN
+	1    8200 2300
+	0    -1   -1   0   
+$EndComp
+$Comp
+L +12V #PWR22
+U 1 1 5CAA95BE
+P 10650 1550
+F 0 "#PWR22" H 10650 1400 50  0001 C CNN
+F 1 "+12V" H 10650 1690 50  0000 C CNN
+F 2 "" H 10650 1550 50  0001 C CNN
+F 3 "" H 10650 1550 50  0001 C CNN
+	1    10650 1550
+	1    0    0    -1  
+$EndComp
+$Comp
+L +12V #PWR18
+U 1 1 5CAA972E
+P 9650 4600
+F 0 "#PWR18" H 9650 4450 50  0001 C CNN
+F 1 "+12V" H 9650 4740 50  0000 C CNN
+F 2 "" H 9650 4600 50  0001 C CNN
+F 3 "" H 9650 4600 50  0001 C CNN
+	1    9650 4600
+	1    0    0    -1  
+$EndComp
+$Comp
+L +12V #PWR19
+U 1 1 5CAA98A2
+P 9650 5000
+F 0 "#PWR19" H 9650 4850 50  0001 C CNN
+F 1 "+12V" H 9650 5140 50  0000 C CNN
+F 2 "" H 9650 5000 50  0001 C CNN
+F 3 "" H 9650 5000 50  0001 C CNN
+	1    9650 5000
+	1    0    0    -1  
+$EndComp
+$Comp
+L +12V #PWR20
+U 1 1 5CAA997E
+P 9650 5400
+F 0 "#PWR20" H 9650 5250 50  0001 C CNN
+F 1 "+12V" H 9650 5540 50  0000 C CNN
+F 2 "" H 9650 5400 50  0001 C CNN
+F 3 "" H 9650 5400 50  0001 C CNN
+	1    9650 5400
+	1    0    0    -1  
+$EndComp
+$Comp
+L +12V #PWR21
+U 1 1 5CAA9A53
+P 9650 5750
+F 0 "#PWR21" H 9650 5600 50  0001 C CNN
+F 1 "+12V" H 9650 5890 50  0000 C CNN
+F 2 "" H 9650 5750 50  0001 C CNN
+F 3 "" H 9650 5750 50  0001 C CNN
+	1    9650 5750
+	1    0    0    -1  
+$EndComp
+$Comp
+L C_Small C11
+U 1 1 5CAA9B64
+P 8200 2400
+F 0 "C11" H 8210 2470 50  0000 L CNN
+F 1 "10 nF" H 8210 2320 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 8200 2400 50  0001 C CNN
+F 3 "" H 8200 2400 50  0001 C CNN
+	1    8200 2400
+	0    -1   -1   0   
+$EndComp
+$Comp
+L C_Small C12
+U 1 1 5CAA9BF2
+P 8200 2500
+F 0 "C12" H 8210 2570 50  0000 L CNN
+F 1 "10 nF" H 8210 2420 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 8200 2500 50  0001 C CNN
+F 3 "" H 8200 2500 50  0001 C CNN
+	1    8200 2500
+	0    -1   -1   0   
+$EndComp
+$Comp
+L C_Small C13
+U 1 1 5CAA9C7D
+P 8200 2600
+F 0 "C13" H 8210 2670 50  0000 L CNN
+F 1 "10 nF" H 8210 2520 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 8200 2600 50  0001 C CNN
+F 3 "" H 8200 2600 50  0001 C CNN
+	1    8200 2600
+	0    -1   -1   0   
+$EndComp
+$Comp
+L C_Small C14
+U 1 1 5CAA9D11
+P 8200 2700
+F 0 "C14" H 8210 2770 50  0000 L CNN
+F 1 "10 nF" H 8210 2620 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 8200 2700 50  0001 C CNN
+F 3 "" H 8200 2700 50  0001 C CNN
+	1    8200 2700
+	0    -1   -1   0   
+$EndComp
+$Comp
+L C_Small C15
+U 1 1 5CAA9DA8
+P 8200 2800
+F 0 "C15" H 8210 2870 50  0000 L CNN
+F 1 "10 nF" H 8210 2720 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 8200 2800 50  0001 C CNN
+F 3 "" H 8200 2800 50  0001 C CNN
+	1    8200 2800
+	0    -1   -1   0   
+$EndComp
+$Comp
+L C_Small C16
+U 1 1 5CAA9E40
+P 8200 2900
+F 0 "C16" H 8210 2970 50  0000 L CNN
+F 1 "10 nF" H 8210 2820 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 8200 2900 50  0001 C CNN
+F 3 "" H 8200 2900 50  0001 C CNN
+	1    8200 2900
+	0    -1   -1   0   
+$EndComp
+$Comp
+L C_Small C17
+U 1 1 5CAA9EE1
+P 8200 3000
+F 0 "C17" H 8210 3070 50  0000 L CNN
+F 1 "10 nF" H 8210 2920 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 8200 3000 50  0001 C CNN
+F 3 "" H 8200 3000 50  0001 C CNN
+	1    8200 3000
+	0    -1   -1   0   
+$EndComp
+$Comp
+L C_Small C18
+U 1 1 5CAAA011
+P 8200 3100
+F 0 "C18" H 8210 3170 50  0000 L CNN
+F 1 "10 nF" H 8210 3020 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 8200 3100 50  0001 C CNN
+F 3 "" H 8200 3100 50  0001 C CNN
+	1    8200 3100
+	0    -1   -1   0   
+$EndComp
+$Comp
+L C_Small C19
+U 1 1 5CAAA0CC
+P 8200 3200
+F 0 "C19" H 8210 3270 50  0000 L CNN
+F 1 "10 nF" H 8210 3120 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 8200 3200 50  0001 C CNN
+F 3 "" H 8200 3200 50  0001 C CNN
+	1    8200 3200
+	0    -1   -1   0   
+$EndComp
+$Comp
+L C_Small C20
+U 1 1 5CAAA178
+P 8200 3300
+F 0 "C20" H 8210 3370 50  0000 L CNN
+F 1 "10 nF" H 8210 3220 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 8200 3300 50  0001 C CNN
+F 3 "" H 8200 3300 50  0001 C CNN
+	1    8200 3300
+	0    -1   -1   0   
+$EndComp
+$Comp
+L +12V #PWR17
+U 1 1 5CAAA84E
+P 8000 1650
+F 0 "#PWR17" H 8000 1500 50  0001 C CNN
+F 1 "+12V" H 8000 1790 50  0000 C CNN
+F 2 "" H 8000 1650 50  0001 C CNN
+F 3 "" H 8000 1650 50  0001 C CNN
+	1    8000 1650
+	1    0    0    -1  
+$EndComp
+Text GLabel 8400 1450 1    60   Input ~ 0
+RLY1
+Wire Wire Line
+	10500 1800 10650 1800
+Wire Wire Line
+	10650 1550 10650 3300
+Wire Wire Line
+	10650 3300 10500 3300
+Wire Wire Line
+	10500 3200 10650 3200
+Connection ~ 10650 3200
+Wire Wire Line
+	10500 3100 10650 3100
+Connection ~ 10650 3100
+Wire Wire Line
+	10500 3000 10650 3000
+Connection ~ 10650 3000
+Wire Wire Line
+	10500 2900 10650 2900
+Connection ~ 10650 2900
+Wire Wire Line
+	10500 2800 10650 2800
+Connection ~ 10650 2800
+Wire Wire Line
+	10500 2700 10650 2700
+Connection ~ 10650 2700
+Wire Wire Line
+	10500 2600 10650 2600
+Connection ~ 10650 2600
+Wire Wire Line
+	10500 2500 10650 2500
+Connection ~ 10650 2500
+Wire Wire Line
+	10500 2400 10650 2400
+Connection ~ 10650 2400
+Wire Wire Line
+	10500 2300 10650 2300
+Connection ~ 10650 2300
+Wire Wire Line
+	10500 2200 10650 2200
+Connection ~ 10650 2200
+Wire Wire Line
+	10500 2100 10650 2100
+Connection ~ 10650 2100
+Wire Wire Line
+	10500 2000 10650 2000
+Connection ~ 10650 2000
+Wire Wire Line
+	10500 1900 10650 1900
+Connection ~ 10650 1900
+Wire Wire Line
+	10000 4700 10150 4700
+Wire Wire Line
+	9800 4700 9650 4700
+Wire Wire Line
+	10050 5100 10150 5100
+Wire Wire Line
+	9650 5100 9850 5100
+Wire Wire Line
+	10050 5500 10150 5500
+Wire Wire Line
+	9850 5500 9650 5500
+Wire Wire Line
+	10050 5850 10150 5850
+Wire Wire Line
+	9650 5850 9850 5850
+Wire Wire Line
+	8300 1800 10000 1800
+Wire Wire Line
+	8300 1900 10000 1900
+Wire Wire Line
+	8300 2000 10000 2000
+Wire Wire Line
+	8300 2100 10000 2100
+Wire Wire Line
+	8300 2200 10000 2200
+Wire Wire Line
+	8300 2300 10000 2300
+Connection ~ 10650 1800
+Wire Wire Line
+	9650 4700 9650 4600
+Wire Wire Line
+	9650 5100 9650 5000
+Wire Wire Line
+	9650 5500 9650 5400
+Wire Wire Line
+	9650 5750 9650 5850
+Wire Wire Line
+	8300 2400 10000 2400
+Wire Wire Line
+	8300 2500 10000 2500
+Wire Wire Line
+	8300 2600 10000 2600
+Wire Wire Line
+	8300 2700 10000 2700
+Wire Wire Line
+	8300 2800 10000 2800
+Wire Wire Line
+	8300 2900 10000 2900
+Wire Wire Line
+	8300 3000 10000 3000
+Wire Wire Line
+	8300 3100 10000 3100
+Wire Wire Line
+	8300 3200 10000 3200
+Wire Wire Line
+	8300 3300 10000 3300
+Wire Wire Line
+	8000 3300 8100 3300
+Wire Wire Line
+	8000 1650 8000 3300
+Wire Wire Line
+	8000 1800 8100 1800
+Wire Wire Line
+	8100 1900 8000 1900
+Connection ~ 8000 1900
+Wire Wire Line
+	8100 2000 8000 2000
+Connection ~ 8000 2000
+Wire Wire Line
+	8100 2100 8000 2100
+Connection ~ 8000 2100
+Wire Wire Line
+	8100 2200 8000 2200
+Connection ~ 8000 2200
+Wire Wire Line
+	8100 2300 8000 2300
+Connection ~ 8000 2300
+Wire Wire Line
+	8100 2400 8000 2400
+Connection ~ 8000 2400
+Wire Wire Line
+	8100 2500 8000 2500
+Connection ~ 8000 2500
+Wire Wire Line
+	8100 2600 8000 2600
+Connection ~ 8000 2600
+Wire Wire Line
+	8100 2700 8000 2700
+Connection ~ 8000 2700
+Wire Wire Line
+	8100 2800 8000 2800
+Connection ~ 8000 2800
+Wire Wire Line
+	8100 2900 8000 2900
+Connection ~ 8000 2900
+Wire Wire Line
+	8100 3000 8000 3000
+Connection ~ 8000 3000
+Wire Wire Line
+	8100 3100 8000 3100
+Connection ~ 8000 3100
+Wire Wire Line
+	8100 3200 8000 3200
+Connection ~ 8000 3200
+Connection ~ 8000 1800
+Wire Wire Line
+	8400 1450 8400 1800
+Connection ~ 8400 1800
+Text GLabel 8500 1450 1    60   Input ~ 0
+RLY2
+Wire Wire Line
+	8500 1450 8500 1900
+Connection ~ 8500 1900
+Text GLabel 8600 1450 1    60   Input ~ 0
+RLY3
+Wire Wire Line
+	8600 1450 8600 2000
+Connection ~ 8600 2000
+Text GLabel 8700 1450 1    60   Input ~ 0
+RLY4
+Wire Wire Line
+	8700 1450 8700 2100
+Connection ~ 8700 2100
+Text GLabel 8800 1450 1    60   Input ~ 0
+RLY5
+Wire Wire Line
+	8800 1450 8800 2200
+Connection ~ 8800 2200
+Text GLabel 8900 1450 1    60   Input ~ 0
+RLY6
+Wire Wire Line
+	8900 1450 8900 2300
+Connection ~ 8900 2300
+Text GLabel 9000 1450 1    60   Input ~ 0
+RLY7
+Wire Wire Line
+	9000 1450 9000 2400
+Connection ~ 9000 2400
+Text GLabel 9100 1450 1    60   Input ~ 0
+RLY8
+Wire Wire Line
+	9100 1450 9100 2500
+Connection ~ 9100 2500
+Text GLabel 9200 1450 1    60   Input ~ 0
+RLY9
+Wire Wire Line
+	9200 1450 9200 2600
+Connection ~ 9200 2600
+Text GLabel 9300 1450 1    60   Input ~ 0
+RLY10
+Wire Wire Line
+	9300 1450 9300 2700
+Connection ~ 9300 2700
+Text GLabel 9400 1450 1    60   Input ~ 0
+RLY11
+Wire Wire Line
+	9400 1450 9400 2800
+Connection ~ 9400 2800
+Text GLabel 9500 1450 1    60   Input ~ 0
+RLY12
+Wire Wire Line
+	9500 1450 9500 2900
+Connection ~ 9500 2900
+Text GLabel 9600 1450 1    60   Input ~ 0
+RLY13
+Wire Wire Line
+	9600 1450 9600 3000
+Connection ~ 9600 3000
+Text GLabel 9700 1450 1    60   Input ~ 0
+RLY14
+Wire Wire Line
+	9700 1450 9700 3100
+Connection ~ 9700 3100
+Text GLabel 9800 1450 1    60   Input ~ 0
+RLY15
+Wire Wire Line
+	9800 1450 9800 3200
+Connection ~ 9800 3200
+Text GLabel 9900 1450 1    60   Input ~ 0
+RLY16
+Wire Wire Line
+	9900 1450 9900 3300
+Connection ~ 9900 3300
+Text GLabel 800  600  0    60   Input ~ 0
+RLY1
+$Comp
+L +12V #PWR1
+U 1 1 5CAAD853
+P 750 1100
+F 0 "#PWR1" H 750 950 50  0001 C CNN
+F 1 "+12V" H 750 1240 50  0000 C CNN
+F 2 "" H 750 1100 50  0001 C CNN
+F 3 "" H 750 1100 50  0001 C CNN
+	1    750  1100
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L1
+U 1 1 5CAAD973
+P 1300 600
+F 0 "L1" H 1330 640 50  0000 L CNN
+F 1 "100 uH" H 1330 560 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 1300 600 50  0001 C CNN
+F 3 "" H 1300 600 50  0001 C CNN
+	1    1300 600 
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L2
+U 1 1 5CAAD9FF
+P 1300 1100
+F 0 "L2" H 1330 1140 50  0000 L CNN
+F 1 "100 uH" H 1330 1060 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 1300 1100 50  0001 C CNN
+F 3 "" H 1300 1100 50  0001 C CNN
+	1    1300 1100
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	750  1100 1200 1100
+$Comp
+L C_Small C21
+U 1 1 5CAADCD1
+P 1550 850
+F 0 "C21" H 1560 920 50  0000 L CNN
+F 1 "10 nF" H 1560 770 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 1550 850 50  0001 C CNN
+F 3 "" H 1550 850 50  0001 C CNN
+	1    1550 850 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1550 950  1550 1100
+Wire Wire Line
+	1400 1100 1850 1100
+Wire Wire Line
+	1550 750  1550 600 
+Wire Wire Line
+	1400 600  1850 600 
+Wire Wire Line
+	800  600  1200 600 
+$Comp
+L R R1
+U 1 1 5CAAE27C
+P 900 800
+F 0 "R1" V 800 800 50  0000 C CNN
+F 1 "1k" V 900 800 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 830 800 50  0001 C CNN
+F 3 "" H 900 800 50  0001 C CNN
+	1    900  800 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	900  600  900  650 
+Connection ~ 900  600 
+$Comp
+L LED D1
+U 1 1 5CAAE3F6
+P 1100 850
+F 0 "D1" H 1200 800 50  0000 C CNN
+F 1 "LED" H 1100 750 50  0000 C CNN
+F 2 "LEDs:LED_D3.0mm" H 1100 850 50  0001 C CNN
+F 3 "" H 1100 850 50  0001 C CNN
+	1    1100 850 
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	900  950  900  1000
+Wire Wire Line
+	900  1000 1000 1000
+Wire Wire Line
+	1000 1000 1000 700 
+Wire Wire Line
+	1000 700  1100 700 
+Wire Wire Line
+	1100 1000 1100 1100
+Connection ~ 1100 1100
+$Comp
+L Conn_01x02 J6
+U 1 1 5CAAE933
+P 2050 800
+F 0 "J6" H 2050 900 50  0000 C CNN
+F 1 "Conn_01x02" H 2050 600 50  0000 C CNN
+F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 2050 800 50  0001 C CNN
+F 3 "" H 2050 800 50  0001 C CNN
+	1    2050 800 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1850 1100 1850 900 
+Connection ~ 1550 1100
+Wire Wire Line
+	1850 600  1850 800 
+Connection ~ 1550 600 
+Text GLabel 800  1400 0    60   Input ~ 0
+RLY2
+$Comp
+L +12V #PWR2
+U 1 1 5CAAEDFB
+P 750 1900
+F 0 "#PWR2" H 750 1750 50  0001 C CNN
+F 1 "+12V" H 750 2040 50  0000 C CNN
+F 2 "" H 750 1900 50  0001 C CNN
+F 3 "" H 750 1900 50  0001 C CNN
+	1    750  1900
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L3
+U 1 1 5CAAEE01
+P 1300 1400
+F 0 "L3" H 1330 1440 50  0000 L CNN
+F 1 "100 uH" H 1330 1360 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 1300 1400 50  0001 C CNN
+F 3 "" H 1300 1400 50  0001 C CNN
+	1    1300 1400
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L4
+U 1 1 5CAAEE07
+P 1300 1900
+F 0 "L4" H 1330 1940 50  0000 L CNN
+F 1 "100 uH" H 1330 1860 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 1300 1900 50  0001 C CNN
+F 3 "" H 1300 1900 50  0001 C CNN
+	1    1300 1900
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	750  1900 1200 1900
+$Comp
+L C_Small C22
+U 1 1 5CAAEE0E
+P 1550 1650
+F 0 "C22" H 1560 1720 50  0000 L CNN
+F 1 "10 nF" H 1560 1570 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 1550 1650 50  0001 C CNN
+F 3 "" H 1550 1650 50  0001 C CNN
+	1    1550 1650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1550 1750 1550 1900
+Wire Wire Line
+	1400 1900 1850 1900
+Wire Wire Line
+	1550 1550 1550 1400
+Wire Wire Line
+	1400 1400 1850 1400
+Wire Wire Line
+	800  1400 1200 1400
+$Comp
+L R R2
+U 1 1 5CAAEE19
+P 900 1600
+F 0 "R2" V 800 1600 50  0000 C CNN
+F 1 "1k" V 900 1600 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 830 1600 50  0001 C CNN
+F 3 "" H 900 1600 50  0001 C CNN
+	1    900  1600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	900  1400 900  1450
+Connection ~ 900  1400
+$Comp
+L LED D2
+U 1 1 5CAAEE21
+P 1100 1650
+F 0 "D2" H 1200 1600 50  0000 C CNN
+F 1 "LED" H 1100 1550 50  0000 C CNN
+F 2 "LEDs:LED_D3.0mm" H 1100 1650 50  0001 C CNN
+F 3 "" H 1100 1650 50  0001 C CNN
+	1    1100 1650
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	900  1750 900  1800
+Wire Wire Line
+	900  1800 1000 1800
+Wire Wire Line
+	1000 1800 1000 1500
+Wire Wire Line
+	1000 1500 1100 1500
+Wire Wire Line
+	1100 1800 1100 1900
+Connection ~ 1100 1900
+$Comp
+L Conn_01x02 J7
+U 1 1 5CAAEE2D
+P 2050 1600
+F 0 "J7" H 2050 1700 50  0000 C CNN
+F 1 "Conn_01x02" H 2050 1400 50  0000 C CNN
+F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 2050 1600 50  0001 C CNN
+F 3 "" H 2050 1600 50  0001 C CNN
+	1    2050 1600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1850 1900 1850 1700
+Connection ~ 1550 1900
+Wire Wire Line
+	1850 1400 1850 1600
+Connection ~ 1550 1400
+Text GLabel 800  2200 0    60   Input ~ 0
+RLY3
+$Comp
+L +12V #PWR3
+U 1 1 5CAAEF88
+P 750 2700
+F 0 "#PWR3" H 750 2550 50  0001 C CNN
+F 1 "+12V" H 750 2840 50  0000 C CNN
+F 2 "" H 750 2700 50  0001 C CNN
+F 3 "" H 750 2700 50  0001 C CNN
+	1    750  2700
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L5
+U 1 1 5CAAEF8E
+P 1300 2200
+F 0 "L5" H 1330 2240 50  0000 L CNN
+F 1 "100 uH" H 1330 2160 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 1300 2200 50  0001 C CNN
+F 3 "" H 1300 2200 50  0001 C CNN
+	1    1300 2200
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L6
+U 1 1 5CAAEF94
+P 1300 2700
+F 0 "L6" H 1330 2740 50  0000 L CNN
+F 1 "100 uH" H 1330 2660 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 1300 2700 50  0001 C CNN
+F 3 "" H 1300 2700 50  0001 C CNN
+	1    1300 2700
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	750  2700 1200 2700
+$Comp
+L C_Small C23
+U 1 1 5CAAEF9B
+P 1550 2450
+F 0 "C23" H 1560 2520 50  0000 L CNN
+F 1 "10 nF" H 1560 2370 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 1550 2450 50  0001 C CNN
+F 3 "" H 1550 2450 50  0001 C CNN
+	1    1550 2450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1550 2550 1550 2700
+Wire Wire Line
+	1400 2700 1850 2700
+Wire Wire Line
+	1550 2350 1550 2200
+Wire Wire Line
+	1400 2200 1850 2200
+Wire Wire Line
+	800  2200 1200 2200
+$Comp
+L R R3
+U 1 1 5CAAEFA6
+P 900 2400
+F 0 "R3" V 800 2400 50  0000 C CNN
+F 1 "1k" V 900 2400 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 830 2400 50  0001 C CNN
+F 3 "" H 900 2400 50  0001 C CNN
+	1    900  2400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	900  2200 900  2250
+Connection ~ 900  2200
+$Comp
+L LED D3
+U 1 1 5CAAEFAE
+P 1100 2450
+F 0 "D3" H 1200 2400 50  0000 C CNN
+F 1 "LED" H 1100 2350 50  0000 C CNN
+F 2 "LEDs:LED_D3.0mm" H 1100 2450 50  0001 C CNN
+F 3 "" H 1100 2450 50  0001 C CNN
+	1    1100 2450
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	900  2550 900  2600
+Wire Wire Line
+	900  2600 1000 2600
+Wire Wire Line
+	1000 2600 1000 2300
+Wire Wire Line
+	1000 2300 1100 2300
+Wire Wire Line
+	1100 2600 1100 2700
+Connection ~ 1100 2700
+$Comp
+L Conn_01x02 J8
+U 1 1 5CAAEFBA
+P 2050 2400
+F 0 "J8" H 2050 2500 50  0000 C CNN
+F 1 "Conn_01x02" H 2050 2200 50  0000 C CNN
+F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 2050 2400 50  0001 C CNN
+F 3 "" H 2050 2400 50  0001 C CNN
+	1    2050 2400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1850 2700 1850 2500
+Connection ~ 1550 2700
+Wire Wire Line
+	1850 2200 1850 2400
+Connection ~ 1550 2200
+Text GLabel 800  3000 0    60   Input ~ 0
+RLY4
+$Comp
+L +12V #PWR4
+U 1 1 5CAAF10F
+P 750 3500
+F 0 "#PWR4" H 750 3350 50  0001 C CNN
+F 1 "+12V" H 750 3640 50  0000 C CNN
+F 2 "" H 750 3500 50  0001 C CNN
+F 3 "" H 750 3500 50  0001 C CNN
+	1    750  3500
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L7
+U 1 1 5CAAF115
+P 1300 3000
+F 0 "L7" H 1330 3040 50  0000 L CNN
+F 1 "100 uH" H 1330 2960 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 1300 3000 50  0001 C CNN
+F 3 "" H 1300 3000 50  0001 C CNN
+	1    1300 3000
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L8
+U 1 1 5CAAF11B
+P 1300 3500
+F 0 "L8" H 1330 3540 50  0000 L CNN
+F 1 "100 uH" H 1330 3460 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 1300 3500 50  0001 C CNN
+F 3 "" H 1300 3500 50  0001 C CNN
+	1    1300 3500
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	750  3500 1200 3500
+$Comp
+L C_Small C24
+U 1 1 5CAAF122
+P 1550 3250
+F 0 "C24" H 1560 3320 50  0000 L CNN
+F 1 "10 nF" H 1560 3170 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 1550 3250 50  0001 C CNN
+F 3 "" H 1550 3250 50  0001 C CNN
+	1    1550 3250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1550 3350 1550 3500
+Wire Wire Line
+	1400 3500 1850 3500
+Wire Wire Line
+	1550 3150 1550 3000
+Wire Wire Line
+	1400 3000 1850 3000
+Wire Wire Line
+	800  3000 1200 3000
+$Comp
+L R R4
+U 1 1 5CAAF12D
+P 900 3200
+F 0 "R4" V 800 3200 50  0000 C CNN
+F 1 "1k" V 900 3200 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 830 3200 50  0001 C CNN
+F 3 "" H 900 3200 50  0001 C CNN
+	1    900  3200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	900  3000 900  3050
+Connection ~ 900  3000
+$Comp
+L LED D4
+U 1 1 5CAAF135
+P 1100 3250
+F 0 "D4" H 1200 3200 50  0000 C CNN
+F 1 "LED" H 1100 3150 50  0000 C CNN
+F 2 "LEDs:LED_D3.0mm" H 1100 3250 50  0001 C CNN
+F 3 "" H 1100 3250 50  0001 C CNN
+	1    1100 3250
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	900  3350 900  3400
+Wire Wire Line
+	900  3400 1000 3400
+Wire Wire Line
+	1000 3400 1000 3100
+Wire Wire Line
+	1000 3100 1100 3100
+Wire Wire Line
+	1100 3400 1100 3500
+Connection ~ 1100 3500
+$Comp
+L Conn_01x02 J9
+U 1 1 5CAAF141
+P 2050 3200
+F 0 "J9" H 2050 3300 50  0000 C CNN
+F 1 "Conn_01x02" H 2050 3000 50  0000 C CNN
+F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 2050 3200 50  0001 C CNN
+F 3 "" H 2050 3200 50  0001 C CNN
+	1    2050 3200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1850 3500 1850 3300
+Connection ~ 1550 3500
+Wire Wire Line
+	1850 3000 1850 3200
+Connection ~ 1550 3000
+Text GLabel 800  3850 0    60   Input ~ 0
+RLY5
+$Comp
+L +12V #PWR5
+U 1 1 5CAAF3F8
+P 750 4350
+F 0 "#PWR5" H 750 4200 50  0001 C CNN
+F 1 "+12V" H 750 4490 50  0000 C CNN
+F 2 "" H 750 4350 50  0001 C CNN
+F 3 "" H 750 4350 50  0001 C CNN
+	1    750  4350
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L9
+U 1 1 5CAAF3FE
+P 1300 3850
+F 0 "L9" H 1330 3890 50  0000 L CNN
+F 1 "100 uH" H 1330 3810 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 1300 3850 50  0001 C CNN
+F 3 "" H 1300 3850 50  0001 C CNN
+	1    1300 3850
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L10
+U 1 1 5CAAF404
+P 1300 4350
+F 0 "L10" H 1330 4390 50  0000 L CNN
+F 1 "100 uH" H 1330 4310 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 1300 4350 50  0001 C CNN
+F 3 "" H 1300 4350 50  0001 C CNN
+	1    1300 4350
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	750  4350 1200 4350
+$Comp
+L C_Small C25
+U 1 1 5CAAF40B
+P 1550 4100
+F 0 "C25" H 1560 4170 50  0000 L CNN
+F 1 "10 nF" H 1560 4020 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 1550 4100 50  0001 C CNN
+F 3 "" H 1550 4100 50  0001 C CNN
+	1    1550 4100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1550 4200 1550 4350
+Wire Wire Line
+	1400 4350 1850 4350
+Wire Wire Line
+	1550 4000 1550 3850
+Wire Wire Line
+	1400 3850 1850 3850
+Wire Wire Line
+	800  3850 1200 3850
+$Comp
+L R R5
+U 1 1 5CAAF416
+P 900 4050
+F 0 "R5" V 800 4050 50  0000 C CNN
+F 1 "1k" V 900 4050 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 830 4050 50  0001 C CNN
+F 3 "" H 900 4050 50  0001 C CNN
+	1    900  4050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	900  3850 900  3900
+Connection ~ 900  3850
+$Comp
+L LED D5
+U 1 1 5CAAF41E
+P 1100 4100
+F 0 "D5" H 1200 4050 50  0000 C CNN
+F 1 "LED" H 1100 4000 50  0000 C CNN
+F 2 "LEDs:LED_D3.0mm" H 1100 4100 50  0001 C CNN
+F 3 "" H 1100 4100 50  0001 C CNN
+	1    1100 4100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	900  4200 900  4250
+Wire Wire Line
+	900  4250 1000 4250
+Wire Wire Line
+	1000 4250 1000 3950
+Wire Wire Line
+	1000 3950 1100 3950
+Wire Wire Line
+	1100 4250 1100 4350
+Connection ~ 1100 4350
+$Comp
+L Conn_01x02 J10
+U 1 1 5CAAF42A
+P 2050 4050
+F 0 "J10" H 2050 4150 50  0000 C CNN
+F 1 "Conn_01x02" H 2050 3850 50  0000 C CNN
+F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 2050 4050 50  0001 C CNN
+F 3 "" H 2050 4050 50  0001 C CNN
+	1    2050 4050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1850 4350 1850 4150
+Connection ~ 1550 4350
+Wire Wire Line
+	1850 3850 1850 4050
+Connection ~ 1550 3850
+Text GLabel 800  4650 0    60   Input ~ 0
+RLY6
+$Comp
+L +12V #PWR6
+U 1 1 5CAAF671
+P 750 5150
+F 0 "#PWR6" H 750 5000 50  0001 C CNN
+F 1 "+12V" H 750 5290 50  0000 C CNN
+F 2 "" H 750 5150 50  0001 C CNN
+F 3 "" H 750 5150 50  0001 C CNN
+	1    750  5150
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L11
+U 1 1 5CAAF677
+P 1300 4650
+F 0 "L11" H 1330 4690 50  0000 L CNN
+F 1 "100 uH" H 1330 4610 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 1300 4650 50  0001 C CNN
+F 3 "" H 1300 4650 50  0001 C CNN
+	1    1300 4650
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L12
+U 1 1 5CAAF67D
+P 1300 5150
+F 0 "L12" H 1330 5190 50  0000 L CNN
+F 1 "100 uH" H 1330 5110 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 1300 5150 50  0001 C CNN
+F 3 "" H 1300 5150 50  0001 C CNN
+	1    1300 5150
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	750  5150 1200 5150
+$Comp
+L C_Small C26
+U 1 1 5CAAF684
+P 1550 4900
+F 0 "C26" H 1560 4970 50  0000 L CNN
+F 1 "10 nF" H 1560 4820 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 1550 4900 50  0001 C CNN
+F 3 "" H 1550 4900 50  0001 C CNN
+	1    1550 4900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1550 5000 1550 5150
+Wire Wire Line
+	1400 5150 1850 5150
+Wire Wire Line
+	1550 4800 1550 4650
+Wire Wire Line
+	1400 4650 1850 4650
+Wire Wire Line
+	800  4650 1200 4650
+$Comp
+L R R6
+U 1 1 5CAAF68F
+P 900 4850
+F 0 "R6" V 800 4850 50  0000 C CNN
+F 1 "1k" V 900 4850 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 830 4850 50  0001 C CNN
+F 3 "" H 900 4850 50  0001 C CNN
+	1    900  4850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	900  4650 900  4700
+Connection ~ 900  4650
+$Comp
+L LED D6
+U 1 1 5CAAF697
+P 1100 4900
+F 0 "D6" H 1200 4850 50  0000 C CNN
+F 1 "LED" H 1100 4800 50  0000 C CNN
+F 2 "LEDs:LED_D3.0mm" H 1100 4900 50  0001 C CNN
+F 3 "" H 1100 4900 50  0001 C CNN
+	1    1100 4900
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	900  5000 900  5050
+Wire Wire Line
+	900  5050 1000 5050
+Wire Wire Line
+	1000 5050 1000 4750
+Wire Wire Line
+	1000 4750 1100 4750
+Wire Wire Line
+	1100 5050 1100 5150
+Connection ~ 1100 5150
+$Comp
+L Conn_01x02 J11
+U 1 1 5CAAF6A3
+P 2050 4850
+F 0 "J11" H 2050 4950 50  0000 C CNN
+F 1 "Conn_01x02" H 2050 4650 50  0000 C CNN
+F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 2050 4850 50  0001 C CNN
+F 3 "" H 2050 4850 50  0001 C CNN
+	1    2050 4850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1850 5150 1850 4950
+Connection ~ 1550 5150
+Wire Wire Line
+	1850 4650 1850 4850
+Connection ~ 1550 4650
+Text GLabel 800  5450 0    60   Input ~ 0
+RLY7
+$Comp
+L +12V #PWR7
+U 1 1 5CAAF9A2
+P 750 5950
+F 0 "#PWR7" H 750 5800 50  0001 C CNN
+F 1 "+12V" H 750 6090 50  0000 C CNN
+F 2 "" H 750 5950 50  0001 C CNN
+F 3 "" H 750 5950 50  0001 C CNN
+	1    750  5950
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L13
+U 1 1 5CAAF9A8
+P 1300 5450
+F 0 "L13" H 1330 5490 50  0000 L CNN
+F 1 "100 uH" H 1330 5410 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 1300 5450 50  0001 C CNN
+F 3 "" H 1300 5450 50  0001 C CNN
+	1    1300 5450
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L14
+U 1 1 5CAAF9AE
+P 1300 5950
+F 0 "L14" H 1330 5990 50  0000 L CNN
+F 1 "100 uH" H 1330 5910 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 1300 5950 50  0001 C CNN
+F 3 "" H 1300 5950 50  0001 C CNN
+	1    1300 5950
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	750  5950 1200 5950
+$Comp
+L C_Small C27
+U 1 1 5CAAF9B5
+P 1550 5700
+F 0 "C27" H 1560 5770 50  0000 L CNN
+F 1 "10 nF" H 1560 5620 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 1550 5700 50  0001 C CNN
+F 3 "" H 1550 5700 50  0001 C CNN
+	1    1550 5700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1550 5800 1550 5950
+Wire Wire Line
+	1400 5950 1850 5950
+Wire Wire Line
+	1550 5600 1550 5450
+Wire Wire Line
+	1400 5450 1850 5450
+Wire Wire Line
+	800  5450 1200 5450
+$Comp
+L R R7
+U 1 1 5CAAF9C0
+P 900 5650
+F 0 "R7" V 800 5650 50  0000 C CNN
+F 1 "1k" V 900 5650 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 830 5650 50  0001 C CNN
+F 3 "" H 900 5650 50  0001 C CNN
+	1    900  5650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	900  5450 900  5500
+Connection ~ 900  5450
+$Comp
+L LED D7
+U 1 1 5CAAF9C8
+P 1100 5700
+F 0 "D7" H 1200 5650 50  0000 C CNN
+F 1 "LED" H 1100 5600 50  0000 C CNN
+F 2 "LEDs:LED_D3.0mm" H 1100 5700 50  0001 C CNN
+F 3 "" H 1100 5700 50  0001 C CNN
+	1    1100 5700
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	900  5800 900  5850
+Wire Wire Line
+	900  5850 1000 5850
+Wire Wire Line
+	1000 5850 1000 5550
+Wire Wire Line
+	1000 5550 1100 5550
+Wire Wire Line
+	1100 5850 1100 5950
+Connection ~ 1100 5950
+$Comp
+L Conn_01x02 J12
+U 1 1 5CAAF9D4
+P 2050 5650
+F 0 "J12" H 2050 5750 50  0000 C CNN
+F 1 "Conn_01x02" H 2050 5450 50  0000 C CNN
+F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 2050 5650 50  0001 C CNN
+F 3 "" H 2050 5650 50  0001 C CNN
+	1    2050 5650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1850 5950 1850 5750
+Connection ~ 1550 5950
+Wire Wire Line
+	1850 5450 1850 5650
+Connection ~ 1550 5450
+Text GLabel 800  6200 0    60   Input ~ 0
+RLY8
+$Comp
+L +12V #PWR8
+U 1 1 5CAAFC81
+P 750 6700
+F 0 "#PWR8" H 750 6550 50  0001 C CNN
+F 1 "+12V" H 750 6840 50  0000 C CNN
+F 2 "" H 750 6700 50  0001 C CNN
+F 3 "" H 750 6700 50  0001 C CNN
+	1    750  6700
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L15
+U 1 1 5CAAFC87
+P 1300 6200
+F 0 "L15" H 1330 6240 50  0000 L CNN
+F 1 "100 uH" H 1330 6160 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 1300 6200 50  0001 C CNN
+F 3 "" H 1300 6200 50  0001 C CNN
+	1    1300 6200
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L16
+U 1 1 5CAAFC8D
+P 1300 6700
+F 0 "L16" H 1330 6740 50  0000 L CNN
+F 1 "100 uH" H 1330 6660 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 1300 6700 50  0001 C CNN
+F 3 "" H 1300 6700 50  0001 C CNN
+	1    1300 6700
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	750  6700 1200 6700
+$Comp
+L C_Small C28
+U 1 1 5CAAFC94
+P 1550 6450
+F 0 "C28" H 1560 6520 50  0000 L CNN
+F 1 "10 nF" H 1560 6370 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 1550 6450 50  0001 C CNN
+F 3 "" H 1550 6450 50  0001 C CNN
+	1    1550 6450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1550 6550 1550 6700
+Wire Wire Line
+	1400 6700 1850 6700
+Wire Wire Line
+	1550 6350 1550 6200
+Wire Wire Line
+	1400 6200 1850 6200
+Wire Wire Line
+	800  6200 1200 6200
+$Comp
+L R R8
+U 1 1 5CAAFC9F
+P 900 6400
+F 0 "R8" V 800 6400 50  0000 C CNN
+F 1 "1k" V 900 6400 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 830 6400 50  0001 C CNN
+F 3 "" H 900 6400 50  0001 C CNN
+	1    900  6400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	900  6200 900  6250
+Connection ~ 900  6200
+$Comp
+L LED D8
+U 1 1 5CAAFCA7
+P 1100 6450
+F 0 "D8" H 1200 6400 50  0000 C CNN
+F 1 "LED" H 1100 6350 50  0000 C CNN
+F 2 "LEDs:LED_D3.0mm" H 1100 6450 50  0001 C CNN
+F 3 "" H 1100 6450 50  0001 C CNN
+	1    1100 6450
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	900  6550 900  6600
+Wire Wire Line
+	900  6600 1000 6600
+Wire Wire Line
+	1000 6600 1000 6300
+Wire Wire Line
+	1000 6300 1100 6300
+Wire Wire Line
+	1100 6600 1100 6700
+Connection ~ 1100 6700
+$Comp
+L Conn_01x02 J13
+U 1 1 5CAAFCB3
+P 2050 6400
+F 0 "J13" H 2050 6500 50  0000 C CNN
+F 1 "Conn_01x02" H 2050 6200 50  0000 C CNN
+F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 2050 6400 50  0001 C CNN
+F 3 "" H 2050 6400 50  0001 C CNN
+	1    2050 6400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1850 6700 1850 6500
+Connection ~ 1550 6700
+Wire Wire Line
+	1850 6200 1850 6400
+Connection ~ 1550 6200
+Text GLabel 3550 600  0    60   Input ~ 0
+RLY9
+$Comp
+L +12V #PWR9
+U 1 1 5CAB026D
+P 3500 1100
+F 0 "#PWR9" H 3500 950 50  0001 C CNN
+F 1 "+12V" H 3500 1240 50  0000 C CNN
+F 2 "" H 3500 1100 50  0001 C CNN
+F 3 "" H 3500 1100 50  0001 C CNN
+	1    3500 1100
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L17
+U 1 1 5CAB0273
+P 4050 600
+F 0 "L17" H 4080 640 50  0000 L CNN
+F 1 "100 uH" H 4080 560 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 4050 600 50  0001 C CNN
+F 3 "" H 4050 600 50  0001 C CNN
+	1    4050 600 
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L18
+U 1 1 5CAB0279
+P 4050 1100
+F 0 "L18" H 4080 1140 50  0000 L CNN
+F 1 "100 uH" H 4080 1060 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 4050 1100 50  0001 C CNN
+F 3 "" H 4050 1100 50  0001 C CNN
+	1    4050 1100
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3500 1100 3950 1100
+$Comp
+L C_Small C29
+U 1 1 5CAB0280
+P 4300 850
+F 0 "C29" H 4310 920 50  0000 L CNN
+F 1 "10 nF" H 4310 770 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 4300 850 50  0001 C CNN
+F 3 "" H 4300 850 50  0001 C CNN
+	1    4300 850 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4300 950  4300 1100
+Wire Wire Line
+	4150 1100 4600 1100
+Wire Wire Line
+	4300 750  4300 600 
+Wire Wire Line
+	4150 600  4600 600 
+Wire Wire Line
+	3550 600  3950 600 
+$Comp
+L R R9
+U 1 1 5CAB028B
+P 3650 800
+F 0 "R9" V 3550 800 50  0000 C CNN
+F 1 "1k" V 3650 800 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 3580 800 50  0001 C CNN
+F 3 "" H 3650 800 50  0001 C CNN
+	1    3650 800 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3650 600  3650 650 
+Connection ~ 3650 600 
+$Comp
+L LED D9
+U 1 1 5CAB0293
+P 3850 850
+F 0 "D9" H 3950 800 50  0000 C CNN
+F 1 "LED" H 3850 750 50  0000 C CNN
+F 2 "LEDs:LED_D3.0mm" H 3850 850 50  0001 C CNN
+F 3 "" H 3850 850 50  0001 C CNN
+	1    3850 850 
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3650 950  3650 1000
+Wire Wire Line
+	3650 1000 3750 1000
+Wire Wire Line
+	3750 1000 3750 700 
+Wire Wire Line
+	3750 700  3850 700 
+Wire Wire Line
+	3850 1000 3850 1100
+Connection ~ 3850 1100
+$Comp
+L Conn_01x02 J14
+U 1 1 5CAB029F
+P 4800 800
+F 0 "J14" H 4800 900 50  0000 C CNN
+F 1 "Conn_01x02" H 4800 600 50  0000 C CNN
+F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 4800 800 50  0001 C CNN
+F 3 "" H 4800 800 50  0001 C CNN
+	1    4800 800 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4600 1100 4600 900 
+Connection ~ 4300 1100
+Wire Wire Line
+	4600 600  4600 800 
+Connection ~ 4300 600 
+Text GLabel 3550 1350 0    60   Input ~ 0
+RLY10
+$Comp
+L +12V #PWR10
+U 1 1 5CAB0577
+P 3500 1850
+F 0 "#PWR10" H 3500 1700 50  0001 C CNN
+F 1 "+12V" H 3500 1990 50  0000 C CNN
+F 2 "" H 3500 1850 50  0001 C CNN
+F 3 "" H 3500 1850 50  0001 C CNN
+	1    3500 1850
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L19
+U 1 1 5CAB057D
+P 4050 1350
+F 0 "L19" H 4080 1390 50  0000 L CNN
+F 1 "100 uH" H 4080 1310 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 4050 1350 50  0001 C CNN
+F 3 "" H 4050 1350 50  0001 C CNN
+	1    4050 1350
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L20
+U 1 1 5CAB0583
+P 4050 1850
+F 0 "L20" H 4080 1890 50  0000 L CNN
+F 1 "100 uH" H 4080 1810 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 4050 1850 50  0001 C CNN
+F 3 "" H 4050 1850 50  0001 C CNN
+	1    4050 1850
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3500 1850 3950 1850
+$Comp
+L C_Small C30
+U 1 1 5CAB058A
+P 4300 1600
+F 0 "C30" H 4310 1670 50  0000 L CNN
+F 1 "10 nF" H 4310 1520 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 4300 1600 50  0001 C CNN
+F 3 "" H 4300 1600 50  0001 C CNN
+	1    4300 1600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4300 1700 4300 1850
+Wire Wire Line
+	4150 1850 4600 1850
+Wire Wire Line
+	4300 1500 4300 1350
+Wire Wire Line
+	4150 1350 4600 1350
+Wire Wire Line
+	3550 1350 3950 1350
+$Comp
+L R R10
+U 1 1 5CAB0595
+P 3650 1550
+F 0 "R10" V 3550 1550 50  0000 C CNN
+F 1 "1k" V 3650 1550 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 3580 1550 50  0001 C CNN
+F 3 "" H 3650 1550 50  0001 C CNN
+	1    3650 1550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3650 1350 3650 1400
+Connection ~ 3650 1350
+$Comp
+L LED D10
+U 1 1 5CAB059D
+P 3850 1600
+F 0 "D10" H 3950 1550 50  0000 C CNN
+F 1 "LED" H 3850 1500 50  0000 C CNN
+F 2 "LEDs:LED_D3.0mm" H 3850 1600 50  0001 C CNN
+F 3 "" H 3850 1600 50  0001 C CNN
+	1    3850 1600
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3650 1700 3650 1750
+Wire Wire Line
+	3650 1750 3750 1750
+Wire Wire Line
+	3750 1750 3750 1450
+Wire Wire Line
+	3750 1450 3850 1450
+Wire Wire Line
+	3850 1750 3850 1850
+Connection ~ 3850 1850
+$Comp
+L Conn_01x02 J15
+U 1 1 5CAB05A9
+P 4800 1550
+F 0 "J15" H 4800 1650 50  0000 C CNN
+F 1 "Conn_01x02" H 4800 1350 50  0000 C CNN
+F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 4800 1550 50  0001 C CNN
+F 3 "" H 4800 1550 50  0001 C CNN
+	1    4800 1550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4600 1850 4600 1650
+Connection ~ 4300 1850
+Wire Wire Line
+	4600 1350 4600 1550
+Connection ~ 4300 1350
+Text GLabel 3550 2150 0    60   Input ~ 0
+RLY11
+$Comp
+L +12V #PWR11
+U 1 1 5CAB1D23
+P 3500 2650
+F 0 "#PWR11" H 3500 2500 50  0001 C CNN
+F 1 "+12V" H 3500 2790 50  0000 C CNN
+F 2 "" H 3500 2650 50  0001 C CNN
+F 3 "" H 3500 2650 50  0001 C CNN
+	1    3500 2650
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L21
+U 1 1 5CAB1D29
+P 4050 2150
+F 0 "L21" H 4080 2190 50  0000 L CNN
+F 1 "100 uH" H 4080 2110 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 4050 2150 50  0001 C CNN
+F 3 "" H 4050 2150 50  0001 C CNN
+	1    4050 2150
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L22
+U 1 1 5CAB1D2F
+P 4050 2650
+F 0 "L22" H 4080 2690 50  0000 L CNN
+F 1 "100 uH" H 4080 2610 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 4050 2650 50  0001 C CNN
+F 3 "" H 4050 2650 50  0001 C CNN
+	1    4050 2650
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3500 2650 3950 2650
+$Comp
+L C_Small C31
+U 1 1 5CAB1D36
+P 4300 2400
+F 0 "C31" H 4310 2470 50  0000 L CNN
+F 1 "10 nF" H 4310 2320 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 4300 2400 50  0001 C CNN
+F 3 "" H 4300 2400 50  0001 C CNN
+	1    4300 2400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4300 2500 4300 2650
+Wire Wire Line
+	4150 2650 4600 2650
+Wire Wire Line
+	4300 2300 4300 2150
+Wire Wire Line
+	4150 2150 4600 2150
+Wire Wire Line
+	3550 2150 3950 2150
+$Comp
+L R R11
+U 1 1 5CAB1D41
+P 3650 2350
+F 0 "R11" V 3550 2350 50  0000 C CNN
+F 1 "1k" V 3650 2350 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 3580 2350 50  0001 C CNN
+F 3 "" H 3650 2350 50  0001 C CNN
+	1    3650 2350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3650 2150 3650 2200
+Connection ~ 3650 2150
+$Comp
+L LED D11
+U 1 1 5CAB1D49
+P 3850 2400
+F 0 "D11" H 3950 2350 50  0000 C CNN
+F 1 "LED" H 3850 2300 50  0000 C CNN
+F 2 "LEDs:LED_D3.0mm" H 3850 2400 50  0001 C CNN
+F 3 "" H 3850 2400 50  0001 C CNN
+	1    3850 2400
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3650 2500 3650 2550
+Wire Wire Line
+	3650 2550 3750 2550
+Wire Wire Line
+	3750 2550 3750 2250
+Wire Wire Line
+	3750 2250 3850 2250
+Wire Wire Line
+	3850 2550 3850 2650
+Connection ~ 3850 2650
+$Comp
+L Conn_01x02 J16
+U 1 1 5CAB1D55
+P 4800 2350
+F 0 "J16" H 4800 2450 50  0000 C CNN
+F 1 "Conn_01x02" H 4800 2150 50  0000 C CNN
+F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 4800 2350 50  0001 C CNN
+F 3 "" H 4800 2350 50  0001 C CNN
+	1    4800 2350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4600 2650 4600 2450
+Connection ~ 4300 2650
+Wire Wire Line
+	4600 2150 4600 2350
+Connection ~ 4300 2150
+Text GLabel 3550 2900 0    60   Input ~ 0
+RLY12
+$Comp
+L +12V #PWR12
+U 1 1 5CAB20DA
+P 3500 3400
+F 0 "#PWR12" H 3500 3250 50  0001 C CNN
+F 1 "+12V" H 3500 3540 50  0000 C CNN
+F 2 "" H 3500 3400 50  0001 C CNN
+F 3 "" H 3500 3400 50  0001 C CNN
+	1    3500 3400
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L23
+U 1 1 5CAB20E0
+P 4050 2900
+F 0 "L23" H 4080 2940 50  0000 L CNN
+F 1 "100 uH" H 4080 2860 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 4050 2900 50  0001 C CNN
+F 3 "" H 4050 2900 50  0001 C CNN
+	1    4050 2900
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L24
+U 1 1 5CAB20E6
+P 4050 3400
+F 0 "L24" H 4080 3440 50  0000 L CNN
+F 1 "100 uH" H 4080 3360 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 4050 3400 50  0001 C CNN
+F 3 "" H 4050 3400 50  0001 C CNN
+	1    4050 3400
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3500 3400 3950 3400
+$Comp
+L C_Small C32
+U 1 1 5CAB20ED
+P 4300 3150
+F 0 "C32" H 4310 3220 50  0000 L CNN
+F 1 "10 nF" H 4310 3070 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 4300 3150 50  0001 C CNN
+F 3 "" H 4300 3150 50  0001 C CNN
+	1    4300 3150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4300 3250 4300 3400
+Wire Wire Line
+	4150 3400 4600 3400
+Wire Wire Line
+	4300 3050 4300 2900
+Wire Wire Line
+	4150 2900 4600 2900
+Wire Wire Line
+	3550 2900 3950 2900
+$Comp
+L R R12
+U 1 1 5CAB20F8
+P 3650 3100
+F 0 "R12" V 3550 3100 50  0000 C CNN
+F 1 "1k" V 3650 3100 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 3580 3100 50  0001 C CNN
+F 3 "" H 3650 3100 50  0001 C CNN
+	1    3650 3100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3650 2900 3650 2950
+Connection ~ 3650 2900
+$Comp
+L LED D12
+U 1 1 5CAB2100
+P 3850 3150
+F 0 "D12" H 3950 3100 50  0000 C CNN
+F 1 "LED" H 3850 3050 50  0000 C CNN
+F 2 "LEDs:LED_D3.0mm" H 3850 3150 50  0001 C CNN
+F 3 "" H 3850 3150 50  0001 C CNN
+	1    3850 3150
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3650 3250 3650 3300
+Wire Wire Line
+	3650 3300 3750 3300
+Wire Wire Line
+	3750 3300 3750 3000
+Wire Wire Line
+	3750 3000 3850 3000
+Wire Wire Line
+	3850 3300 3850 3400
+Connection ~ 3850 3400
+$Comp
+L Conn_01x02 J17
+U 1 1 5CAB210C
+P 4800 3100
+F 0 "J17" H 4800 3200 50  0000 C CNN
+F 1 "Conn_01x02" H 4800 2900 50  0000 C CNN
+F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 4800 3100 50  0001 C CNN
+F 3 "" H 4800 3100 50  0001 C CNN
+	1    4800 3100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4600 3400 4600 3200
+Connection ~ 4300 3400
+Wire Wire Line
+	4600 2900 4600 3100
+Connection ~ 4300 2900
+Text GLabel 3550 3650 0    60   Input ~ 0
+RLY13
+$Comp
+L +12V #PWR13
+U 1 1 5CAB255A
+P 3500 4150
+F 0 "#PWR13" H 3500 4000 50  0001 C CNN
+F 1 "+12V" H 3500 4290 50  0000 C CNN
+F 2 "" H 3500 4150 50  0001 C CNN
+F 3 "" H 3500 4150 50  0001 C CNN
+	1    3500 4150
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L25
+U 1 1 5CAB2560
+P 4050 3650
+F 0 "L25" H 4080 3690 50  0000 L CNN
+F 1 "100 uH" H 4080 3610 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 4050 3650 50  0001 C CNN
+F 3 "" H 4050 3650 50  0001 C CNN
+	1    4050 3650
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L26
+U 1 1 5CAB2566
+P 4050 4150
+F 0 "L26" H 4080 4190 50  0000 L CNN
+F 1 "100 uH" H 4080 4110 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 4050 4150 50  0001 C CNN
+F 3 "" H 4050 4150 50  0001 C CNN
+	1    4050 4150
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3500 4150 3950 4150
+$Comp
+L C_Small C33
+U 1 1 5CAB256D
+P 4300 3900
+F 0 "C33" H 4310 3970 50  0000 L CNN
+F 1 "10 nF" H 4310 3820 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 4300 3900 50  0001 C CNN
+F 3 "" H 4300 3900 50  0001 C CNN
+	1    4300 3900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4300 4000 4300 4150
+Wire Wire Line
+	4150 4150 4600 4150
+Wire Wire Line
+	4300 3800 4300 3650
+Wire Wire Line
+	4150 3650 4600 3650
+Wire Wire Line
+	3550 3650 3950 3650
+$Comp
+L R R13
+U 1 1 5CAB2578
+P 3650 3850
+F 0 "R13" V 3550 3850 50  0000 C CNN
+F 1 "1k" V 3650 3850 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 3580 3850 50  0001 C CNN
+F 3 "" H 3650 3850 50  0001 C CNN
+	1    3650 3850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3650 3650 3650 3700
+Connection ~ 3650 3650
+$Comp
+L LED D13
+U 1 1 5CAB2580
+P 3850 3900
+F 0 "D13" H 3950 3850 50  0000 C CNN
+F 1 "LED" H 3850 3800 50  0000 C CNN
+F 2 "LEDs:LED_D3.0mm" H 3850 3900 50  0001 C CNN
+F 3 "" H 3850 3900 50  0001 C CNN
+	1    3850 3900
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3650 4000 3650 4050
+Wire Wire Line
+	3650 4050 3750 4050
+Wire Wire Line
+	3750 4050 3750 3750
+Wire Wire Line
+	3750 3750 3850 3750
+Wire Wire Line
+	3850 4050 3850 4150
+Connection ~ 3850 4150
+$Comp
+L Conn_01x02 J18
+U 1 1 5CAB258C
+P 4800 3850
+F 0 "J18" H 4800 3950 50  0000 C CNN
+F 1 "Conn_01x02" H 4800 3650 50  0000 C CNN
+F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 4800 3850 50  0001 C CNN
+F 3 "" H 4800 3850 50  0001 C CNN
+	1    4800 3850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4600 4150 4600 3950
+Connection ~ 4300 4150
+Wire Wire Line
+	4600 3650 4600 3850
+Connection ~ 4300 3650
+Text GLabel 3550 4400 0    60   Input ~ 0
+RLY14
+$Comp
+L +12V #PWR14
+U 1 1 5CAB2874
+P 3500 4900
+F 0 "#PWR14" H 3500 4750 50  0001 C CNN
+F 1 "+12V" H 3500 5040 50  0000 C CNN
+F 2 "" H 3500 4900 50  0001 C CNN
+F 3 "" H 3500 4900 50  0001 C CNN
+	1    3500 4900
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L27
+U 1 1 5CAB287A
+P 4050 4400
+F 0 "L27" H 4080 4440 50  0000 L CNN
+F 1 "100 uH" H 4080 4360 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 4050 4400 50  0001 C CNN
+F 3 "" H 4050 4400 50  0001 C CNN
+	1    4050 4400
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L28
+U 1 1 5CAB2880
+P 4050 4900
+F 0 "L28" H 4080 4940 50  0000 L CNN
+F 1 "100 uH" H 4080 4860 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 4050 4900 50  0001 C CNN
+F 3 "" H 4050 4900 50  0001 C CNN
+	1    4050 4900
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3500 4900 3950 4900
+$Comp
+L C_Small C34
+U 1 1 5CAB2887
+P 4300 4650
+F 0 "C34" H 4310 4720 50  0000 L CNN
+F 1 "10 nF" H 4310 4570 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 4300 4650 50  0001 C CNN
+F 3 "" H 4300 4650 50  0001 C CNN
+	1    4300 4650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4300 4750 4300 4900
+Wire Wire Line
+	4150 4900 4600 4900
+Wire Wire Line
+	4300 4550 4300 4400
+Wire Wire Line
+	4150 4400 4600 4400
+Wire Wire Line
+	3550 4400 3950 4400
+$Comp
+L R R14
+U 1 1 5CAB2892
+P 3650 4600
+F 0 "R14" V 3550 4600 50  0000 C CNN
+F 1 "1k" V 3650 4600 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 3580 4600 50  0001 C CNN
+F 3 "" H 3650 4600 50  0001 C CNN
+	1    3650 4600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3650 4400 3650 4450
+Connection ~ 3650 4400
+$Comp
+L LED D14
+U 1 1 5CAB289A
+P 3850 4650
+F 0 "D14" H 3950 4600 50  0000 C CNN
+F 1 "LED" H 3850 4550 50  0000 C CNN
+F 2 "LEDs:LED_D3.0mm" H 3850 4650 50  0001 C CNN
+F 3 "" H 3850 4650 50  0001 C CNN
+	1    3850 4650
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3650 4750 3650 4800
+Wire Wire Line
+	3650 4800 3750 4800
+Wire Wire Line
+	3750 4800 3750 4500
+Wire Wire Line
+	3750 4500 3850 4500
+Wire Wire Line
+	3850 4800 3850 4900
+Connection ~ 3850 4900
+$Comp
+L Conn_01x02 J19
+U 1 1 5CAB28A6
+P 4800 4600
+F 0 "J19" H 4800 4700 50  0000 C CNN
+F 1 "Conn_01x02" H 4800 4400 50  0000 C CNN
+F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 4800 4600 50  0001 C CNN
+F 3 "" H 4800 4600 50  0001 C CNN
+	1    4800 4600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4600 4900 4600 4700
+Connection ~ 4300 4900
+Wire Wire Line
+	4600 4400 4600 4600
+Connection ~ 4300 4400
+Text GLabel 3550 5100 0    60   Input ~ 0
+RLY15
+$Comp
+L +12V #PWR15
+U 1 1 5CAB2DA8
+P 3500 5600
+F 0 "#PWR15" H 3500 5450 50  0001 C CNN
+F 1 "+12V" H 3500 5740 50  0000 C CNN
+F 2 "" H 3500 5600 50  0001 C CNN
+F 3 "" H 3500 5600 50  0001 C CNN
+	1    3500 5600
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L29
+U 1 1 5CAB2DAE
+P 4050 5100
+F 0 "L29" H 4080 5140 50  0000 L CNN
+F 1 "100 uH" H 4080 5060 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 4050 5100 50  0001 C CNN
+F 3 "" H 4050 5100 50  0001 C CNN
+	1    4050 5100
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L30
+U 1 1 5CAB2DB4
+P 4050 5600
+F 0 "L30" H 4080 5640 50  0000 L CNN
+F 1 "100 uH" H 4080 5560 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 4050 5600 50  0001 C CNN
+F 3 "" H 4050 5600 50  0001 C CNN
+	1    4050 5600
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3500 5600 3950 5600
+$Comp
+L C_Small C35
+U 1 1 5CAB2DBB
+P 4300 5350
+F 0 "C35" H 4310 5420 50  0000 L CNN
+F 1 "10 nF" H 4310 5270 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 4300 5350 50  0001 C CNN
+F 3 "" H 4300 5350 50  0001 C CNN
+	1    4300 5350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4300 5450 4300 5600
+Wire Wire Line
+	4150 5600 4600 5600
+Wire Wire Line
+	4300 5250 4300 5100
+Wire Wire Line
+	4150 5100 4600 5100
+Wire Wire Line
+	3550 5100 3950 5100
+$Comp
+L R R15
+U 1 1 5CAB2DC6
+P 3650 5300
+F 0 "R15" V 3550 5300 50  0000 C CNN
+F 1 "1k" V 3650 5300 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 3580 5300 50  0001 C CNN
+F 3 "" H 3650 5300 50  0001 C CNN
+	1    3650 5300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3650 5100 3650 5150
+Connection ~ 3650 5100
+$Comp
+L LED D15
+U 1 1 5CAB2DCE
+P 3850 5350
+F 0 "D15" H 3950 5300 50  0000 C CNN
+F 1 "LED" H 3850 5250 50  0000 C CNN
+F 2 "LEDs:LED_D3.0mm" H 3850 5350 50  0001 C CNN
+F 3 "" H 3850 5350 50  0001 C CNN
+	1    3850 5350
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3650 5450 3650 5500
+Wire Wire Line
+	3650 5500 3750 5500
+Wire Wire Line
+	3750 5500 3750 5200
+Wire Wire Line
+	3750 5200 3850 5200
+Wire Wire Line
+	3850 5500 3850 5600
+Connection ~ 3850 5600
+$Comp
+L Conn_01x02 J20
+U 1 1 5CAB2DDA
+P 4800 5300
+F 0 "J20" H 4800 5400 50  0000 C CNN
+F 1 "Conn_01x02" H 4800 5100 50  0000 C CNN
+F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 4800 5300 50  0001 C CNN
+F 3 "" H 4800 5300 50  0001 C CNN
+	1    4800 5300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4600 5600 4600 5400
+Connection ~ 4300 5600
+Wire Wire Line
+	4600 5100 4600 5300
+Connection ~ 4300 5100
+Text GLabel 3550 5850 0    60   Input ~ 0
+RLY16
+$Comp
+L +12V #PWR16
+U 1 1 5CAB3140
+P 3500 6350
+F 0 "#PWR16" H 3500 6200 50  0001 C CNN
+F 1 "+12V" H 3500 6490 50  0000 C CNN
+F 2 "" H 3500 6350 50  0001 C CNN
+F 3 "" H 3500 6350 50  0001 C CNN
+	1    3500 6350
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L31
+U 1 1 5CAB3146
+P 4050 5850
+F 0 "L31" H 4080 5890 50  0000 L CNN
+F 1 "100 uH" H 4080 5810 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 4050 5850 50  0001 C CNN
+F 3 "" H 4050 5850 50  0001 C CNN
+	1    4050 5850
+	0    -1   -1   0   
+$EndComp
+$Comp
+L L_Small L32
+U 1 1 5CAB314C
+P 4050 6350
+F 0 "L32" H 4080 6390 50  0000 L CNN
+F 1 "100 uH" H 4080 6310 50  0000 L CNN
+F 2 "Inductors_THT:L_Axial_L5.3mm_D2.2mm_P7.62mm_Horizontal_Vishay_IM-1" H 4050 6350 50  0001 C CNN
+F 3 "" H 4050 6350 50  0001 C CNN
+	1    4050 6350
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3500 6350 3950 6350
+$Comp
+L C_Small C36
+U 1 1 5CAB3153
+P 4300 6100
+F 0 "C36" H 4310 6170 50  0000 L CNN
+F 1 "10 nF" H 4310 6020 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 4300 6100 50  0001 C CNN
+F 3 "" H 4300 6100 50  0001 C CNN
+	1    4300 6100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4300 6200 4300 6350
+Wire Wire Line
+	4150 6350 4600 6350
+Wire Wire Line
+	4300 6000 4300 5850
+Wire Wire Line
+	4150 5850 4600 5850
+Wire Wire Line
+	3550 5850 3950 5850
+$Comp
+L R R16
+U 1 1 5CAB315E
+P 3650 6050
+F 0 "R16" V 3550 6050 50  0000 C CNN
+F 1 "1k" V 3650 6050 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 3580 6050 50  0001 C CNN
+F 3 "" H 3650 6050 50  0001 C CNN
+	1    3650 6050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3650 5850 3650 5900
+Connection ~ 3650 5850
+$Comp
+L LED D16
+U 1 1 5CAB3166
+P 3850 6100
+F 0 "D16" H 3950 6050 50  0000 C CNN
+F 1 "LED" H 3850 6000 50  0000 C CNN
+F 2 "LEDs:LED_D3.0mm" H 3850 6100 50  0001 C CNN
+F 3 "" H 3850 6100 50  0001 C CNN
+	1    3850 6100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3650 6200 3650 6250
+Wire Wire Line
+	3650 6250 3750 6250
+Wire Wire Line
+	3750 6250 3750 5950
+Wire Wire Line
+	3750 5950 3850 5950
+Wire Wire Line
+	3850 6250 3850 6350
+Connection ~ 3850 6350
+$Comp
+L Conn_01x02 J21
+U 1 1 5CAB3172
+P 4800 6050
+F 0 "J21" H 4800 6150 50  0000 C CNN
+F 1 "Conn_01x02" H 4800 5850 50  0000 C CNN
+F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 4800 6050 50  0001 C CNN
+F 3 "" H 4800 6050 50  0001 C CNN
+	1    4800 6050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4600 6350 4600 6150
+Connection ~ 4300 6350
+Wire Wire Line
+	4600 5850 4600 6050
+Connection ~ 4300 5850
+Text Notes 7500 6900 0    60   ~ 0
+RELAY TERMINAL BREAKOUT BOARD\nBY D MARKS KW4TI\nCC-BY-SA 4.0
+$EndSCHEMATC
