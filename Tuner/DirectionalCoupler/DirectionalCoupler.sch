@@ -1237,13 +1237,13 @@ Wire Wire Line
 Wire Wire Line
 	5450 4650 5450 4950
 Wire Wire Line
-	5300 4450 5450 4450
+	5150 4450 5450 4450
 Wire Wire Line
 	5450 4450 5450 4300
 Wire Wire Line
 	5300 4650 5300 4750
 Wire Wire Line
-	5300 4750 5800 4750
+	5150 4750 5800 4750
 Connection ~ 5450 4750
 Wire Wire Line
 	6750 4300 6750 4350
@@ -1439,4 +1439,19 @@ Wire Wire Line
 Connection ~ 5300 2800
 Text Notes 7450 6950 0    60   ~ 0
 HF Directional Coupler\nby Daniel Marks KW4TI\nCC-BY-SA 4.0\n
+$Comp
+L C_Small C9
+U 1 1 5CB0A1E1
+P 5150 4550
+F 0 "C9" H 5160 4620 50  0000 L CNN
+F 1 "10 nF" H 5160 4470 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm" H 5150 4550 50  0001 C CNN
+F 3 "" H 5150 4550 50  0001 C CNN
+	1    5150 4550
+	1    0    0    -1  
+$EndComp
+Connection ~ 5300 4450
+Wire Wire Line
+	5150 4650 5150 4750
+Connection ~ 5300 4750
 $EndSCHEMATC
