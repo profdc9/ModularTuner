@@ -23,6 +23,8 @@ freely, subject to the following restrictions:
 
 #include "tuner.h"
 
+#ifdef TUNER_USER_INTERFACE
+
 #define INTERFACE_LCD_COLUMNS 20
 #define INTERFACE_LCD_ROWS 4
 
@@ -37,7 +39,10 @@ void interface_task(void);
 void interface_pollbuttons(void);
 byte interface_getbuttonevent(byte &buttonNumber, interface_button_operation &operation);
 byte interface_getbuttonstate(byte buttonNumber);
+bool interface_checkabort(void);
 
 void interface_update_swr(swr_state *current_swr_state);
 
-#endif  /* _STRUCTCONF_H */
+#endif  /* TUNER_USER_INTERFACE */
+
+#endif  /* _INTERFACE_H */

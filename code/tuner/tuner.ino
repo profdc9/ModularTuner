@@ -63,18 +63,19 @@ tuner_parameters tpar = { {"NONE"},         /* tune_label */
                           0.25f,            /* tune_return_thr */
                           1.05f,            /* tune_search_relaxation */
                           1,                /* tune_remote_channel_no */
+                          1,                /* tune_remote_id */
                           10,               /* tune_search_khz_spacing */
                           0,                /* tune_rig_control */
-                          { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_bypass */
-                          { 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_1 */
-                          { 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_2 */
+                          { 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_bypass */
+                          { 1, 2, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_1 */
+                          { 1, 2, 1, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_2 */
                           { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_3 */
                           { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_4 */
                           { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_5 */
                           { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_6 */
 };
 
-const structure_entry tuner_parameter_fields[17] =
+const structure_entry tuner_parameter_fields[18] =
 { { "LABEL",           STRUCTCONF_STRING,     offsetof(tuner_parameters,tune_label), sizeof(tpar.tune_label), STRUCTCONF_INTMIN, STRUCTCONF_INTMAX, NULL },
   { "POWERCALIB",      STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_power_calib), 1, 0, STRUCTCONF_INTMAX,  },
   { "MINTUNINGPOWER",  STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_min_power), 1, 0,  STRUCTCONF_INTMAX, NULL },
@@ -82,7 +83,8 @@ const structure_entry tuner_parameter_fields[17] =
   { "MAXREFLECTION",   STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_max_ref), 1, 0, 1, NULL },
   { "RETUNETHRESHOLD", STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_retune_thr), 1, 0, 1, NULL },
   { "SEARCHRELAXATION",STRUCTCONF_FLOAT,      offsetof(tuner_parameters,tune_search_relaxation), 1, 1, 2, NULL },
-  { "REMOTECHANNELNO", STRUCTCONF_INT16,      offsetof(tuner_parameters,tune_remote_channel_no), 1, 0, 127, NULL },
+  { "REMOTECHANNELNO", STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_remote_channel_no), 1, 0, 127, NULL },
+  { "REMOTEID",        STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_remote_id), 1, 0, 127, NULL },
   { "SEARCHKHZSPACING",STRUCTCONF_INT16,      offsetof(tuner_parameters,tune_search_khz_spacing), 1, 0, 100, NULL },
   { "RIGCONTROL",      STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_rig_control), 1, 0, 3, "0=NONE 1=ICOM 2=KENWOOD 3=YAESU" },
   { "SWITCHBYPASS",    STRUCTCONF_INT8,       offsetof(tuner_parameters,tune_switchstate_bypass), TUNE_SWITCHSTATE_PER_STATE*3, 0, 255, NULL },
@@ -184,7 +186,7 @@ void setup() {
   interface_initialize();
 #endif
 #ifdef TUNER_REMOTE_WIRELESS
-  remote_initialize(tpar.tune_remote_channel_no);
+  remote_initialize(tpar.tune_remote_channel_no, tpar.tune_remote_id);
 #endif
   initialize_rig_control();
 }
@@ -272,6 +274,11 @@ void tuner_set_state(tuner_ready_state p)
 tuner_ready_state tuner_get_state(void)
 {
   return tuner_ready;
+}
+
+bool tuner_get_bypass(void)
+{
+  return tuner_bypass_mode;
 }
 
 const char *tuner_ready_string(tuner_ready_state p)
@@ -740,6 +747,9 @@ bool check_for_rig_tune_initiation(void)
 
 bool check_for_rig_tune_abort(void)
 {
+#ifdef TUNER_USER_INTERFACE
+  if (interface_checkabort()) return true;
+#endif
   switch (tpar.tune_rig_control)
   {
     case TUNER_RIG_CONTROL_ICOM:

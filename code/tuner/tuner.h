@@ -36,7 +36,7 @@ typedef enum { TUNER_READY_STANDBY=0, TUNER_READY_FORCETUNE=1, TUNER_READY_DISAB
 #define TUNER_MAX_RELAYS 8
 
 #define TUNER_MAGIC_1 0xA1B2C3D4
-#define TUNER_MAGIC_2 0xFEEDC0A2
+#define TUNER_MAGIC_2 0xFEEDC0A1
 
 typedef struct _tuner_flash_header
 {
@@ -59,7 +59,8 @@ typedef struct _tuner_parameters
   float      tune_max_ref;
   float      tune_retune_thr;
   float      tune_search_relaxation;
-  uint16_t   tune_remote_channel_no;
+  uint8_t    tune_remote_channel_no;
+  uint8_t    tune_remote_id;
   uint16_t   tune_search_khz_spacing;
   uint8_t    tune_rig_control;
   uint8_t    tune_switchstate_bypass[TUNE_SWITCHSTATE_PER_STATE*3];
@@ -101,8 +102,10 @@ void tuner_set_bypass(void);
 float adjust_pwr(float rawpwr);
 void tuner_set_state(tuner_ready_state p);
 tuner_ready_state tuner_get_state(void);
+bool tuner_get_bypass(void);
 const char *tuner_ready_string(tuner_ready_state p);
 const char *tuner_ready_short_string(tuner_ready_state p);
 int tuner_adjust_relay_updown(int rlyno, int updown, int &currentVal, byte &relay_module_type);
+void tuner_update_swr_interface(void);
 
 #endif  /* _TUNER_H */

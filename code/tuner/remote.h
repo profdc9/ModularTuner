@@ -21,7 +21,7 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
  */
 
-void remote_initialize(uint16_t channelno);
+void remote_initialize(uint8_t channelno, uint8_t radioid);
 void remote_task(void);
 void remote_set_command_mode(int state);
 int remote_send_command(const char *cmd, char *buf, int len);

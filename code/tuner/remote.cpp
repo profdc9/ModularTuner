@@ -28,8 +28,9 @@ freely, subject to the following restrictions:
 byte remote_command_mode_state = 0;
 #define REMOTE_PACKET_SIZE 16
 
-byte remote_packet_buffer[REMOTE_PACKET_SIZE+1];
+byte remote_packet_buffer[REMOTE_PACKET_SIZE+2];
 byte remote_bytes;
+byte remote_radioid;
 
 void remote_set_command_mode(int state)
 {
@@ -84,11 +85,12 @@ int remote_send_command(const char *cmd, char *buf, int len)
   return ((buf[0] == 'O') && (buf[1] == 'K'));
 }
 
-void remote_initialize(uint16_t channelno)
+void remote_initialize(uint8_t channelno, uint8_t radioid)
 {
   char s[20];
-  REMOTE_SERIAL_DEVICE.begin(9600);
 
+  remote_radioid = radioid;
+  REMOTE_SERIAL_DEVICE.begin(9600);
   pinMode(REMOTE_COMMAND_PIN,OUTPUT);
   digitalWrite(REMOTE_COMMAND_PIN,LOW);
   mini_snprintf(s,sizeof(s)-1,"AT+C%03d\r",channelno);
@@ -99,17 +101,18 @@ void remote_initialize(uint16_t channelno)
 
 void remote_transmit_packet(const byte packet[], int len)
 {
-  byte packetbuf[REMOTE_PACKET_SIZE+1];
+  byte packetbuf[REMOTE_PACKET_SIZE+2];
   if (remote_command_mode_state) return;
   if (len > (REMOTE_PACKET_SIZE-1)) return;
   packetbuf[0] = '\r';
-  memset(&packetbuf[1], '_', REMOTE_PACKET_SIZE);
-  memcpy(&packetbuf[1], packet, len);
+  packetbuf[1] = remote_radioid + ' ';
+  memset(&packetbuf[2], '_', REMOTE_PACKET_SIZE);
+  memcpy(&packetbuf[2], packet, len);
   byte checksum = 0;
-  for (int i=1;i<REMOTE_PACKET_SIZE;i++) checksum += packetbuf[i];
+  for (int i=1;i<(REMOTE_PACKET_SIZE+1);i++) checksum += packetbuf[i];
   checksum = ((~checksum) + 1) & 0x3F;
-  packetbuf[REMOTE_PACKET_SIZE] = checksum < 32 ? (checksum + 64) : checksum;
-  REMOTE_SERIAL_DEVICE.write(packetbuf,REMOTE_PACKET_SIZE+1);
+  packetbuf[REMOTE_PACKET_SIZE+1] = checksum < 32 ? (checksum + 64) : checksum;
+  REMOTE_SERIAL_DEVICE.write(packetbuf,REMOTE_PACKET_SIZE+2);
 }
 
 int remote_receive_packet(void)
@@ -117,20 +120,20 @@ int remote_receive_packet(void)
   if (!(REMOTE_SERIAL_DEVICE.available())) return 0;
   int c = REMOTE_SERIAL_DEVICE.read();
   if (c == '\r') remote_bytes = 0;
-  if ((c < ' ') || (c > 127) || (remote_bytes >= REMOTE_PACKET_SIZE)) return 0;
+  if ((c < ' ') || (c > 127) || (remote_bytes >= (REMOTE_PACKET_SIZE+1))) return 0;
   remote_packet_buffer[remote_bytes++] = c;
-  if (remote_bytes < REMOTE_PACKET_SIZE) return 0;
+  if (remote_bytes < (REMOTE_PACKET_SIZE+1)) return 0;
   remote_bytes = 0;
   byte checksum = 0;
-  for (int i=0;i<REMOTE_PACKET_SIZE;i++) checksum += remote_packet_buffer[i];
+  for (int i=0;i<(REMOTE_PACKET_SIZE+1);i++) checksum += remote_packet_buffer[i];
   if ((checksum & 0x3F) != 0) return 0;
-  remote_packet_buffer[REMOTE_PACKET_SIZE] = '\000';
+  remote_packet_buffer[REMOTE_PACKET_SIZE+1] = '\000';
   return 1;
 }
 
 bool remote_command_compare(const char *c)
 {
-  return ((remote_packet_buffer[0] == c[0]) && (remote_packet_buffer[1] == c[1]));
+  return ((remote_packet_buffer[1] == c[0]) && (remote_packet_buffer[2] == c[1]));
 }
 
 void remote_command_dispatch(void)

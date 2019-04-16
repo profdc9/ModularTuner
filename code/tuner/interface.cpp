@@ -34,7 +34,6 @@ freely, subject to the following restrictions:
 
 #ifdef TUNER_USER_INTERFACE
 LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
-#endif
 
 byte buttonPins[INTERFACE_NUM_BUTTONS];
 byte buttonState[INTERFACE_NUM_BUTTONS];
@@ -114,12 +113,19 @@ byte interface_getbuttonstate(byte buttonNumber)
   return 0;
 }
 
+void interface_clear_buttonpress(int button)
+{
+  buttonState[button] = 0;
+  consecutiveStates[button] = 0;
+}
+
+static bool updownmode = false;
 
 void interface_update_swr(swr_state *current_swr_state)
 {
   char s[INTERFACE_LCD_COLUMNS+1];
   lcd.clear();
-  mini_snprintf(s,sizeof(s)-1,"%f kHz %s %02f",float2int32(floorf((current_swr_state->last_frequency+499.0f)/1000.0f)),tuner_ready_short_string(tuner_get_state()),float2int32(current_swr_state->swr));
+  mini_snprintf(s,sizeof(s)-1,"%f %s %s %02f",float2int32(floorf((current_swr_state->last_frequency+499.0f)/1000.0f)),tuner_get_bypass() ? "BYP" : "kHz", tuner_ready_short_string(tuner_get_state()),float2int32(current_swr_state->swr));
   lcd.setCursor(0,0);
   lcd.print(s);
   mini_snprintf(s,sizeof(s)-1,"F %02f R %02f",float2int32(adjust_pwr(current_swr_state->fwd)),float2int32(adjust_pwr(current_swr_state->rev)));
@@ -131,6 +137,7 @@ void interface_update_swr(swr_state *current_swr_state)
   lcd.setCursor(0,2);
   lcd.print(s);
 #endif
+  updownmode = false;
 }
 
 static byte active_relay = 1;
@@ -168,6 +175,18 @@ void interface_relay_updown(int code)
   }
 }
 
+bool interface_checkabort(void)
+{
+  interface_pollbuttons();
+  byte buttonNumber;
+  interface_button_operation op;
+  if (interface_getbuttonevent(buttonNumber,op))
+  {
+    if ((buttonNumber == 5) && (op == INTERFACE_BUTTON_PRESSED)) return true;
+  }
+  return false;
+}
+
 void interface_task(void)
 {
   interface_pollbuttons();
@@ -176,12 +195,39 @@ void interface_task(void)
   if (interface_getbuttonevent(buttonNumber,op))
   {
     if ((buttonNumber == 5) && (op == INTERFACE_BUTTON_PRESSED))
-        tuner_set_state(TUNER_READY_FORCETUNE);
+    {
+        if (updownmode) 
+       {
+          updownmode = false;
+          tuner_update_swr_interface();
+       } else tuner_set_state(TUNER_READY_FORCETUNE);
+    }
     if ((buttonNumber == 2) && (op == INTERFACE_BUTTON_PRESSED))
-        interface_relay_updown(0);
+    {
+        if (updownmode) 
+        {
+          interface_relay_updown(-1);
+          interface_clear_buttonpress(2);
+        } else 
+        {
+          tuner_set_bypass();
+          tuner_update_swr_interface();
+        }
+    }
     if ((buttonNumber == 3) && (op == INTERFACE_BUTTON_PRESSED))
-        interface_relay_updown(-1);
+    {
+        if (updownmode) 
+        {
+          interface_relay_updown(1);
+          interface_clear_buttonpress(3);
+        } else tuner_update_swr_interface();
+    } 
     if ((buttonNumber == 4) && (op == INTERFACE_BUTTON_PRESSED))
-        interface_relay_updown(1);
+    {
+        updownmode = true;
+        interface_relay_updown(0);
+    }
   }
 }
+
+#endif  /* TUNER_USER_INTERFACE */
