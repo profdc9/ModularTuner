@@ -115,12 +115,12 @@ $EndComp
 $Comp
 L GND #PWR2
 U 1 1 5C93B9AC
-P 2400 4300
-F 0 "#PWR2" H 2400 4050 50  0001 C CNN
-F 1 "GND" H 2400 4150 50  0000 C CNN
-F 2 "" H 2400 4300 50  0001 C CNN
-F 3 "" H 2400 4300 50  0001 C CNN
-	1    2400 4300
+P 1450 4650
+F 0 "#PWR2" H 1450 4400 50  0001 C CNN
+F 1 "GND" H 1450 4500 50  0000 C CNN
+F 2 "" H 1450 4650 50  0001 C CNN
+F 3 "" H 1450 4650 50  0001 C CNN
+	1    1450 4650
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -437,39 +437,6 @@ F 3 "" H 7150 3300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Jumper JP1
-U 1 1 5C93D111
-P 3000 4000
-F 0 "JP1" H 3000 4150 50  0000 C CNN
-F 1 "Jumper" H 3000 3920 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 3000 4000 50  0001 C CNN
-F 3 "" H 3000 4000 50  0001 C CNN
-	1    3000 4000
-	1    0    0    -1  
-$EndComp
-$Comp
-L Jumper JP2
-U 1 1 5C93D181
-P 3000 4100
-F 0 "JP2" H 3000 4250 50  0000 C CNN
-F 1 "Jumper" H 3000 4020 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 3000 4100 50  0001 C CNN
-F 3 "" H 3000 4100 50  0001 C CNN
-	1    3000 4100
-	1    0    0    -1  
-$EndComp
-$Comp
-L Jumper JP3
-U 1 1 5C93D1E0
-P 3000 4200
-F 0 "JP3" H 3000 4350 50  0000 C CNN
-F 1 "Jumper" H 3000 4120 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 3000 4200 50  0001 C CNN
-F 3 "" H 3000 4200 50  0001 C CNN
-	1    3000 4200
-	1    0    0    -1  
-$EndComp
-$Comp
 L Conn_01x01 J2
 U 1 1 5C93DD27
 P 2400 2450
@@ -545,246 +512,6 @@ Text Notes 4550 5600 0    60   ~ 0
 Q1 present only\nfor backlight control
 Text Notes 3450 1950 0    60   ~ 0
 Include components in box\nfor added buttons
-Wire Wire Line
-	4000 3250 4000 3400
-Wire Wire Line
-	4000 4800 4000 5050
-Wire Wire Line
-	3300 4000 3500 4000
-Wire Wire Line
-	3300 4100 3500 4100
-Wire Wire Line
-	3300 4200 3500 4200
-Wire Wire Line
-	2400 4000 2400 4300
-Wire Wire Line
-	2400 4000 2700 4000
-Wire Wire Line
-	2400 4100 2700 4100
-Connection ~ 2400 4100
-Wire Wire Line
-	2400 4200 2700 4200
-Connection ~ 2400 4200
-Wire Wire Line
-	4400 3150 4600 3150
-Wire Wire Line
-	3150 2250 2850 2250
-Wire Wire Line
-	3700 2350 3700 2750
-Wire Wire Line
-	3700 2350 3650 2350
-Wire Wire Line
-	3650 2450 3850 2450
-Connection ~ 3700 2450
-Wire Wire Line
-	3700 2550 3650 2550
-Connection ~ 3700 2550
-Wire Wire Line
-	3700 2650 3650 2650
-Connection ~ 3700 2650
-Wire Wire Line
-	2950 3350 2950 3800
-Wire Wire Line
-	3150 2650 3000 2650
-Wire Wire Line
-	3250 3700 3500 3700
-Wire Wire Line
-	3250 3800 3500 3800
-Wire Wire Line
-	3150 2350 3100 2350
-Wire Wire Line
-	3100 2350 3100 2150
-Wire Wire Line
-	3100 2150 4400 2150
-Connection ~ 3300 3700
-Wire Wire Line
-	3150 2550 2950 2550
-Wire Wire Line
-	2950 2550 2950 2050
-Wire Wire Line
-	2950 2050 4500 2050
-Connection ~ 3400 3800
-Wire Wire Line
-	5300 3750 6250 3750
-Wire Wire Line
-	5300 3750 5300 3700
-Wire Wire Line
-	5300 3700 4500 3700
-Wire Wire Line
-	5300 4450 6250 4450
-Wire Wire Line
-	5300 4450 5300 4100
-Wire Wire Line
-	5300 4100 4500 4100
-Wire Wire Line
-	5200 4550 6250 4550
-Wire Wire Line
-	5200 4550 5200 4200
-Wire Wire Line
-	5200 4200 4500 4200
-Wire Wire Line
-	5100 4650 6250 4650
-Wire Wire Line
-	5100 4650 5100 4300
-Wire Wire Line
-	5100 4300 4500 4300
-Wire Wire Line
-	5000 4750 6250 4750
-Wire Wire Line
-	5000 4750 5000 4400
-Wire Wire Line
-	5000 4400 4500 4400
-Wire Wire Line
-	4600 3550 6250 3550
-Wire Wire Line
-	4600 3550 4600 3900
-Wire Wire Line
-	4600 3900 4500 3900
-Wire Wire Line
-	4500 3800 4700 3800
-Wire Wire Line
-	4700 3800 4700 3650
-Wire Wire Line
-	4700 3650 6250 3650
-Wire Wire Line
-	4850 4000 4500 4000
-Wire Wire Line
-	5600 5550 5600 5650
-Connection ~ 4850 4000
-Wire Wire Line
-	5600 5150 6150 5150
-Wire Wire Line
-	7150 3950 7150 5450
-Wire Wire Line
-	7150 3950 7050 3950
-Wire Wire Line
-	4850 1750 4850 5350
-Wire Wire Line
-	4850 1750 5000 1750
-Wire Wire Line
-	5000 2000 4850 2000
-Connection ~ 4850 2000
-Wire Wire Line
-	5000 2250 4850 2250
-Connection ~ 4850 2250
-Wire Wire Line
-	5000 2500 4850 2500
-Connection ~ 4850 2500
-Wire Wire Line
-	5000 2750 4850 2750
-Connection ~ 4850 2750
-Wire Wire Line
-	5000 3000 4850 3000
-Connection ~ 4850 3000
-Wire Wire Line
-	5400 3000 5500 3000
-Connection ~ 5500 3650
-Wire Wire Line
-	5400 2750 5600 2750
-Connection ~ 5600 3750
-Wire Wire Line
-	5400 2500 5700 2500
-Connection ~ 5700 4450
-Wire Wire Line
-	5400 2250 5800 2250
-Connection ~ 5800 4550
-Wire Wire Line
-	6650 3200 6650 3350
-Wire Wire Line
-	6650 4950 6650 5050
-Wire Wire Line
-	5400 2000 5900 2000
-Connection ~ 5900 4650
-Wire Wire Line
-	6000 1750 5400 1750
-Connection ~ 6000 4750
-Wire Wire Line
-	5500 3000 5500 3100
-Wire Wire Line
-	5700 2500 5700 3100
-Wire Wire Line
-	5600 2750 5600 3100
-Wire Wire Line
-	5800 2250 5800 3100
-Wire Wire Line
-	5900 2000 5900 3100
-Wire Wire Line
-	6000 3100 6000 1750
-Wire Wire Line
-	5500 3400 5500 3650
-Wire Wire Line
-	5600 3400 5600 3750
-Wire Wire Line
-	5700 3400 5700 4450
-Wire Wire Line
-	5800 4550 5800 3400
-Wire Wire Line
-	5900 3400 5900 4650
-Wire Wire Line
-	6000 4750 6000 3400
-Connection ~ 2950 3700
-Wire Wire Line
-	4600 3350 4600 3400
-Wire Wire Line
-	3400 3800 3400 3050
-Wire Wire Line
-	3400 3050 4500 3050
-Wire Wire Line
-	4500 3050 4500 2050
-Wire Wire Line
-	3300 3700 3300 2950
-Wire Wire Line
-	3300 2950 4400 2950
-Wire Wire Line
-	4400 2950 4400 2150
-Wire Wire Line
-	6150 5150 6150 5300
-Wire Wire Line
-	4850 5350 5300 5350
-Wire Wire Line
-	7150 3450 7150 3850
-Wire Wire Line
-	7150 3850 7050 3850
-Wire Wire Line
-	6650 2500 6650 2600
-Wire Wire Line
-	6650 2100 6650 2200
-Wire Wire Line
-	6800 2350 7050 2350
-Wire Wire Line
-	7050 2350 7050 3550
-Wire Wire Line
-	4400 3350 4400 3150
-Wire Wire Line
-	2950 3350 4400 3350
-Connection ~ 4000 3350
-Wire Wire Line
-	7150 3150 7150 2900
-Wire Wire Line
-	5150 5300 5150 5350
-Connection ~ 5150 5350
-Wire Wire Line
-	5150 4950 5150 5000
-Wire Notes Line
-	4800 4800 6100 4800
-Wire Notes Line
-	6100 4800 6100 1550
-Wire Notes Line
-	6100 1550 4800 1550
-Wire Notes Line
-	4800 1550 4800 4800
-Wire Wire Line
-	6150 5300 7150 5300
-Connection ~ 7150 5300
-Wire Wire Line
-	7150 5450 6950 5450
-Wire Wire Line
-	5600 5600 5900 5600
-Wire Wire Line
-	5900 5600 5900 5450
-Wire Wire Line
-	5900 5450 6350 5450
-Connection ~ 5600 5600
 $Comp
 L GND #PWR1
 U 1 1 5C952C1D
@@ -796,11 +523,6 @@ F 3 "" H 1600 3650 50  0001 C CNN
 	1    1600 3650
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	1600 2450 1600 3650
-Connection ~ 1600 2750
-Connection ~ 1600 3050
-Connection ~ 1600 3400
 $Comp
 L C_Small C2
 U 1 1 5C954865
@@ -812,10 +534,6 @@ F 3 "" H 1900 2450 50  0001 C CNN
 	1    1900 2450
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	2000 2450 2200 2450
-Wire Wire Line
-	1800 2450 1600 2450
 $Comp
 L C_Small C3
 U 1 1 5C954A7B
@@ -849,28 +567,6 @@ F 3 "" H 1900 3400 50  0001 C CNN
 	1    1900 3400
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	2000 3400 2200 3400
-Wire Wire Line
-	2200 3050 2000 3050
-Wire Wire Line
-	2200 2750 2000 2750
-Wire Wire Line
-	1800 2750 1600 2750
-Wire Wire Line
-	1800 3050 1600 3050
-Wire Wire Line
-	1600 3400 1800 3400
-Wire Wire Line
-	3150 2450 3050 2450
-Wire Wire Line
-	3050 2450 3050 2000
-Wire Wire Line
-	3050 2000 3750 2000
-Wire Wire Line
-	3750 2000 3750 2250
-Wire Wire Line
-	3650 2250 3850 2250
 $Comp
 L C_Small C6
 U 1 1 5C9AA30F
@@ -882,5 +578,378 @@ F 3 "" H 3850 2350 50  0001 C CNN
 	1    3850 2350
 	1    0    0    -1  
 $EndComp
+$Comp
+L Jumper_NC_Dual JP1
+U 1 1 5D54E264
+P 1700 4450
+F 0 "JP1" H 1750 4350 50  0000 L CNN
+F 1 "Jumper_NC_Dual" H 1700 4550 50  0000 C BNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x03_Pitch2.54mm" H 1700 4450 50  0001 C CNN
+F 3 "" H 1700 4450 50  0001 C CNN
+	1    1700 4450
+	-1   0    0    1   
+$EndComp
+$Comp
+L Jumper_NC_Dual JP2
+U 1 1 5D54E482
+P 2300 4450
+F 0 "JP2" H 2350 4350 50  0000 L CNN
+F 1 "Jumper_NC_Dual" H 2300 4550 50  0000 C BNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x03_Pitch2.54mm" H 2300 4450 50  0001 C CNN
+F 3 "" H 2300 4450 50  0001 C CNN
+	1    2300 4450
+	-1   0    0    1   
+$EndComp
+$Comp
+L Jumper_NC_Dual JP3
+U 1 1 5D54ED54
+P 2950 4450
+F 0 "JP3" H 3000 4350 50  0000 L CNN
+F 1 "Jumper_NC_Dual" H 2950 4550 50  0000 C BNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x03_Pitch2.54mm" H 2950 4450 50  0001 C CNN
+F 3 "" H 2950 4450 50  0001 C CNN
+	1    2950 4450
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1700 4350 1700 4000
+Wire Wire Line
+	2300 4350 2300 4100
+Wire Wire Line
+	2950 4350 2950 4200
 Connection ~ 3750 2250
+Wire Wire Line
+	3650 2250 3850 2250
+Wire Wire Line
+	3750 2000 3750 2250
+Wire Wire Line
+	3050 2000 3750 2000
+Wire Wire Line
+	3050 2450 3050 2000
+Wire Wire Line
+	3150 2450 3050 2450
+Wire Wire Line
+	1600 3400 1800 3400
+Wire Wire Line
+	1800 3050 1600 3050
+Wire Wire Line
+	1800 2750 1600 2750
+Wire Wire Line
+	2200 2750 2000 2750
+Wire Wire Line
+	2200 3050 2000 3050
+Wire Wire Line
+	2000 3400 2200 3400
+Wire Wire Line
+	1800 2450 1600 2450
+Wire Wire Line
+	2000 2450 2200 2450
+Connection ~ 1600 3400
+Connection ~ 1600 3050
+Connection ~ 1600 2750
+Wire Wire Line
+	1600 2450 1600 3650
+Connection ~ 5600 5600
+Wire Wire Line
+	5900 5450 6350 5450
+Wire Wire Line
+	5900 5600 5900 5450
+Wire Wire Line
+	5600 5600 5900 5600
+Wire Wire Line
+	7150 5450 6950 5450
+Connection ~ 7150 5300
+Wire Wire Line
+	6150 5300 7150 5300
+Wire Notes Line
+	4800 1550 4800 4800
+Wire Notes Line
+	6100 1550 4800 1550
+Wire Notes Line
+	6100 4800 6100 1550
+Wire Notes Line
+	4800 4800 6100 4800
+Wire Wire Line
+	5150 4950 5150 5000
+Connection ~ 5150 5350
+Wire Wire Line
+	5150 5300 5150 5350
+Wire Wire Line
+	7150 3150 7150 2900
+Connection ~ 4000 3350
+Wire Wire Line
+	2950 3350 4400 3350
+Wire Wire Line
+	4400 3350 4400 3150
+Wire Wire Line
+	7050 2350 7050 3550
+Wire Wire Line
+	6800 2350 7050 2350
+Wire Wire Line
+	6650 2100 6650 2200
+Wire Wire Line
+	6650 2500 6650 2600
+Wire Wire Line
+	7150 3850 7050 3850
+Wire Wire Line
+	7150 3450 7150 3850
+Wire Wire Line
+	4850 5350 5300 5350
+Wire Wire Line
+	6150 5150 6150 5300
+Wire Wire Line
+	4400 2950 4400 2150
+Wire Wire Line
+	3300 2950 4400 2950
+Wire Wire Line
+	3300 3700 3300 2950
+Wire Wire Line
+	4500 3050 4500 2050
+Wire Wire Line
+	3400 3050 4500 3050
+Wire Wire Line
+	3400 3800 3400 3050
+Wire Wire Line
+	4600 3350 4600 3400
+Connection ~ 2950 3700
+Wire Wire Line
+	6000 4750 6000 3400
+Wire Wire Line
+	5900 3400 5900 4650
+Wire Wire Line
+	5800 4550 5800 3400
+Wire Wire Line
+	5700 3400 5700 4450
+Wire Wire Line
+	5600 3400 5600 3750
+Wire Wire Line
+	5500 3400 5500 3650
+Wire Wire Line
+	6000 3100 6000 1750
+Wire Wire Line
+	5900 2000 5900 3100
+Wire Wire Line
+	5800 2250 5800 3100
+Wire Wire Line
+	5600 2750 5600 3100
+Wire Wire Line
+	5700 2500 5700 3100
+Wire Wire Line
+	5500 3000 5500 3100
+Connection ~ 6000 4750
+Wire Wire Line
+	6000 1750 5400 1750
+Connection ~ 5900 4650
+Wire Wire Line
+	5400 2000 5900 2000
+Wire Wire Line
+	6650 4950 6650 5050
+Wire Wire Line
+	6650 3200 6650 3350
+Connection ~ 5800 4550
+Wire Wire Line
+	5400 2250 5800 2250
+Connection ~ 5700 4450
+Wire Wire Line
+	5400 2500 5700 2500
+Connection ~ 5600 3750
+Wire Wire Line
+	5400 2750 5600 2750
+Connection ~ 5500 3650
+Wire Wire Line
+	5400 3000 5500 3000
+Connection ~ 4850 3000
+Wire Wire Line
+	5000 3000 4850 3000
+Connection ~ 4850 2750
+Wire Wire Line
+	5000 2750 4850 2750
+Connection ~ 4850 2500
+Wire Wire Line
+	5000 2500 4850 2500
+Connection ~ 4850 2250
+Wire Wire Line
+	5000 2250 4850 2250
+Connection ~ 4850 2000
+Wire Wire Line
+	5000 2000 4850 2000
+Wire Wire Line
+	4850 1750 5000 1750
+Wire Wire Line
+	4850 1750 4850 5350
+Wire Wire Line
+	7150 3950 7050 3950
+Wire Wire Line
+	7150 3950 7150 5450
+Wire Wire Line
+	5600 5150 6150 5150
+Connection ~ 4850 4000
+Wire Wire Line
+	5600 5550 5600 5650
+Wire Wire Line
+	4850 4000 4500 4000
+Wire Wire Line
+	4700 3650 6250 3650
+Wire Wire Line
+	4700 3800 4700 3650
+Wire Wire Line
+	4500 3800 4700 3800
+Wire Wire Line
+	4600 3900 4500 3900
+Wire Wire Line
+	4600 3550 4600 3900
+Wire Wire Line
+	4600 3550 6250 3550
+Wire Wire Line
+	5000 4400 4500 4400
+Wire Wire Line
+	5000 4750 5000 4400
+Wire Wire Line
+	5000 4750 6250 4750
+Wire Wire Line
+	5100 4300 4500 4300
+Wire Wire Line
+	5100 4650 5100 4300
+Wire Wire Line
+	5100 4650 6250 4650
+Wire Wire Line
+	5200 4200 4500 4200
+Wire Wire Line
+	5200 4550 5200 4200
+Wire Wire Line
+	5200 4550 6250 4550
+Wire Wire Line
+	5300 4100 4500 4100
+Wire Wire Line
+	5300 4450 5300 4100
+Wire Wire Line
+	5300 4450 6250 4450
+Wire Wire Line
+	5300 3700 4500 3700
+Wire Wire Line
+	5300 3750 5300 3700
+Wire Wire Line
+	5300 3750 6250 3750
+Connection ~ 3400 3800
+Wire Wire Line
+	4500 2050 2950 2050
+Wire Wire Line
+	2950 2050 2950 2550
+Wire Wire Line
+	2950 2550 3150 2550
+Connection ~ 3300 3700
+Wire Wire Line
+	4400 2150 3100 2150
+Wire Wire Line
+	3100 2150 3100 2350
+Wire Wire Line
+	3100 2350 3150 2350
+Wire Wire Line
+	3250 3800 3500 3800
+Wire Wire Line
+	3250 3700 3500 3700
+Wire Wire Line
+	3150 2650 3000 2650
+Wire Wire Line
+	2950 3350 2950 3800
+Connection ~ 3700 2650
+Wire Wire Line
+	3700 2650 3650 2650
+Connection ~ 3700 2550
+Wire Wire Line
+	3700 2550 3650 2550
+Connection ~ 3700 2450
+Wire Wire Line
+	3650 2450 3850 2450
+Wire Wire Line
+	3700 2350 3650 2350
+Wire Wire Line
+	3700 2350 3700 2750
+Wire Wire Line
+	3150 2250 2850 2250
+Wire Wire Line
+	4400 3150 4600 3150
+Wire Wire Line
+	2950 4200 3500 4200
+Wire Wire Line
+	2300 4100 3500 4100
+Wire Wire Line
+	1700 4000 3500 4000
+Wire Wire Line
+	4000 4800 4000 5050
+Wire Wire Line
+	4000 3250 4000 3400
+Wire Wire Line
+	1450 4650 1450 4450
+$Comp
+L GND #PWR?
+U 1 1 5D54F3BD
+P 2050 4650
+F 0 "#PWR?" H 2050 4400 50  0001 C CNN
+F 1 "GND" H 2050 4500 50  0000 C CNN
+F 2 "" H 2050 4650 50  0001 C CNN
+F 3 "" H 2050 4650 50  0001 C CNN
+	1    2050 4650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2050 4650 2050 4450
+$Comp
+L GND #PWR?
+U 1 1 5D54F4EA
+P 2700 4650
+F 0 "#PWR?" H 2700 4400 50  0001 C CNN
+F 1 "GND" H 2700 4500 50  0000 C CNN
+F 2 "" H 2700 4650 50  0001 C CNN
+F 3 "" H 2700 4650 50  0001 C CNN
+	1    2700 4650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2700 4650 2700 4450
+$Comp
+L +5V #PWR?
+U 1 1 5D54F618
+P 3250 4400
+F 0 "#PWR?" H 3250 4250 50  0001 C CNN
+F 1 "+5V" H 3250 4540 50  0000 C CNN
+F 2 "" H 3250 4400 50  0001 C CNN
+F 3 "" H 3250 4400 50  0001 C CNN
+	1    3250 4400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3250 4400 3250 4450
+Wire Wire Line
+	3250 4450 3200 4450
+$Comp
+L +5V #PWR?
+U 1 1 5D54F747
+P 2600 4400
+F 0 "#PWR?" H 2600 4250 50  0001 C CNN
+F 1 "+5V" H 2600 4540 50  0000 C CNN
+F 2 "" H 2600 4400 50  0001 C CNN
+F 3 "" H 2600 4400 50  0001 C CNN
+	1    2600 4400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2600 4400 2600 4450
+Wire Wire Line
+	2600 4450 2550 4450
+$Comp
+L +5V #PWR?
+U 1 1 5D54F878
+P 2000 4400
+F 0 "#PWR?" H 2000 4250 50  0001 C CNN
+F 1 "+5V" H 2000 4540 50  0000 C CNN
+F 2 "" H 2000 4400 50  0001 C CNN
+F 3 "" H 2000 4400 50  0001 C CNN
+	1    2000 4400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2000 4400 2000 4450
+Wire Wire Line
+	2000 4450 1950 4450
 $EndSCHEMATC
