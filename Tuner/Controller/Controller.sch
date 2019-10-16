@@ -289,8 +289,6 @@ F 3 "" H 1950 5650 50  0001 C CNN
 	1    1950 5650
 	1    0    0    -1  
 $EndComp
-Text GLabel 9100 4250 2    60   Input ~ 0
-I2CSCL
 Text GLabel 1100 5850 0    60   Input ~ 0
 I2CSDA
 Text GLabel 1900 5850 0    60   Input ~ 0
@@ -1712,19 +1710,6 @@ F 3 "" H 1400 4300 50  0001 C CNN
 	1    1400 4300
 	-1   0    0    1   
 $EndComp
-Text GLabel 9100 4350 2    60   Input ~ 0
-IO5
-$Comp
-L Conn_01x08 J16
-U 1 1 5C87999F
-P 10750 1500
-F 0 "J16" H 10750 1900 50  0000 C CNN
-F 1 "Conn_01x08" H 10750 1000 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x08_Pitch2.54mm" H 10750 1500 50  0001 C CNN
-F 3 "" H 10750 1500 50  0001 C CNN
-	1    10750 1500
-	1    0    0    -1  
-$EndComp
 $Comp
 L 2N7000 Q9
 U 1 1 5C87A5BE
@@ -1805,12 +1790,12 @@ $EndComp
 $Comp
 L GND #PWR063
 U 1 1 5C87EAFE
-P 10500 2050
-F 0 "#PWR063" H 10500 1800 50  0001 C CNN
-F 1 "GND" H 10500 1900 50  0000 C CNN
-F 2 "" H 10500 2050 50  0001 C CNN
-F 3 "" H 10500 2050 50  0001 C CNN
-	1    10500 2050
+P 10300 1900
+F 0 "#PWR063" H 10300 1650 50  0001 C CNN
+F 1 "GND" H 10300 1750 50  0000 C CNN
+F 2 "" H 10300 1900 50  0001 C CNN
+F 3 "" H 10300 1900 50  0001 C CNN
+	1    10300 1900
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -2618,8 +2603,6 @@ Wire Wire Line
 	1400 4450 1400 4600
 Connection ~ 1400 4600
 Wire Wire Line
-	9100 4350 8800 4350
-Wire Wire Line
 	7700 1250 7900 1250
 Wire Wire Line
 	7800 1150 7800 1250
@@ -2634,8 +2617,6 @@ Wire Wire Line
 	8350 1150 8350 1250
 Wire Wire Line
 	8300 1250 9850 1250
-Wire Wire Line
-	10500 2050 10500 1900
 Wire Wire Line
 	10500 1900 10550 1900
 Wire Wire Line
@@ -2809,10 +2790,6 @@ Wire Wire Line
 	9850 2350 9850 1700
 Wire Wire Line
 	9850 1700 10550 1700
-Text GLabel 10200 1800 0    60   Input ~ 0
-IO5
-Wire Wire Line
-	10200 1800 10550 1800
 $Comp
 L GND #PWR067
 U 1 1 5C88FAD1
@@ -2904,4 +2881,22 @@ Text GLabel 6450 6900 2    60   Input ~ 0
 UPWR
 Text GLabel 4250 5950 2    60   Input ~ 0
 UPWR
+$Comp
+L Conn_01x07 J16
+U 1 1 5DA6A74E
+P 10750 1500
+F 0 "J16" H 10750 1900 50  0000 C CNN
+F 1 "Conn_01x07" H 10750 1100 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x07_Pitch2.54mm" H 10750 1500 50  0001 C CNN
+F 3 "" H 10750 1500 50  0001 C CNN
+	1    10750 1500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10300 1900 10300 1800
+Wire Wire Line
+	10300 1800 10550 1800
+Text GLabel 9100 4250 2    60   Input ~ 0
+I2CSCL
+NoConn ~ 8800 4350
 $EndSCHEMATC
