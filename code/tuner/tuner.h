@@ -26,6 +26,9 @@ freely, subject to the following restrictions:
 /* Define if the LCD is attached */
 #define TUNER_USER_INTERFACE
 
+#define TUNER_SMALL_RELAYS_DEFAULT /* define for SMALL RELAYS as flash default */
+// #define TUNER_BIG_RELAYS_DEFAULT   /* define for BIG RELAYS as flash default */ 
+
 /* Define if remote wireless device HC-12 is attached to Serial3 */
 #define TUNER_REMOTE_WIRELESS
 
@@ -44,6 +47,7 @@ typedef struct _tuner_flash_header
   uint32_t flash_header_2;
 } tuner_flash_header;
 
+#define TUNE_SWITCHSTATE_SCAN_NUMBER 3
 #define TUNE_SWITCHSTATE_PER_STATE 6
 
 typedef enum { TUNERR_SUCCESS=0, TUNERR_HIGHSWR=1, TUNERR_POWERLOSS=2, TUNERR_POWERHIGH=3, TUNERR_ABORT=4 } tunerr_condition;

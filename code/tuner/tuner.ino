@@ -66,6 +66,7 @@ tuner_parameters tpar = { {"NONE"},         /* tune_label */
                           1,                /* tune_remote_id */
                           10,               /* tune_search_khz_spacing */
                           0,                /* tune_rig_control */
+#ifdef TUNER_BIG_RELAYS_DEFAULT
                           { 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_bypass */
                           { 1, 2, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_1 */
                           { 1, 2, 1, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_2 */
@@ -73,6 +74,17 @@ tuner_parameters tpar = { {"NONE"},         /* tune_label */
                           { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_4 */
                           { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_5 */
                           { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_6 */
+#endif
+#ifdef TUNER_SMALL_RELAYS_DEFAULT
+                          { 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_bypass */
+                          { 1, 1, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_1 */
+                          { 1, 1, 1, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_2 */
+                          { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_3 */
+                          { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_4 */
+                          { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_5 */
+                          { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },   /* tune_switchstate_6 */
+#endif
+
 };
 
 const structure_entry tuner_parameter_fields[18] =
@@ -121,8 +133,14 @@ void restore_relays(void)
 void initialize_default_relays(void)
 {
   memset(relays,'\000',sizeof(relays));
+#ifdef TUNER_BIG_RELAYS_DEFAULT
   relays[0].setup(indRelay8);
   relays[1].setup(capRelay8);
+#endif
+#ifdef TUNER_SMALL_RELAYS_DEFAULT
+  relays[0].setup(indRelay7);
+  relays[1].setup(capRelay7);
+#endif
 }
 
 static void initialize_cortex_m3_cycle_counter(void)
@@ -190,76 +208,6 @@ void setup() {
 #endif
   initialize_rig_control();
 }
-
-/*
-void testLnetwork(void)
-{
-  LNetwork lNetwork(50.0f,3500.0f,2000.0f,10000.0f);
-  lNetwork.matchLoad(249.0f,0.0f);
-  lNetwork.debugPrintSolutions();
-  DoubleL doubleL(50.0f,3500.0f,2000.0f,10000.0f);
-  doubleL.matchLoad(500.0f,-500.0f,150.0f,1,1);
-  console_println("series shunt series shunt");
-  doubleL.debugPrintSolutions();
-}
-*/
-
-
-/*
-void testFrequencyCounter(void)
-{
-    static int cnt=0;
-    console_print("Starting acquisition ");
-    console_println(cnt);
-    cnt++;
-    freqCounter.armCounter();
-    int i;
-    delay(100);
-    freqCounter.requestUpdate();
-    delay(10);
-    float freq = freqCounter.readUpdate();
-    console_print("frequency = ");
-    console_println((int)freq);
-#ifdef USER_INTERFACE
-    lcd.setCursor(0,0);
-    lcd.print(String("Frequency ")+((unsigned int)freq)+"   ");
-    lcd.setCursor(0,2);
-    for (int i=0;i<4;i++)
-        lcd.print(buttonPanel.getButtonState(i) ? '+' : '-');
-#endif
-    //freqCounter.stopCounter();
-   // delay(100);
-}
-*/
-
-/*
-void testEEPROMobjectstore(void)
-{
-   int inct; 
-   unsigned char block[11];
-
-   for (int i=0;i<(sizeof(block)/sizeof(unsigned char));i++)
-      block[i] = 0;
-   EEPROMstore.readBlock(0,10,block,sizeof(block));
-   console_print("b4: ");
-   for (int i=0;i<(sizeof(block)/sizeof(unsigned char));i++)
-   {
-        console_print((int)(block[i]));
-        console_print(' ');
-   }
-   console_println("");
-   inct = block[sizeof(block)-1];
-   for (int i=0;i<(sizeof(block)/sizeof(unsigned char));i++)
-        block[i] = inct+i;
-   EEPROMstore.writeBlock(0,10,block,sizeof(block));   
-   for (int i=0;i<(sizeof(block)/sizeof(unsigned char));i++)
-   {
-        console_print((int)(block[i]));
-        console_print(' ');
-   }
-   console_println("");
-}
-*/
 
 float adjust_pwr(float rawpwr)
 {
@@ -619,7 +567,7 @@ tunerr_condition exhaustive_tune(bool withoutdefault)
                break;           
     }
     if (s > 0) tuner_zero_adjustable_relays();
-    for (n=2;n<8;n++)
+    for (n=2;n<9;n++)
     {
       bool improved;
       do
@@ -800,30 +748,46 @@ void tuner_update_swr_interface(void)
 #endif
 }
 
+float tuner_get_frequency(void)
+{
+  freqCounter.armCounter();
+  delay(100);
+  freqCounter.requestUpdate();
+  delay(10);
+  return freqCounter.readUpdate();
+}
+
+float tuner_get_fwd_power(void)
+{
+   swrMeter.sampleSWR();
+   return swrMeter.fwdPower();
+}
+ 
 void tuner_task(void)
 {  
   bool rigtune = false;
   bool success;
   float fwd;
-  if (tuner_ready == TUNER_READY_DISABLE) return;
+  if (tuner_ready == TUNER_READY_DISABLE) 
+  {
+      fwd = tuner_get_fwd_power();
+      if (adjust_pwr(fwd) > tpar.tune_min_power) 
+      {
+          updateSWRState(&last_swr_state, tuner_get_frequency());
+          tuner_update_swr_interface();
+      }
+      return;
+  }
   if ((tuner_ready == TUNER_READY_FORCETUNE) || (check_for_rig_tune_initiation()))
      rigtune = send_rig_tune_power_control(true,false);
   if (!rigtune)
   {
-     swrMeter.sampleSWR();
-     fwd = swrMeter.fwdPower();
+     fwd = tuner_get_fwd_power();
      if (adjust_pwr(fwd) < tpar.tune_min_power) return;
    }
-  float freq;
+  float freq = tuner_get_frequency();
   uint16_t freqkhz;
-  freqCounter.armCounter();
-  delay(100);
-  freqCounter.requestUpdate();
-  delay(10);
-  freq = freqCounter.readUpdate();
-   
-  swrMeter.sampleSWR();
-  fwd = swrMeter.fwdPower();
+  fwd = tuner_get_fwd_power();
   float adjfwd = adjust_pwr(fwd);
   if (adjfwd < tpar.tune_min_power)
   {
@@ -915,6 +879,7 @@ int recall_cache_cmd(int args, tinycl_parameter* tp, void *v)
 }
 
 const tuner_flash_header flash_header = { TUNER_MAGIC_1, TUNER_MAGIC_2 };
+const tuner_flash_header bogus_flash_header = { 0, 0 };
 const unsigned int flash_pages[] = { 0x0801C000u, 0x0801D000u, 0x0801E000u, 0x0801F000u };
 #define NUM_FLASH_PAGES ((sizeof(flash_pages)/sizeof(void *)))
 
@@ -951,13 +916,13 @@ int tuner_readstate(int n)
   return err;
 }
 
-int tuner_writestate(int n)
+int tuner_writestate(int n, bool clearstate=false)
 {
   void *vp[4];
   int b[4];
 
   if ((n < 1) || (n > NUM_FLASH_PAGES)) return 0;
-  vp[0] = (void *)&flash_header;
+  vp[0] = clearstate ? (void *)&bogus_flash_header : (void *)&flash_header;
   b[0] = sizeof(flash_header);
   vp[1] = &tpar;
   b[1] = sizeof(tpar);
@@ -980,7 +945,21 @@ int writestate_cmd(int args, tinycl_parameter* tp, void *v)
   }
   console_print("Writing state ");
   console_print(n);
-  console_println(tuner_writestate(n) ? ": written" : ": failed");
+  console_println(tuner_writestate(n,false) ? ": written" : ": failed");
+  return 1;
+}
+
+int clearstate_cmd(int args, tinycl_parameter* tp, void *v)
+{
+  int n = tp[0].ti.i;
+  if ((n < 1) || (n > NUM_FLASH_PAGES))
+  {
+    console_println("Invalid state number");
+    return 1;
+  }
+  console_print("Clearing state ");
+  console_print(n);
+  console_println(tuner_writestate(n,true) ? ": cleared" : ": failed");
   return 1;
 }
 
@@ -1115,6 +1094,7 @@ const tinycl_command tcmds[] =
   { "RECALLCACHE", "Recall from Cache", recall_cache_cmd, { TINYCL_PARM_INT, TINYCL_PARM_END } },
   { "WRITESTATE", "Write state to flash", writestate_cmd, { TINYCL_PARM_INT, TINYCL_PARM_END } },
   { "READSTATE", "Read state from flash", readstate_cmd, { TINYCL_PARM_INT, TINYCL_PARM_END } },
+  { "CLEARSTATE", "Clear state in flash", clearstate_cmd, { TINYCL_PARM_INT, TINYCL_PARM_END } },
   { "HELP", "Display This Help", help_cmd, {TINYCL_PARM_END } },
 };
 

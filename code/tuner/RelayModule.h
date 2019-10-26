@@ -46,6 +46,8 @@ typedef struct _relay_module_specs
   int      regs[MAX_NUMBER_RELAYS];
   uint16   relay_port_bits[MAX_NUMBER_RELAYS];
   uint16   switch_bits[MAX_NUMBER_SWITCHES];
+  byte     zero_setting;
+  byte     greedy_search;
 } relay_module_specs;
 
 class RelayModule
@@ -86,7 +88,7 @@ extern const relay_module_specs capRelay7;
 extern const relay_module_specs dlyRelay7;
 #define RELAY_DEFAULT_STRUCTS_NUM 7
 extern const relay_module_specs *relay_default_structs[RELAY_DEFAULT_STRUCTS_NUM];
-extern const structure_entry relay_fields[11];
+extern const structure_entry relay_fields[13];
 extern const char *relay_module_type_unit[4];
 
 #endif  /* _RELAYMODULE_H */

@@ -35,7 +35,9 @@ const relay_module_specs blankRelay = { RELAY_MODULE_NONE,
                                        0,
 {  },
 {  },
-{  } };
+{  },
+0,
+0 };
 
 const relay_module_specs indRelay8 = { RELAY_MODULE_INDUCTOR,
                                        8,
@@ -47,7 +49,9 @@ const relay_module_specs indRelay8 = { RELAY_MODULE_INDUCTOR,
                                        15,
 { 75, 150, 300, 600, 1200, 2400, 5000, 10000 },
 { 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01 },
-{ 0x8000, 0x4000 } };
+{ 0x8000, 0x4000 },
+2,
+0 };
 
 const relay_module_specs capRelay8 = { RELAY_MODULE_CAPACITOR,
                                        8,
@@ -59,7 +63,9 @@ const relay_module_specs capRelay8 = { RELAY_MODULE_CAPACITOR,
                                        15,
 { 7, 15, 33, 66, 125, 250, 500, 1000 },
 { 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01 },
-{ 0x8000, 0x4000 } };
+{ 0x8000, 0x4000 },
+0, 
+0 };
 
 const relay_module_specs dlyRelay8 = { RELAY_MODULE_DELAY,
                                        8,
@@ -71,7 +77,9 @@ const relay_module_specs dlyRelay8 = { RELAY_MODULE_DELAY,
                                        15,
 { 10, 20, 40, 80, 160, 320, 640, 1280 },
 { 0x8000, 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02  },
-{ 0x01, 0x4000 } };
+{ 0x01, 0x4000 },
+2,
+0 };
                                      
 const relay_module_specs indRelay7 = { RELAY_MODULE_INDUCTOR,
                                        7,
@@ -82,8 +90,10 @@ const relay_module_specs indRelay7 = { RELAY_MODULE_INDUCTOR,
                                        20,
                                        15,
 { 150, 300, 600, 1200, 2400, 5000, 10000 },
-{ 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01 },
-{ 0x80 } };
+{ 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40 },
+{ 0x80 },
+1,
+0 };
  
 const relay_module_specs capRelay7 = { RELAY_MODULE_CAPACITOR,
                                        7,
@@ -94,8 +104,10 @@ const relay_module_specs capRelay7 = { RELAY_MODULE_CAPACITOR,
                                        5,
                                        15,
 { 15, 33, 66, 125, 250, 500, 1000 },
-{ 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01 },
-{ 0x80 } };
+{ 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40 },
+{ 0x80 },
+0,
+0 };
 
 const relay_module_specs dlyRelay7 = { RELAY_MODULE_DELAY,
                                        6,
@@ -106,12 +118,14 @@ const relay_module_specs dlyRelay7 = { RELAY_MODULE_DELAY,
                                        0,
                                        15,
 { 40, 80, 160, 320, 640, 1280 },
-{ 0x40, 0x20, 0x10, 0x08, 0x04, 0x02  },
-{ 0x01, 0x80 } };
+{ 0x02, 0x04, 0x08, 0x10, 0x20, 0x40  },
+{ 0x01, 0x80 },
+1,
+0 };
 
 const relay_module_specs *relay_default_structs[RELAY_DEFAULT_STRUCTS_NUM] = { &blankRelay, &indRelay8, &capRelay8, &dlyRelay8, &indRelay7, &capRelay7, &dlyRelay7 };
 
-const structure_entry relay_fields[11] =
+const structure_entry relay_fields[13] =
 { { "MODULETYPE",   STRUCTCONF_INT8,       offsetof(relay_module_specs,relay_module_type), 1, 0, 3, "1=inductor,2=capacitor,3=delay" },
   { "NORELAYPORTS", STRUCTCONF_INT8,       offsetof(relay_module_specs,no_relay_ports), 1, 0, 16, NULL },
   { "NOSWITCHES",   STRUCTCONF_INT8,       offsetof(relay_module_specs,no_switches), 1, 0, 2, NULL },
@@ -122,7 +136,9 @@ const structure_entry relay_fields[11] =
   { "SETTLETIME",   STRUCTCONF_INT16,      offsetof(relay_module_specs,relay_settle_time), 1, 0, 1000, NULL },
   { "COMPVALUE",    STRUCTCONF_INT32,      offsetof(relay_module_specs,regs), MAX_NUMBER_RELAYS, 0, STRUCTCONF_INTMAX, NULL },
   { "PORTBITS",     STRUCTCONF_INT16_HEX,  offsetof(relay_module_specs,relay_port_bits), MAX_NUMBER_RELAYS, 0, 0xFFFF, "Hex values" },
-  { "SWITCHBITS",   STRUCTCONF_INT16_HEX,  offsetof(relay_module_specs,switch_bits), MAX_NUMBER_SWITCHES, 0, 0xFFFF, "Hex values" }
+  { "SWITCHBITS",   STRUCTCONF_INT16_HEX,  offsetof(relay_module_specs,switch_bits), MAX_NUMBER_SWITCHES, 0, 0xFFFF, "Hex values" },
+  { "ZEROSETTING",  STRUCTCONF_INT8,       offsetof(relay_module_specs,zero_setting), 1, 0, 0xFF, NULL },
+  { "GREEDYSEARCH", STRUCTCONF_INT8,       offsetof(relay_module_specs,greedy_search), 1, 0, 0xFF, NULL },
 }; 
 
 const char *relay_module_type_unit[4] = { "", " nH", " pF", "00 ps" };
@@ -204,19 +220,37 @@ int RelayModule::getCurrentValue(void)
 int RelayModule::findOptimalValue(int nCurval, uint16_t &bestcombo, int method)
 {
   // use exhaustive algorithm to find optimal approximating sum
-  int i, bestVal = -1;
-  uint16_t combo;
-  uint16_t ncombos = (1 << rms.no_relay_ports);
-  int minerror = 0x7FFFFFFF;
+  uint16_t combo, lastcombo = (1u << rms.no_relay_ports);
+  bool zerospecial;
+  bool bestzero = false;
+  int bestVal = -1, minerror = 0x7FFFFFFF;
+  int i;
 
-  bestcombo = 0;
-  for (combo = 0; combo < ncombos; combo++)
+  if (rms.greedy_search != 0)
   {
-    int sum = rms.offsetval;
-    for (i = rms.no_relay_ports; i > 0;)
+    uint32_t inc = lastcombo >> rms.greedy_search;
+    if (nCurval < 0) combo = 0;
+      else combo = (((uint32_t)nCurval) * ((uint32_t)lastcombo)) / ((uint32_t)maxval);
+    i = combo - inc/2;
+    combo = (i < 0) ? 0 : i;
+    i = combo + inc;
+    lastcombo = (i >= lastcombo) ? lastcombo-1 : i;
+  } else
+    combo = 0;
+  zerospecial = (combo == 0) && (rms.zero_setting > 0);
+  while (combo < lastcombo)
+  {
+    int sum;
+    if (zerospecial)
+      sum = 0;
+    else
     {
-      i--;
-      if (((combo >> i) & 0x01) != 0) sum += rms.regs[i];
+      sum = rms.offsetval;
+      for (i = rms.no_relay_ports; i > 0;)
+      {
+        i--;
+        if (((combo >> i) & 0x01) != 0) sum += rms.regs[i];
+      }
     }
     i = nCurval - sum;
     i = i < 0 ? -i : i;
@@ -228,14 +262,27 @@ int RelayModule::findOptimalValue(int nCurval, uint16_t &bestcombo, int method)
       minerror = i;
       bestcombo = combo;
       bestVal = sum;
+      bestzero = zerospecial;
     }
+    if (zerospecial)
+    {
+      zerospecial = false;
+    } else combo++;
   }
-  combo = bestcombo;
-  bestcombo = 0;
-  for (i = rms.no_relay_ports; i > 0;)
+  
+  if (bestzero)
   {
-    i--;
-    if (((combo >> i) & 0x01) != 0) bestcombo |= rms.relay_port_bits[i];
+    bestcombo = 0;
+    bestVal = 0;
+  } else
+  {
+    combo = bestcombo;
+    bestcombo = 0;
+    for (i = rms.no_relay_ports; i > 0;)
+    {
+      i--;
+      if (((combo >> i) & 0x01) != 0) bestcombo |= rms.relay_port_bits[i];
+    }
   }
   return bestVal;
 }
@@ -249,13 +296,21 @@ int RelayModule::setCurrentValue(int nCurval, int method)
   curval = bestVal;
   curbits = (bestcombo & relay_port_mask) | (curbits & ~relay_port_mask);
   OutputBitsMCP23008(curbits);
+  if (rms.zero_setting > 0)
+     setSwitchState(rms.zero_setting-1, bestVal == 0 ? false : true);      
   return curval;
 }
 
 void RelayModule::updateCurval(void)
 {
-  int curval = rms.offsetval;
+  if ((rms.zero_setting > 0) && (!getSwitchState(rms.zero_setting-1)))
+  {
+    curval = 0;
+    return;
+  }
+  curval = rms.offsetval;
   for (int i = 0; i < rms.no_relay_ports; i++)
+
     if ((curbits & rms.relay_port_bits[i]) != 0)
       curval += rms.regs[i];
 }
