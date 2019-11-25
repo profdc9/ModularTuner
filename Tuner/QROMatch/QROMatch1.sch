@@ -791,7 +791,7 @@ Text GLabel 8650 3450 0    60   Input ~ 0
 RLY23
 Text GLabel 3100 4850 2    60   Input ~ 0
 RFOUT
-Text GLabel 3100 5300 2    60   Input ~ 0
+Text GLabel 3100 5500 2    60   Input ~ 0
 RFSIG
 $Comp
 L Conn_02x12_Odd_Even J1
@@ -913,7 +913,7 @@ F 3 "" H 7500 4800 50  0001 C CNN
 	1    7500 4800
 	0    1    1    0   
 $EndComp
-Text GLabel 7950 4050 0    60   Input ~ 0
+Text GLabel 4000 4950 0    60   Input ~ 0
 RFGND
 $Comp
 L C C48
@@ -1399,13 +1399,13 @@ Connection ~ 10100 1100
 Wire Wire Line
 	10100 750  10150 750 
 Wire Wire Line
-	7650 4800 7650 6200
+	7650 4050 7650 6200
 Connection ~ 7650 5050
 Connection ~ 7650 5350
 Connection ~ 7650 5650
 Connection ~ 7650 5900
 Wire Wire Line
-	7350 4800 7350 6200
+	7350 4050 7350 6200
 Connection ~ 7350 5900
 Connection ~ 7350 5650
 Connection ~ 7350 5350
@@ -1865,7 +1865,7 @@ Wire Wire Line
 	9150 3700 9050 3700
 Wire Wire Line
 	3100 4650 2950 4650
-Text GLabel 7950 4350 0    60   Input ~ 0
+Text GLabel 4000 5250 0    60   Input ~ 0
 RFSIG
 Text GLabel 1550 4750 0    60   Input ~ 0
 RFCAP
@@ -1879,44 +1879,82 @@ Wire Wire Line
 	1700 5600 1900 5600
 Connection ~ 1700 4950
 Wire Wire Line
-	1800 5050 1800 5700
+	1800 5050 1800 5150
 Wire Wire Line
-	1800 5700 1900 5700
+	1150 5700 1900 5700
 $Comp
 L Conn_01x04 J3
 U 1 1 5DDA2558
-P 8400 4150
-F 0 "J3" H 8400 4350 50  0000 C CNN
-F 1 "Conn_01x04" H 8400 3850 50  0000 C CNN
-F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-4_P5.08mm" H 8400 4150 50  0001 C CNN
-F 3 "" H 8400 4150 50  0001 C CNN
-	1    8400 4150
+P 4450 5050
+F 0 "J3" H 4450 5250 50  0000 C CNN
+F 1 "Conn_01x04" H 4450 4750 50  0000 C CNN
+F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-4_P5.08mm" H 4450 5050 50  0001 C CNN
+F 3 "" H 4450 5050 50  0001 C CNN
+	1    4450 5050
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8200 4350 7950 4350
+	4250 5250 4000 5250
 Wire Wire Line
-	7950 4050 8200 4050
+	4000 4950 4250 4950
 Wire Wire Line
 	3100 5300 2950 5300
-Text GLabel 1150 5150 0    60   Input ~ 0
+Text GLabel 1150 5700 0    60   Input ~ 0
 RLY13
 Wire Wire Line
-	1150 5150 1800 5150
-Connection ~ 1800 5150
+	1800 5150 1150 5150
 Text GLabel 10650 1100 2    60   Input ~ 0
 RLY24
 Text GLabel 750  7200 3    60   Input ~ 0
 RLY24
-Text GLabel 1150 4950 0    60   Input ~ 0
+Text GLabel 1150 5150 0    60   Input ~ 0
 RLY24
 Wire Wire Line
-	5550 6100 5400 6100
-Wire Wire Line
 	1900 4950 1700 4950
+Text GLabel 5550 6400 2    60   Input ~ 0
+RLY24
+$Comp
+L C C76
+U 1 1 5DDAC7AB
+P 7500 4550
+F 0 "C76" H 7525 4650 50  0000 L CNN
+F 1 "10 nF" H 7525 4450 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 7538 4400 50  0001 C CNN
+F 3 "" H 7500 4550 50  0001 C CNN
+	1    7500 4550
+	0    1    1    0   
+$EndComp
+$Comp
+L C C75
+U 1 1 5DDACB1B
+P 7500 4300
+F 0 "C75" H 7525 4400 50  0000 L CNN
+F 1 "10 nF" H 7525 4200 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 7538 4150 50  0001 C CNN
+F 3 "" H 7500 4300 50  0001 C CNN
+	1    7500 4300
+	0    1    1    0   
+$EndComp
+$Comp
+L C C74
+U 1 1 5DDACC1F
+P 7500 4050
+F 0 "C74" H 7525 4150 50  0000 L CNN
+F 1 "10 nF" H 7525 3950 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 7538 3900 50  0001 C CNN
+F 3 "" H 7500 4050 50  0001 C CNN
+	1    7500 4050
+	0    1    1    0   
+$EndComp
+Connection ~ 7350 4300
+Connection ~ 7350 4800
+Connection ~ 7350 4550
+Connection ~ 7650 4800
+Connection ~ 7650 4550
+Connection ~ 7650 4300
 Wire Wire Line
-	1150 4950 1350 4950
+	4100 4950 4100 5050
 Wire Wire Line
-	1350 4950 1350 5150
-Connection ~ 1350 5150
+	4100 5050 4250 5050
+Connection ~ 4100 4950
 $EndSCHEMATC

@@ -1191,7 +1191,7 @@ F 3 "" H 7200 5100 50  0001 C CNN
 	1    7200 5100
 	1    0    0    -1  
 $EndComp
-Text GLabel 10250 4600 0    60   Input ~ 0
+Text GLabel 10250 4950 3    60   Input ~ 0
 RFGND
 $Comp
 L +5V #PWR027
@@ -1265,7 +1265,7 @@ U 5DD9F84B
 F0 "QROMatch1" 60
 F1 "QROMatch1.sch" 60
 $EndSheet
-Text GLabel 10250 3750 2    60   Input ~ 0
+Text GLabel 10400 4350 0    60   Input ~ 0
 RFOUT
 $Comp
 L Conn_01x06 J2
@@ -1388,23 +1388,53 @@ F 3 "" H 8850 3700 50  0001 C CNN
 	1    8850 3700
 	0    1    1    0   
 $EndComp
+$Comp
+L C C73
+U 1 1 5DDADA66
+P 7500 4600
+F 0 "C73" H 7525 4700 50  0000 L CNN
+F 1 "10 nF" H 7525 4500 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 7538 4450 50  0001 C CNN
+F 3 "" H 7500 4600 50  0001 C CNN
+	1    7500 4600
+	0    1    1    0   
+$EndComp
+$Comp
+L C C72
+U 1 1 5DDADB75
+P 7500 4350
+F 0 "C72" H 7525 4450 50  0000 L CNN
+F 1 "10 nF" H 7525 4250 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 7538 4200 50  0001 C CNN
+F 3 "" H 7500 4350 50  0001 C CNN
+	1    7500 4350
+	0    1    1    0   
+$EndComp
+$Comp
+L C C71
+U 1 1 5DDAF043
+P 7500 4100
+F 0 "C71" H 7525 4200 50  0000 L CNN
+F 1 "10 nF" H 7525 4000 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 7538 3950 50  0001 C CNN
+F 3 "" H 7500 4100 50  0001 C CNN
+	1    7500 4100
+	0    1    1    0   
+$EndComp
 Wire Wire Line
 	8750 4800 8550 4800
-Connection ~ 8700 4200
 Wire Wire Line
-	8700 4500 8700 4200
+	8700 3850 8700 4500
 Wire Wire Line
-	8750 4500 8700 4500
+	8700 4500 8750 4500
 Wire Wire Line
-	10000 4200 3100 4200
-Wire Wire Line
-	3100 4200 3100 4700
+	3100 3850 3100 4700
 Wire Wire Line
 	9900 1300 9900 2500
 Wire Wire Line
 	9500 2950 10000 2950
 Wire Wire Line
-	10000 2950 10000 4200
+	10000 2950 10000 3850
 Wire Wire Line
 	3100 4700 2950 4700
 Wire Wire Line
@@ -1883,13 +1913,13 @@ Connection ~ 10100 1150
 Wire Wire Line
 	10100 800  10150 800 
 Wire Wire Line
-	7650 4850 7650 6250
+	7650 4100 7650 6250
 Connection ~ 7650 5100
 Connection ~ 7650 5400
 Connection ~ 7650 5700
 Connection ~ 7650 5950
 Wire Wire Line
-	7350 4850 7350 6250
+	7350 4100 7350 6250
 Connection ~ 7350 5950
 Connection ~ 7350 5700
 Connection ~ 7350 5400
@@ -1898,16 +1928,6 @@ Wire Wire Line
 	7350 5100 7200 5100
 Wire Wire Line
 	7800 5100 7650 5100
-Wire Wire Line
-	9800 4400 10100 4400
-Wire Wire Line
-	10100 4400 10100 4350
-Wire Wire Line
-	10100 4350 10500 4350
-Wire Wire Line
-	9800 4600 9800 4850
-Wire Wire Line
-	9800 4850 10500 4850
 Wire Wire Line
 	8550 4450 8550 4700
 Wire Wire Line
@@ -1987,12 +2007,32 @@ Wire Wire Line
 Connection ~ 9700 2950
 Wire Wire Line
 	1100 2500 1100 3150
-Text GLabel 10250 4750 0    60   Input ~ 0
-RFSIG
+Connection ~ 7650 4850
+Connection ~ 7650 4600
+Connection ~ 7350 4850
+Connection ~ 7350 4600
 Wire Wire Line
-	10250 4750 10500 4750
+	10000 3850 3100 3850
+Connection ~ 3100 4200
+Connection ~ 8700 3850
+Connection ~ 7650 4350
+Connection ~ 7350 4350
 Wire Wire Line
-	10350 6050 10100 6050
+	10000 4850 10500 4850
 Wire Wire Line
-	10100 6050 10100 6000
+	10400 4350 10500 4350
+Wire Wire Line
+	10000 4850 10000 4400
+Wire Wire Line
+	10000 4400 9800 4400
+Wire Wire Line
+	10250 4600 10250 4950
+Wire Wire Line
+	10500 4450 10100 4450
+Wire Wire Line
+	10100 4450 10100 4600
+Wire Wire Line
+	10100 4600 9800 4600
+Text GLabel 10250 3750 2    60   Input ~ 0
+RFOUT
 $EndSCHEMATC
