@@ -793,17 +793,6 @@ Text GLabel 3100 4850 2    60   Input ~ 0
 RFOUT
 Text GLabel 3100 5500 2    60   Input ~ 0
 RFSIG
-$Comp
-L Conn_02x12_Odd_Even J1
-U 1 1 5DDA7736
-P 5100 7000
-F 0 "J1" H 5150 7600 50  0000 C CNN
-F 1 "Conn_02x12_Odd_Even" H 5150 6300 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_2x12_Pitch2.54mm" H 5100 7000 50  0001 C CNN
-F 3 "" H 5100 7000 50  0001 C CNN
-	1    5100 7000
-	1    0    0    1   
-$EndComp
 Text GLabel 5550 6500 2    60   Input ~ 0
 RLY23
 $Comp
@@ -1957,4 +1946,15 @@ Wire Wire Line
 Wire Wire Line
 	4100 5050 4250 5050
 Connection ~ 4100 4950
+$Comp
+L Conn_02x13_Odd_Even J1
+U 1 1 5DE1EB52
+P 5100 6900
+F 0 "J1" H 5150 7600 50  0000 C CNN
+F 1 "Conn_02x13_Odd_Even" H 5150 6200 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_2x13_Pitch2.54mm" H 5100 6900 50  0001 C CNN
+F 3 "" H 5100 6900 50  0001 C CNN
+	1    5100 6900
+	1    0    0    1   
+$EndComp
 $EndSCHEMATC
